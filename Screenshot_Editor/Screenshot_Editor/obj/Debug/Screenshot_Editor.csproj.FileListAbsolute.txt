@@ -1,6 +1,3 @@
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\Screenshot_Editor.exe.config
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\Screenshot_Editor.exe
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\Screenshot_Editor.pdb
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\ControlzEx.xml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\MahApps.Metro.xml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\MahApps.Metro.IconPacks.xml
@@ -40,17 +37,20 @@ C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_E
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\System.Diagnostics.DiagnosticSource.xml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\MainWindow.g.cs
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\App.g.cs
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor_MarkupCompile.cache
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor_MarkupCompile.lref
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\MainWindow.baml
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.g.resources
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.Properties.Resources.resources
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.csproj.GenerateResource.cache
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.csproj.CoreCompileInputs.cache
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.csproj.Fody.CopyLocal.cache
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.csproj.CopyComplete
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.exe
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.pdb
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\App.baml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot_Editor.csproj.AssemblyReference.cache
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\Screenshot Editor.exe.config
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\Screenshot Editor.exe
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\bin\Debug\Screenshot Editor.pdb
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot Editor_MarkupCompile.cache
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot Editor_MarkupCompile.lref
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot Editor.g.resources
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot Editor.exe
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\Screenshot_Editor\obj\Debug\Screenshot Editor.pdb

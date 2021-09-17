@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Drawing.Text;
 using System.Globalization;
 using System.Linq;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ExtensionMethods;
 
 namespace Screenshot_Editor
@@ -36,11 +38,11 @@ namespace Screenshot_Editor
         {
             try
             {
-                FontsList = new ObservableCollection<string>(Fonts.SystemFontFamilies.Select(s => s.Source));
+                FontsList = new ObservableCollection<string>(new InstalledFontCollection().Families.Select(s => s.Name));
 
                 SelectedFont = FontsList.FirstOrDefault(fod => fod == "Arial");
 
-                XY = Sizes.FirstOrDefault(fod => fod.Size == "800x600");
+                XY = Sizes.FirstOrDefault(fod => fod.Size == "720p");
             }
             catch (Exception ex)
             {
@@ -202,6 +204,14 @@ namespace Screenshot_Editor
         {
             get => _textBackgroudOpacity ?? 0;
             set { _textBackgroudOpacity = value; OnPropertyChanged(); }
+        }
+
+        private BitmapImage _image = new BitmapImage();
+
+        public BitmapImage Image
+        {
+            get => _image;
+            set { _image = value; OnPropertyChanged(); }
         }
 
         #endregion

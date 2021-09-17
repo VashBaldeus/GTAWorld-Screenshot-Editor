@@ -40,7 +40,7 @@
     <Grid>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="384"/>
+            <ColumnDefinition Width="512"/>
             <ColumnDefinition Width="*" x:Name="CanvasColumn"/>
         </Grid.ColumnDefinitions>
 
@@ -50,9 +50,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
                     <Grid Grid.Row="0">
@@ -71,6 +71,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Text="To move text over image, hold Shift and move mouse over image, release Shift once found suitable location."
                                    TextWrapping="Wrap" FontSize="15"/>
@@ -80,12 +81,14 @@
 
                         <Label Grid.Column="0" Grid.Row="2" Content="Font Size"/>
                         <Label Grid.Column="0" Grid.Row="3" Content="Font Family"/>
-                        <Label Grid.Column="0" Grid.Row="4" Content="Resolution"/>
-                        <Label Grid.Column="0" Grid.Row="5" Content="Width"/>
-                        <Label Grid.Column="0" Grid.Row="6" Content="Height"/>
-                        <Label Grid.Column="0" Grid.Row="7" Content="Text Background Opacity"/>
+                        <Label Grid.Column="0" Grid.Row="4" Content="Resolution Preset"/>
+                        <Label Grid.Column="0" Grid.Row="5" Content="Res. Width"/>
+                        <Label Grid.Column="0" Grid.Row="6" Content="Res. Height"/>
+                        <Label Grid.Column="0" Grid.Row="7" Content="Font Weight"/>
+                        <Label Grid.Column="0" Grid.Row="8" Content="Text Box Width"/>
+                        <Label Grid.Column="0" Grid.Row="9" Content="Stroke Width (decimal range 0.1~1)"/>
 
-                        <mah:NumericUpDown x:Name="FontSizeUpDown" Grid.Column="1" Grid.Row="2" Minimum="6" Maximum="100" Value="12" FontSize="15"/>
+                        <mah:NumericUpDown x:Name="FontSizeUpDown" Grid.Column="1" Grid.Row="2" Minimum="6" Maximum="100" Value="20" FontSize="15"/>
 
                         <ComboBox x:Name="FontCombo" Grid.Column="1" Grid.Row="3" ItemsSource="{Binding FontsList}"
                                   FontSize="15"
@@ -98,40 +101,52 @@
                         </ComboBox>
 
                         <ComboBox x:Name="CanvasSizeCombo" Grid.Column="1" Grid.Row="4" ItemsSource="{Binding Sizes}"
-                                  SelectedItem="{Binding XY}" DisplayMemberPath="Size" FontSize="15">
+                                  SelectedItem="{Binding XY}" DisplayMemberPath="Size" FontSize="15"
+                                  SelectionChanged="CanvasSizeCombo_OnSelectionChanged">
                         </ComboBox>
 
-                        <mah:NumericUpDown Grid.Column="1" Grid.Row="5" Value="{Binding XY.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15"
-                                           IsEnabled="{Binding XY.Size, Converter={StaticResource CustomSizeConverter}}"/>
+                        <mah:NumericUpDown x:Name="WidthRes" Grid.Column="1" Grid.Row="5" Value="{Binding XY.X, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15"
+                                           IsEnabled="{Binding XY.Size, Converter={StaticResource CustomSizeConverter}}"
+                                           ValueChanged="NumericUpDown_OnValueChanged"/>
 
-                        <mah:NumericUpDown Grid.Column="1" Grid.Row="6" Value="{Binding XY.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15"
-                                           IsEnabled="{Binding XY.Size, Converter={StaticResource CustomSizeConverter}}"/>
+                        <mah:NumericUpDown x:Name="HeightRes" Grid.Column="1" Grid.Row="6" Value="{Binding XY.Y, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FontSize="15"
+                                           IsEnabled="{Binding XY.Size, Converter={StaticResource CustomSizeConverter}}"
+                                           ValueChanged="NumericUpDown_OnValueChanged"/>
 
-                        <xctk:DecimalUpDown x:Name="OpacityPercentage" Grid.Column="1" Grid.Row="7" Minimum="0" Maximum="1"  FontSize="15" Increment="0.1"
-                                            DefaultValue="0.0"
-                                            Value="{Binding TextBackgroundOpacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                            Foreground="Wheat">
-                            <xctk:DecimalUpDown.ToolTip>
-                                <Label>Ranges from 0 to 1, meaning decimal values. I.E. 0.1 0.75</Label>
-                            </xctk:DecimalUpDown.ToolTip>
-                        </xctk:DecimalUpDown>
+                        <ComboBox x:Name="FontWeightCombo" Grid.Column="1" Grid.Row="7" FontFamily="Arial"
+                                  SelectedValuePath="Tag" FontSize="15">
+                            <ComboBox.Items>
+                                <ComboBoxItem Tag="100" Content="Thin" FontWeight="Thin"/>
+                                <ComboBoxItem Tag="200" Content="Extra-light (Ultra-light)" FontWeight="ExtraLight"/>
+                                <ComboBoxItem Tag="300" Content="Light" FontWeight="Light"/>
+                                <ComboBoxItem Tag="400" Content="Normal (Regular)" FontWeight="Normal"/>
+                                <ComboBoxItem Tag="500" Content="Medium" FontWeight="Medium"/>
+                                <ComboBoxItem Tag="600" Content="Semi-bold (Demi-bold)" FontWeight="SemiBold"/>
+                                <ComboBoxItem Tag="700" Content="Bold" FontWeight="Bold"/>
+                                <ComboBoxItem Tag="800" Content="Extra-bold (Ultra-bold)" FontWeight="ExtraBold"/>
+                                <ComboBoxItem Tag="900" Content="Black (Heavy)" FontWeight="Black"/>
+                            </ComboBox.Items>
+                        </ComboBox>
+
+                        <mah:NumericUpDown x:Name="TextBlockWidthNumber" Grid.Column="1" Grid.Row="8" FontSize="15" Minimum="500"/>
+                        <mah:NumericUpDown x:Name="TextStrokeWidth" Grid.Column="1" Grid.Row="9" FontSize="15" Minimum="0.1" Maximum="1"/>
                     </Grid>
 
-                    <Label Grid.Row="1" Content="IC Chat Text:"/>
+                    <Button x:Name="ConvertTxtBtn" Grid.Row="1" Content="Process Text on to Image"
+                            Click="ConvertTxtBtn_OnClick"
+                            IsEnabled="{qc:Binding '$P != 0', P={Binding ElementName=InputTxtBox, Path=Text.Length}}"/>
 
-                    <xctk:RichTextBox x:Name="InputTxtBox" Grid.Row="2" FontSize="15">
+                    <Button x:Name="SaveImageBtn" Grid.Row="2" Content="Save Image"
+                            Click="SaveImageBtn_OnClick"
+                            IsEnabled="{qc:Binding '$P != 0', P={Binding ElementName=InputTxtBox, Path=Text.Length}}"/>
+
+                    <Label Grid.Row="3" Content="IC Chat Text:"/>
+
+                    <xctk:RichTextBox x:Name="InputTxtBox" Grid.Row="4" FontSize="15">
                         <xctk:RichTextBox.TextFormatter>
                             <xctk:PlainTextFormatter />
                         </xctk:RichTextBox.TextFormatter>
                     </xctk:RichTextBox>
-
-                    <Button x:Name="ConvertTxtBtn" Grid.Row="3" Content="Process Text on to Image"
-                            Click="ConvertTxtBtn_OnClick"
-                            IsEnabled="{qc:Binding '$P != 0', P={Binding ElementName=InputTxtBox, Path=Text.Length}}"/>
-
-                    <Button x:Name="SaveImageBtn" Grid.Row="4" Content="Save Image"
-                            Click="SaveImageBtn_OnClick"
-                            IsEnabled="{qc:Binding '$P != 0', P={Binding ElementName=InputTxtBox, Path=Text.Length}}"/>
                 </Grid>
             </GroupBox.Content>
         </GroupBox>
@@ -141,38 +156,37 @@
             <Canvas x:Name="ScreenShotCanvas" Background="Black" MouseMove="ScreenShotCanvas_OnMouseMove"
                     Height="{Binding XY.Y, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                     Width="{Binding XY.X, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                <Image x:Name="ScreenImage"
-                       Source="{Binding ImageFile, UpdateSourceTrigger=PropertyChanged}"
-                       Height="{Binding XY.Y}" Width="{Binding XY.X}" Stretch="UniformToFill"/>
+                <Image x:Name="ScreenImage" Stretch="UniformToFill"
+                       Source="{Binding Image, UpdateSourceTrigger=PropertyChanged}"
+                       Height="{Binding XY.Y}" Width="{Binding XY.X}"/>
 
-                <Border x:Name="TxtBlockBorder">
+                <StackPanel x:Name="TxtBlock"
+                            MaxWidth="{Binding ElementName=TextBlockWidthNumber, Path=Value, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            MaxHeight="{Binding XY.Y, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!--<Border x:Name="TxtBlockBorder">
                     <Border.Background>
                         <SolidColorBrush Color="Black" Opacity="{Binding TextBackgroundOpacity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
                     </Border.Background>
 
-                    <TextBlock x:Name="TxtBlock" FontWeight="Bold" Margin="10"
+                    --><!--<TextBlock x:Name="TxtBlock" FontWeight="Bold" Margin="10"
                                FontFamily="{Binding SelectedFont, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                FontSize="{Binding ElementName=FontSizeUpDown, Path=Value}"
                                TextWrapping="WrapWithOverflow"
                                MaxWidth="{Binding XY.X, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                MaxHeight="{Binding XY.Y, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                VerticalAlignment="Center">
-                        <!--<TextBlock.Background>
+                               -->
+                    <!--TextAlignment="{qc:Binding '$P ? Right : Left', P={Binding ElementName=FlowDirectionSwitch, Path=IsOn}}">-->
+                    <!--<TextBlock.Background>
                             <SolidColorBrush Color="Black" Opacity="0.5" />
                         </TextBlock.Background>-->
-                    </TextBlock>
-                </Border>
+                    <!--
+                    </TextBlock>--><!--
 
-                <!--<TextBlock x:Name="TxtBlock" FontWeight="Bold" Margin="5"
-                           FontFamily="{Binding SelectedFont, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                           FontSize="{Binding ElementName=FontSizeUpDown, Path=Value}"
-                           TextWrapping="WrapWithOverflow"
-                           MaxWidth="{Binding XY.X, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                           MaxHeight="{Binding XY.Y, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <TextBlock.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.5" />
-                    </TextBlock.Background>
-                </TextBlock>-->
+                    
+
+                </Border>-->
             </Canvas>
         </ScrollViewer>
 
