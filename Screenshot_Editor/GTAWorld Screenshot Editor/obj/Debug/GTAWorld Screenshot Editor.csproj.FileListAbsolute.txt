@@ -55,7 +55,6 @@ C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Scr
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\Microsoft.Expression.Interactions.xml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\System.Windows.Interactivity.xml
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\es-ES\GTAWorld Screenshot Editor.resources.dll
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Debug\GTAWorld_Screenshot_Editor.Localization.Strings.resources
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Debug\GTAWorld_Screenshot_Editor.Localization.Strings.es-ES.resources
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Debug\es-ES\GTAWorld Screenshot Editor.resources.dll
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\Octokit.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Debug\GTAWorld Screenshot Editor.csproj.AssemblyReference.cache

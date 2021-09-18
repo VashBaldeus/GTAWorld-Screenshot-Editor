@@ -213,7 +213,7 @@ namespace GTAWorld_Screenshot_Editor
                 //remove highlight if left
                 ParsedChat = ParsedChat.Replace("[!] ", "");
 
-                var lines = ParsedChat.Split('\n').Where(w => !string.IsNullOrEmpty(w));
+                var lines = ParsedChat.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Where(w => !string.IsNullOrEmpty(w));
 
                 if (lines.Count() > 100)
                     throw new Exception(
@@ -228,7 +228,7 @@ namespace GTAWorld_Screenshot_Editor
                     if (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!"))
                         str = $"{line}.";
 
-                    var newLine = lineCount + 1 == lines.Count() ? "" : "\r\n";
+                    var newLine = lineCount + 1 == lines.Count() ? "" : "\n";
 
                     var _outlinedTextBlock = new OutlinedTextBlock()
                     {

@@ -53,7 +53,12 @@ namespace GTAWorld_Screenshot_Editor
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
         {
-            if (Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
+            var dc = (dynamic)DataContext;
+
+            if (dc == null)
+                return;
+
+            if ((Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)) && !string.IsNullOrEmpty(dc.SelectedImage.Path))
             {
                 var point = Mouse.GetPosition(ScreenshotCanvas);
 

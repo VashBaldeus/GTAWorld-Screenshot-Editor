@@ -305,10 +305,6 @@
             </TabItem>
 
             <TabItem Header="Parsed Chat">
-                <!--<TextBox Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         VerticalContentAlignment="Top"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
-
                 <xctk:RichTextBox  x:Name="ParsedChatBig" FontSize="15"
                                    Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                    Foreground="{DynamicResource MahApps.Brushes.Accent}"
