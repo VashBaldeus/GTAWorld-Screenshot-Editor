@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ExtensionMethods;
 using GTAWorld_Screenshot_Editor.Models;
+using Microsoft.Win32;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -54,6 +55,8 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                LookForMainDirectory();
+
                 SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
 
                 //load parser settings
@@ -91,7 +94,7 @@ namespace GTAWorld_Screenshot_Editor
                     ShowNewFolderButton = false
                 };
 
-                if (dialog.ShowDialog() == DialogResult.Abort)
+                if (dialog.ShowDialog() == DialogResult.Abort || string.IsNullOrEmpty(dialog.SelectedPath))
                     return;
 
                 RageFolder = $@"{dialog.SelectedPath}\";
@@ -190,6 +193,8 @@ namespace GTAWorld_Screenshot_Editor
                 var regexStrings = ParserSettings.Where(w => w.Selected).Select(s => s.Filter);
 
                 ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.Where(w => w.Selected).ToList());
+
+                LineHeight = 1;
             }
             catch (Exception ex)
             {
@@ -436,6 +441,14 @@ namespace GTAWorld_Screenshot_Editor
             set { _fonts = value; OnPropertyChanged(); }
         }
 
+        private int _lineHeight = 1;
+
+        public int LineHeight
+        {
+            get => _lineHeight;
+            set { _lineHeight = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region Private Properties
@@ -483,6 +496,36 @@ namespace GTAWorld_Screenshot_Editor
             }
 
             return "#fff";//white
+        }
+
+        /// <summary>
+        /// Looks for the main RAGEMP directory
+        /// path on the first start
+        /// </summary>
+        private void LookForMainDirectory()
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(RageFolder))
+                    return;
+
+                var keyValue = Registry.GetValue(@"HKEY_CURRENT_USER\Software\RAGE-MP", "rage_path", null);
+                if (keyValue != null)
+                {
+                    RageFolder = keyValue + @"\";
+                    MessageBox.Show(
+                        $"Automatically found your RAGEMP directory at {RageFolder}\n\nPlease browse for the correct path manually if this is incorrect or you have multiple RAGEMP installations.",
+                        "Information (First Start)", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    throw new IOException();
+                }
+            }
+            catch(Exception ex)
+            {
+                Message.Log(ex);
+            }
         }
 
         #endregion

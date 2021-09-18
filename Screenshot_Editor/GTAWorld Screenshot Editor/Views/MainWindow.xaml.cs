@@ -29,8 +29,6 @@ namespace GTAWorld_Screenshot_Editor
                 return;
 
             dc.OnLoadCommand.Execute(null);
-
-
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)

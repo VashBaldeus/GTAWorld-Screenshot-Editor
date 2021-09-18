@@ -10,3 +10,41 @@
 
 ====================
  
+====================
+[Date] 2021-09-18 18:39:49
+[PC Name] STAMPEDE
+[Error Message] Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "Assistant.Localization.Strings.resources" was correctly embedded or linked into assembly "GTAWorld Screenshot Editor" at compile time, or that all the satellite assemblies required are loadable and fully signed.
+[Stack Trace]
+   at System.Resources.ManifestBasedResourceGroveler.HandleResourceStreamMissing(String fileName)
+   at System.Resources.ManifestBasedResourceGroveler.GrovelForResourceSet(CultureInfo culture, Dictionary`2 localResourceSets, Boolean tryParents, Boolean createIfNotExists, StackCrawlMark& stackMark)
+   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo requestedCulture, Boolean createIfNotExists, Boolean tryParents, StackCrawlMark& stackMark)
+   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo culture, Boolean createIfNotExists, Boolean tryParents)
+   at System.Resources.ResourceManager.GetString(String name, CultureInfo culture)
+   at Assistant.Localization.Strings.get_DirectoryFinderNotFound()
+   at GTAWorld_Screenshot_Editor.MainViewModel.LookForMainDirectory()
+   at GTAWorld_Screenshot_Editor.MainViewModel.OnLoadExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-18 18:40:27
+[PC Name] STAMPEDE
+[Error Message] Could not find any resources appropriate for the specified culture or the neutral culture.  Make sure "Assistant.Localization.Strings.resources" was correctly embedded or linked into assembly "GTAWorld Screenshot Editor" at compile time, or that all the satellite assemblies required are loadable and fully signed.
+[Stack Trace]
+   at System.Resources.ManifestBasedResourceGroveler.HandleResourceStreamMissing(String fileName)
+   at System.Resources.ManifestBasedResourceGroveler.GrovelForResourceSet(CultureInfo culture, Dictionary`2 localResourceSets, Boolean tryParents, Boolean createIfNotExists, StackCrawlMark& stackMark)
+   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo requestedCulture, Boolean createIfNotExists, Boolean tryParents, StackCrawlMark& stackMark)
+   at System.Resources.ResourceManager.InternalGetResourceSet(CultureInfo culture, Boolean createIfNotExists, Boolean tryParents)
+   at System.Resources.ResourceManager.GetString(String name, CultureInfo culture)
+   at Assistant.Localization.Strings.get_DirectoryFinderNotFound()
+   at GTAWorld_Screenshot_Editor.MainViewModel.LookForMainDirectory()
+   at GTAWorld_Screenshot_Editor.MainViewModel.OnLoadExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 

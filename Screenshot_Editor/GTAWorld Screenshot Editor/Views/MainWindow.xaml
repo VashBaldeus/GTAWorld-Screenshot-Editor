@@ -8,6 +8,7 @@
         xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:qc="http://QuickConverter.CodePlex.com/"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
         Title="GTAWorld Screenshot Editor" Height="720" Width="1280"
         Icon="../Resources/screenshot.ico"
@@ -233,13 +234,24 @@
                                             </Expander.Content>
                                         </Expander>
 
-                                        <Button Content="Add chat to image" Command="{Binding AddTextToImageCommand}"
+                                        <Button Content="Add / Refresh chat on image" Command="{Binding AddTextToImageCommand}"
                                                 IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
                                     </StackPanel>
 
-                                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13" VerticalContentAlignment="Top"
+                                    <!--<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13" VerticalContentAlignment="Top"
                                          Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                                         ScrollViewer.VerticalScrollBarVisibility="Visible"/>-->
+
+                                    <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13"
+                                                      FontSize="15"
+                                                      Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                                                      ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                                      Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <xctk:RichTextBox.TextFormatter>
+                                            <xctk:PlainTextFormatter/>
+                                        </xctk:RichTextBox.TextFormatter>
+                                    </xctk:RichTextBox>
                                 </Grid>
                             </ScrollViewer>
                         </GroupBox.Content>
@@ -293,9 +305,19 @@
             </TabItem>
 
             <TabItem Header="Parsed Chat">
-                <TextBox Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <!--<TextBox Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                          VerticalContentAlignment="Top"
-                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>-->
+
+                <xctk:RichTextBox  x:Name="ParsedChatBig" FontSize="15"
+                                   Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                                   ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                   Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                    <xctk:RichTextBox.TextFormatter>
+                        <xctk:PlainTextFormatter/>
+                    </xctk:RichTextBox.TextFormatter>
+                </xctk:RichTextBox>
             </TabItem>
         </TabControl>
     </Grid>
