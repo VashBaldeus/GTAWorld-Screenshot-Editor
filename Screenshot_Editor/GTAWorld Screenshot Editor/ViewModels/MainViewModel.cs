@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
@@ -46,6 +47,10 @@ namespace GTAWorld_Screenshot_Editor
             AddTextToImageCommand = new RelayCommand(AddTextToImageExecute);
 
             ResetCommand = new RelayCommand(ResetExecute);
+
+            LoadCacheCommand = new RelayCommand(LoadCacheExecute);
+
+            DeleteCachedImageCommand = new RelayCommand(DeleteCachedImageExecute);
         }
 
         #endregion
@@ -71,7 +76,18 @@ namespace GTAWorld_Screenshot_Editor
 
                 Fonts = new ObservableCollection<string>(new InstalledFontCollection().Families.Select(s => s.Name));
 
-                //TextSettings.FontFamily = Fonts.FirstOrDefault(fod => fod == "Arial");
+                if (File.Exists(@"./cached_screens/screenshots.cache"))
+                {
+                    ScreenCache =
+                        Xml.Deserialize<ObservableCollection<CacheScreenshot>>(@"./cached_screens/screenshots.cache");
+
+                    foreach (var cacheScreenshot in ScreenCache)
+                    {
+                        cacheScreenshot.Command = DeleteCachedImageCommand;
+
+                        cacheScreenshot.InitImage();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -211,6 +227,8 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                CacheCurrentImageAndText();
+
                 ScreenshotText.Clear();
 
                 //remove highlight if left
@@ -285,6 +303,67 @@ namespace GTAWorld_Screenshot_Editor
                 SelectedImage = new ImageModel();
 
                 ScreenshotText.Clear();
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
+        public ICommand LoadCacheCommand { get; set; }
+
+        public void LoadCacheExecute(object obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return;
+
+                var cache = (CacheScreenshot)obj;
+
+                ParsedChat = cache.ScreenshotText;
+
+                SelectedImage.Path = cache.ImageFullPath;
+
+                SelectedImage.Guid = cache.Guid;
+
+                SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
+        public ICommand DeleteCachedImageCommand { get; set; }
+
+        public void DeleteCachedImageExecute(object obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return;
+
+                if (MessageBox.Show("Are you sure you wanted to delete selected screenshot", "Confirm Delition",
+                    MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No)
+                    return;
+
+                var cacheDir = @"cached_screens";
+
+                var cache = (CacheScreenshot)obj;
+
+                File.Delete(cache.ImageFullPath);
+
+                ScreenCache.Remove(cache);
+
+                if (ScreenCache.Count > 0)
+                {
+                    ScreenCache =
+                        new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));
+
+                    Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{cacheDir}\screenshots.cache", ScreenCache);
+                }
+                else File.Delete($@"{cacheDir}\screenshots.cache");
             }
             catch (Exception ex)
             {
@@ -480,6 +559,14 @@ namespace GTAWorld_Screenshot_Editor
             set { _lineHeight = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<CacheScreenshot> _screenCache = new ObservableCollection<CacheScreenshot>();
+
+        public ObservableCollection<CacheScreenshot> ScreenCache
+        {
+            get => _screenCache;
+            set { _screenCache = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region Private Properties
@@ -557,6 +644,41 @@ namespace GTAWorld_Screenshot_Editor
             {
                 Message.Log(ex);
             }
+        }
+
+        private void CacheCurrentImageAndText()
+        {
+            if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0)
+                return;
+
+            var cached = new CacheScreenshot
+            {
+                Guid = SelectedImage.Guid,
+                ScreenshotText = ParsedChat,
+                Command = DeleteCachedImageCommand
+            };
+
+            ScreenCache.Add(cached);
+
+            var cacheDir = @"cached_screens";
+
+            if (!Directory.Exists(cacheDir))
+                Directory.CreateDirectory(cacheDir);
+
+            var suffix = SelectedImage.Path.Split('.').OrderByDescending(obd => obd).ToList();
+
+            var fileName = $@"{cacheDir}\screenshot_{cached.ScreenshotDate:yyyyMMdd_hhmmss}.{suffix[0]}";
+
+            File.Copy(SelectedImage.Path, fileName);
+
+            cached.ImageFilePath = fileName;
+
+            cached.InitImage();
+
+            ScreenCache =
+                new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));
+
+            Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{cacheDir}\screenshots.cache", ScreenCache);
         }
 
         #endregion

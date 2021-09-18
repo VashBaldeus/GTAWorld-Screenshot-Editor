@@ -220,7 +220,7 @@ namespace GTAWorld_Screenshot_Editor
                     }
                 }
 
-                if (!isNewVersionBeta && string.CompareOrdinal(installedVersion, newVersion) == 0 || string.CompareOrdinal(installedVersion, newVersion) < 0)
+                if (!isNewVersionBeta && installedVersion != newVersion || installedVersion != newVersion)
                 { // Update available
                     //if (Visibility != Visibility.Visible)
                     //    ResumeTrayStripMenuItem_Click(this, EventArgs.Empty);
@@ -272,5 +272,12 @@ namespace GTAWorld_Screenshot_Editor
         //        ThreadPool.QueueUserWorkItem(_ => CheckForUpdates(ref manual));
         //    }
         //}
+        private void ScreenCacheListView_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ScreenCacheListView.SelectedItem != null)
+            {
+                MainTabControl.SelectedIndex = 0;
+            }
+        }
     }
 }

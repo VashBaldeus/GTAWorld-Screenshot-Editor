@@ -346,6 +346,7 @@
     <Compile Include="Components\StrokeTextBlock.cs" />
     <Compile Include="Controllers\ChatParser.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Models\CacheScreenshot.cs" />
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\ParserSettings.cs" />
     <Compile Include="Models\ResolutionPreset.cs" />

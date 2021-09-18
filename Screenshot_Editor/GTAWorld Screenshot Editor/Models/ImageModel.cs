@@ -10,6 +10,14 @@ namespace GTAWorld_Screenshot_Editor.Models
 {
     public class ImageModel : OnPropertyChange
     {
+        private string _guid = $"{System.Guid.NewGuid().ToString()}-{System.Guid.NewGuid().ToString()}";
+
+        public string Guid
+        {
+            get => _guid;
+            set { _guid = value; OnPropertyChanged(); }
+        }
+
         private string _imagePath = string.Empty;
 
         public string Path
@@ -37,6 +45,7 @@ namespace GTAWorld_Screenshot_Editor.Models
             Bitmap = new BitmapImage(new Uri(Path));
             Bitmap.DecodePixelHeight = y;
             Bitmap.DecodePixelWidth = x;
+            Bitmap.CacheOption = BitmapCacheOption.OnLoad;
         }
     }
 }
