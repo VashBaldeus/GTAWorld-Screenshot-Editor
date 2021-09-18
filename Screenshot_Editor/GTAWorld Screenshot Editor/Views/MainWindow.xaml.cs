@@ -54,7 +54,9 @@ namespace GTAWorld_Screenshot_Editor
             _client = new GitHubClient(new ProductHeaderValue(ProductHeader));
             _client.SetRequestTimeout(new TimeSpan(0, 0, 0, 4));
 
-            TryCheckingForUpdates();
+            //TryCheckingForUpdates();
+
+            CheckForUpdates();
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
@@ -184,14 +186,14 @@ namespace GTAWorld_Screenshot_Editor
 #pragma warning disable 162
         [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
         [SuppressMessage("ReSharper", "UnreachableCode")]
-        private void CheckForUpdates(ref bool manual)
+        private void CheckForUpdates(bool manual = false)
         {
             
             string installedVersion = _Version;
 
             try
             {
-                IReadOnlyList<Release> releases = _client.Repository.Release.GetAll("MapleToo", ProductHeader).Result;
+                IReadOnlyList<Release> releases = _client.Repository.Release.GetAll("VashBaldeus", ProductHeader).Result;
 
                 string newVersion = string.Empty;
                 bool isNewVersionBeta = false;
@@ -217,8 +219,6 @@ namespace GTAWorld_Screenshot_Editor
                         break;
                     }
                 }
-
-                
 
                 if (!isNewVersionBeta && string.CompareOrdinal(installedVersion, newVersion) == 0 || string.CompareOrdinal(installedVersion, newVersion) < 0)
                 { // Update available
@@ -258,19 +258,19 @@ namespace GTAWorld_Screenshot_Editor
             });
         }
 
-        /// <summary>
-        /// Disables the controls on the main window
-        /// and checks for updates
-        /// </summary>
-        private readonly ManualResetEvent _resetEvent = new ManualResetEvent(false);
-        private void TryCheckingForUpdates(bool manual = false)
-        {
-            if (!manual)
-            {
-                _resetEvent.Reset();
+        ///// <summary>
+        ///// Disables the controls on the main window
+        ///// and checks for updates
+        ///// </summary>
+        //private readonly ManualResetEvent _resetEvent = new ManualResetEvent(false);
+        //private void TryCheckingForUpdates(bool manual = false)
+        //{
+        //    if (!manual)
+        //    {
+        //        _resetEvent.Reset();
 
-                ThreadPool.QueueUserWorkItem(_ => CheckForUpdates(ref manual));
-            }
-        }
+        //        ThreadPool.QueueUserWorkItem(_ => CheckForUpdates(ref manual));
+        //    }
+        //}
     }
 }

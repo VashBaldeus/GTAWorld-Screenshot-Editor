@@ -1,0 +1,59 @@
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\GTAWorld Screenshot Editor.exe.config
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\GTAWorld Screenshot Editor.exe
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\GTAWorld Screenshot Editor.pdb
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\ControlzEx.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.BootstrapIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.BoxIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Codicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Coolicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Core.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Entypo.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.EvaIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.FeatherIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.FileIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Fontaudio.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.FontAwesome.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Fontisto.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.ForkAwesome.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Ionicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.JamIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Material.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.MaterialDesign.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.MaterialLight.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Microns.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Modern.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Octicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.PicolIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.PixelartIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.RadixIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.RemixIcon.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.RPGAwesome.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.SimpleIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Typicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Unicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.VaadinIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.WeatherIcons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\MahApps.Metro.IconPacks.Zondicons.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\Microsoft.Expression.Interactions.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\Microsoft.Xaml.Behaviors.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\Octokit.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\System.Diagnostics.DiagnosticSource.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\System.Windows.Interactivity.xml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\Views\MainWindow.g.cs
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\App.g.cs
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor_MarkupCompile.cache
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor_MarkupCompile.lref
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\App.baml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\Views\MainWindow.baml
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.g.resources
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld_Screenshot_Editor.Localization.Strings.resources
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld_Screenshot_Editor.Properties.Resources.resources
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.GenerateResource.cache
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.CoreCompileInputs.cache
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.Fody.CopyLocal.cache
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.CopyComplete
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.exe
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.pdb
