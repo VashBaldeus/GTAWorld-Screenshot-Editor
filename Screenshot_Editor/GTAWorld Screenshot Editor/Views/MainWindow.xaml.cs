@@ -1,5 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Reflection;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,6 +13,8 @@ using System.Windows.Media.Imaging;
 using ExtensionMethods;
 using MahApps.Metro.Controls;
 using Microsoft.Win32;
+using Octokit;
+using FileMode = System.IO.FileMode;
 
 namespace GTAWorld_Screenshot_Editor
 {
@@ -16,6 +23,10 @@ namespace GTAWorld_Screenshot_Editor
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private GitHubClient _client;
+        private string ProductHeader = "GTAWorld-Screenshot-Editor";
+        private string _Version;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,7 +39,16 @@ namespace GTAWorld_Screenshot_Editor
             if (dc == null)
                 return;
 
+            var ver = Assembly.GetExecutingAssembly().GetName().Version.ToString().Split('.');
+            _Version = $"{ver[0]}.{ver[1]}.{ver[2]}";
+            this.Title = $"{this.Title} - version {_Version}";
+
             dc.OnLoadCommand.Execute(null);
+
+            _client = new GitHubClient(new ProductHeaderValue(ProductHeader));
+            _client.SetRequestTimeout(new TimeSpan(0, 0, 0, 4));
+
+            TryCheckingForUpdates();
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
@@ -137,13 +157,99 @@ namespace GTAWorld_Screenshot_Editor
         }
 
         /// <summary>
-        /// Capture screen based on UIElement
+        /// Checks for updates
         /// </summary>
-        /// <param name="source">UIElement</param>
-        /// <param name="filePath">Filepath</param>
-        public void CaptureScreen(UIElement source, object sender)
+        /// <param name="manual"></param>
+#pragma warning disable 162
+        [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
+        [SuppressMessage("ReSharper", "UnreachableCode")]
+        private void CheckForUpdates(ref bool manual)
         {
             
+            string installedVersion = _Version;
+
+            try
+            {
+                IReadOnlyList<Release> releases = _client.Repository.Release.GetAll("MapleToo", ProductHeader).Result;
+
+                string newVersion = string.Empty;
+                bool isNewVersionBeta = false;
+
+                // Prereleases are a go
+                if (false)
+                {
+                    newVersion = releases[0].TagName;
+                    isNewVersionBeta = releases[0].Prerelease;
+                }
+                else
+                {
+                    // If the user does not want to
+                    // look for prereleases during
+                    // the update check, ignore them
+                    foreach (Release release in releases)
+                    {
+                        if (release.Prerelease)
+                            continue;
+
+                        newVersion = release.TagName;
+                        isNewVersionBeta = release.Prerelease;
+                        break;
+                    }
+                }
+
+                
+
+                if (!isNewVersionBeta && string.CompareOrdinal(installedVersion, newVersion) == 0 || string.CompareOrdinal(installedVersion, newVersion) < 0)
+                { // Update available
+                    //if (Visibility != Visibility.Visible)
+                    //    ResumeTrayStripMenuItem_Click(this, EventArgs.Empty);
+
+                    var update =
+                        $"A new version of the chat log parser is now available on GitHub.\n\nInstalled Version: {installedVersion}\nAvailable Version: {newVersion}\n\nWould you like to visit the releases page now?";
+
+                    DisplayUpdateMessage(update, "Update Available", MessageBoxButton.YesNo, MessageBoxImage.Information);
+                }
+                //else if (manual) // Latest version
+                //    DisplayUpdateMessage($"You are running the latest version of the chat log parser.\n\nInstalled Version: {installedVersion}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch // No internet
+            {
+                if (manual)
+                    DisplayUpdateMessage($"No updates could be found.\nTry checking your internet connection or increasing the update check timeout in the settings window.\n\nInstalled Version: {installedVersion}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+#pragma warning restore 162
+
+        /// <summary>
+        /// Displays a message box
+        /// on the main UI thread
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="title"></param>
+        /// <param name="buttons"></param>
+        /// <param name="image"></param>
+        private void DisplayUpdateMessage(string text, string title, MessageBoxButton buttons, MessageBoxImage image)
+        {
+            Dispatcher?.Invoke(() =>
+            {
+                if (MessageBox.Show(text, title, buttons, image) == MessageBoxResult.Yes)
+                    Process.Start(@"https://github.com/VashBaldeus/GTAWorld-Screenshot-Editor/releases");
+            });
+        }
+
+        /// <summary>
+        /// Disables the controls on the main window
+        /// and checks for updates
+        /// </summary>
+        private readonly ManualResetEvent _resetEvent = new ManualResetEvent(false);
+        private void TryCheckingForUpdates(bool manual = false)
+        {
+            if (!manual)
+            {
+                _resetEvent.Reset();
+
+                ThreadPool.QueueUserWorkItem(_ => CheckForUpdates(ref manual));
+            }
         }
     }
 }
