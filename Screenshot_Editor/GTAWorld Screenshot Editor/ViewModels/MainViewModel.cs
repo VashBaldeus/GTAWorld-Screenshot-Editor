@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Imaging;
+using Windows.Media.Ocr;
 using ExtensionMethods;
 using GTAWorld_Screenshot_Editor.Models;
 using Microsoft.Win32;
+using Octokit;
+using Windows.System.UserProfile;
+using GTAWorld_Screenshot_Editor.Controllers;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -51,6 +56,8 @@ namespace GTAWorld_Screenshot_Editor
             LoadCacheCommand = new RelayCommand(LoadCacheExecute);
 
             DeleteCachedImageCommand = new RelayCommand(DeleteCachedImageExecute);
+
+            ReadOcrCommand = new RelayCommand(ReadOcrExecute);
         }
 
         #endregion
@@ -227,7 +234,8 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                CacheCurrentImageAndText();
+                if(obj == null || obj.ToString() != "no_save")
+                    CacheCurrentImageAndText();
 
                 ScreenshotText.Clear();
 
@@ -364,6 +372,31 @@ namespace GTAWorld_Screenshot_Editor
                     Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{cacheDir}\screenshots.cache", ScreenCache);
                 }
                 else File.Delete($@"{cacheDir}\screenshots.cache");
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
+        public ICommand ReadOcrCommand { get; set; }
+
+        public async void ReadOcrExecute(object obj)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(SelectedImage.Path))
+                    return;
+
+                var ocr = new OcrService();
+
+                ParsedChat = await ocr.ExtractText(SelectedImage.Path, "en-US");
+
+                ParsedChat = Regex.Replace(ParsedChat, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
+                ParsedChat = Regex.Replace(ParsedChat, @"\[\d{1,2}:\d{1,2} :\d{1,2}\] ", string.Empty);
+                ParsedChat = Regex.Replace(ParsedChat, @"\[\d{1,2}:\d{1,2} ", string.Empty);
+
+                AddTextToImageCommand.Execute("no_save");
             }
             catch (Exception ex)
             {
@@ -571,7 +604,7 @@ namespace GTAWorld_Screenshot_Editor
 
         #region Private Properties
 
-
+        private List<string> InstalledLanguages => GlobalizationPreferences.Languages.ToList();
 
         #endregion
 

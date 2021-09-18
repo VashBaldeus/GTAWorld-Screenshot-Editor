@@ -27,12 +27,6 @@ namespace GTAWorld_Screenshot_Editor
         private string ProductHeader = "GTAWorld-Screenshot-Editor";
         private string _Version;
 
-        // Zoom
-        private double _zoomMax = 1;
-        private double _zoomMin = 0.1;
-        private double _zoomSpeed = 0.001;
-        private double _zoom = 1;
-
         public MainWindow()
         {
             InitializeComponent();
@@ -173,7 +167,7 @@ namespace GTAWorld_Screenshot_Editor
         {
             var value = ((Slider)e.Source).Value / 100;
 
-            if (value > 1 || ScreenshotCanvas == null || value == null)
+            if (value > 1 || ScreenshotCanvas == null)
                 return;
 
             ScreenshotCanvas.RenderTransform = new ScaleTransform(value, value); // transform Canvas size

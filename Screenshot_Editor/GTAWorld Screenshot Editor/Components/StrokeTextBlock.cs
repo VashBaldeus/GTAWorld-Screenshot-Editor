@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace GTAWorld_Screenshot_Editor
 {
-    [ContentProperty("Text")]
+    //[ContentProperty("Text")]
     public class OutlinedTextBlock : FrameworkElement
     {
         public static readonly DependencyProperty FillProperty = DependencyProperty.Register(
