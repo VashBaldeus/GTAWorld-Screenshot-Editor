@@ -1,0 +1,12 @@
+====================
+[Date] 2021-09-18 17:36:35
+[PC Name] STAMPEDE
+[Error Message] Your parse chat contains more than 100 lines, please edit the some out and try again.
+[Stack Trace]
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 

@@ -1,0 +1,302 @@
+﻿<mah:MetroWindow x:Class="GTAWorld_Screenshot_Editor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GTAWorld_Screenshot_Editor"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:iconpacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:qc="http://QuickConverter.CodePlex.com/"
+        mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
+        Title="GTAWorld Screenshot Editor" Height="720" Width="1280"
+        Icon="../Resources/screenshot.ico"
+        Drop="MainWindow_OnDrop" AllowDrop="True">
+    <mah:MetroWindow.DataContext>
+        <local:MainViewModel/>
+    </mah:MetroWindow.DataContext>
+
+    <Grid>
+        <Image Source="../Resources/Logo.png"
+               Height="{Binding ElementName=EditorHeader, Path=ActualHeight}"
+               VerticalAlignment="Top" HorizontalAlignment="Right"
+               Margin="2.5"/>
+
+        <TabControl>
+            <TabItem x:Name="EditorHeader" Header="Editor">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="512"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <GroupBox Grid.Column="0">
+                        <GroupBox.Header>
+                            <Label Foreground="White">
+                                CONTROLS
+                            </Label>
+                        </GroupBox.Header>
+
+                        <GroupBox.Content>
+                            <ScrollViewer x:Name="ControlsScrollViewer" HorizontalScrollBarVisibility="Disabled" 
+                                          FlowDirection="RightToLeft">
+                                <Grid FlowDirection="LeftToRight">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Expander Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
+                                        <Expander.Header>
+                                            <Label Foreground="White">
+                                                INSTRUCTIONS
+                                            </Label>
+                                        </Expander.Header>
+
+                                        <TextBlock TextWrapping="WrapWithOverflow" FontSize="15"
+                                                   Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 0 0 5">
+                                            To move parsed chat text over image, hold Shift and move your mouse over the image until you are satisfied with location, release Shift after.
+                                            <LineBreak/>
+                                            <LineBreak/>
+                                            You can drag and drop a screenshot you want to edit.
+                                        </TextBlock>
+                                    </Expander>
+
+                                    <Label Grid.Column="0" Grid.Row="1" Content="RageMP Folder"/>
+                                    <Label Grid.Column="0" Grid.Row="2" Content="Selected Image"/>
+                                    <Label Grid.Column="0" Grid.Row="3" Content="Image Resolution"/>
+                                    <Label Grid.Column="0" Grid.Row="4" Content="Image Width"/>
+                                    <Label Grid.Column="0" Grid.Row="5" Content="Image Height"/>
+                                    <Label Grid.Column="0" Grid.Row="6" Content="Text Box Width"/>
+                                    <Label Grid.Column="0" Grid.Row="7" Content="Font Family"/>
+                                    <Label Grid.Column="0" Grid.Row="8" Content="Font Size"/>
+                                    <Label Grid.Column="0" Grid.Row="9" Content="Font Weight (Thickness)"/>
+                                    <Label Grid.Column="0" Grid.Row="10" Content="Stroke Thickness"/>
+                                    <Label Grid.Column="0" Grid.Row="12" Content="Pased Text:"/>
+
+                                    <Grid Grid.Column="1" Grid.Row="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox Grid.Column="0" Text="{Binding RageFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding RageMPFolderCommand}">
+                                            <Button.Content>
+                                                <iconpacks:PackIconBoxIcons Kind="RegularFolder" VerticalContentAlignment="Center"/>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Grid.Row="2">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBox Grid.Column="0" Text="{Binding SelectedImage.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding SelectImageCommand}">
+                                            <Button.Content>
+                                                <iconpacks:PackIconBoxIcons Kind="RegularImage" VerticalAlignment="Center"/>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
+
+                                    <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Resolutions}" DisplayMemberPath="Name"
+                                          SelectedItem="{Binding SelectedResolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="SelectionChanged">
+                                                <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </ComboBox>
+
+                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="4"
+                                                   IsEnabled="{Binding SelectedResolution.AllowEdit}"
+                                                   Value="{Binding SelectedResolution.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="ValueChanged">
+                                                <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </mah:NumericUpDown>
+
+                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="5"
+                                                   IsEnabled="{Binding SelectedResolution.AllowEdit}"
+                                                   Value="{Binding SelectedResolution.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger EventName="ValueChanged">
+                                                <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </mah:NumericUpDown>
+
+                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="6"
+                                                   Value="{Binding TextSettings.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    </mah:NumericUpDown>
+
+                                    <!--<ComboBox Grid.Column="1" Grid.Row="7"></ComboBox>-->
+                                    <ComboBox x:Name="FontCombo" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Fonts}"
+                                              FontSize="15"
+                                              SelectedItem="{Binding TextSettings.FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label FontFamily="{Binding}" Content="{Binding}"/>
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+
+                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="8"
+                                                   Value="{Binding TextSettings.FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    </mah:NumericUpDown>
+
+                                    <ComboBox x:Name="FontWeightCombo" Grid.Column="1" Grid.Row="9"
+                                          SelectedValuePath="Tag"
+                                          SelectedValue="{Binding TextSettings.FontWeight}">
+                                        <ComboBox.Items>
+                                            <ComboBoxItem Tag="100" Content="Thin" FontWeight="Thin"/>
+                                            <ComboBoxItem Tag="200" Content="Extra-light (Ultra-light)" FontWeight="ExtraLight"/>
+                                            <ComboBoxItem Tag="300" Content="Light" FontWeight="Light"/>
+                                            <ComboBoxItem Tag="400" Content="Normal (Regular)" FontWeight="Normal"/>
+                                            <ComboBoxItem Tag="500" Content="Medium" FontWeight="Medium"/>
+                                            <ComboBoxItem Tag="600" Content="Semi-bold (Demi-bold)" FontWeight="SemiBold"/>
+                                            <ComboBoxItem Tag="700" Content="Bold" FontWeight="Bold"/>
+                                            <ComboBoxItem Tag="800" Content="Extra-bold (Ultra-bold)" FontWeight="ExtraBold"/>
+                                            <ComboBoxItem Tag="900" Content="Black (Heavy)" FontWeight="Black"/>
+                                        </ComboBox.Items>
+                                    </ComboBox>
+
+                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="10"
+                                                   Value="{Binding TextSettings.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    </mah:NumericUpDown>
+
+                                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11">
+                                        <Button Content="Parse Chat from ragemp" Command="{Binding ParseChatCommand}"
+                                                IsEnabled="{qc:Binding '$P != 0', P={Binding RageFolder.Length}}"/>
+
+                                        <Expander x:Name="ChatFilterExpander" Expanded="ChatFilterExpander_OnExpanded" Collapsed="ChatFilterExpander_OnExpanded">
+                                            <Expander.Header>
+                                                <Label Foreground="White">
+                                                    CHAT FILTER (What you select will be kept!)
+                                                </Label>
+                                            </Expander.Header>
+
+                                            <Expander.Resources>
+                                                <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                    <Setter Property="FontFamily" Value="Arial"/>
+                                                    <Setter Property="FontSize" Value="15"/>
+                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                                </Style>
+                                            </Expander.Resources>
+
+                                            <Expander.Content>
+                                                <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <mah:ToggleSwitch Content="{Binding Name}" IsOn="{Binding Selected}"
+                                                                              Margin="10 0 0 0">
+                                                                <!--<i:Interaction.Triggers>
+                                                                    <i:EventTrigger EventName="IsEnabledChanged">
+                                                                        <i:InvokeCommandAction Command="{Binding DataContext.SaveParseSettingsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+                                                                    </i:EventTrigger>
+                                                                </i:Interaction.Triggers>-->
+                                                            </mah:ToggleSwitch>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+                                            </Expander.Content>
+                                        </Expander>
+
+                                        <Button Content="Add chat to image" Command="{Binding AddTextToImageCommand}"
+                                                IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
+                                    </StackPanel>
+
+                                    <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13" VerticalContentAlignment="Top"
+                                         Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+                                </Grid>
+                            </ScrollViewer>
+                        </GroupBox.Content>
+                    </GroupBox>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <ScrollViewer Grid.Row="0"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Auto">
+
+                            <Canvas x:Name="ScreenshotCanvas"
+                                    MouseMove="ScreenshotCanvas_OnMouseMove"
+                                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"
+                                    Height="{Binding SelectedResolution.Height}"
+                                    Width="{Binding SelectedResolution.Width}">
+
+                                <Image Source="{Binding SelectedImage.Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                       Height="{Binding SelectedResolution.Height}"
+                                       Width="{Binding SelectedResolution.Width}"/>
+
+                                <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotText}"
+                                              MaxWidth="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel IsItemsHost="True"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+
+                            </Canvas>
+
+                        </ScrollViewer>
+
+                        <Grid Grid.Row="1"
+                              IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button x:Name="SaveLocally" Content="Save Image Locally" Click="SaveLocally_OnClick" FontSize="25"/>
+                            <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy Image to Clipboard" Click="SaveLocally_OnClick" FontSize="25"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Parsed Chat">
+                <TextBox Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Top"
+                         ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</mah:MetroWindow>
