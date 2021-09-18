@@ -293,12 +293,14 @@
                         <Grid Grid.Row="1"
                               IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button x:Name="SaveLocally" Content="Save Image Locally" Click="SaveLocally_OnClick" FontSize="25"/>
-                            <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy Image to Clipboard" Click="SaveLocally_OnClick" FontSize="25"/>
+                            <Button x:Name="SaveLocally" Content="Save Image Locally" Click="SaveLocally_OnClick" FontSize="20"/>
+                            <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy Image to Clipboard" Click="SaveLocally_OnClick" FontSize="20"/>
+                            <Button Grid.Column="2" Content="RESET FIELDS" Command="{Binding ResetCommand}" FontSize="20"/>
                         </Grid>
                     </Grid>
                 </Grid>

@@ -57,3 +57,4 @@ C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Scr
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\App.baml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\Octokit.xml
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld_Screenshot_Editor.Localization.Strings.resources
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.AssemblyReference.cache

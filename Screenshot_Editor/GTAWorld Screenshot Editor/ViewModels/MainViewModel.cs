@@ -43,6 +43,8 @@ namespace GTAWorld_Screenshot_Editor
             ParseChatCommand = new RelayCommand(ParseChatExecute);
 
             AddTextToImageCommand = new RelayCommand(AddTextToImageExecute);
+
+            ResetCommand = new RelayCommand(ResetExecute);
         }
 
         #endregion
@@ -254,6 +256,28 @@ namespace GTAWorld_Screenshot_Editor
 
                     lineCount++;
                 }
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
+        public ICommand ResetCommand { get; set; }
+
+        public void ResetExecute(object obj)
+        {
+            try
+            {
+                TextSettings = new TextModel();
+
+                ParsedChat = string.Empty;
+
+                SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
+
+                SelectedImage = new ImageModel();
+
+                ScreenshotText.Clear();
             }
             catch (Exception ex)
             {
