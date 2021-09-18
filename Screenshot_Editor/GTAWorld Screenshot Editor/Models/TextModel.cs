@@ -12,7 +12,7 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _width = value; OnPropertyChanged(); }
         }
 
-        private string _fontFamily = "Arial";
+        private string _fontFamily = "Arial Black";
 
         public string FontFamily
         {
@@ -36,12 +36,28 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _fontWeight = value; OnPropertyChanged(); }
         }
 
-        private double _strokeThickness = 0.75;
+        private double _strokeThickness = 75;
 
         public double StrokeThickness
         {
             get => _strokeThickness;
             set { _strokeThickness = value; OnPropertyChanged(); }
+        }
+
+        private double _shadowOpacity = 50;
+
+        public double ShadowOpacity
+        {
+            get => _shadowOpacity;
+            set { _shadowOpacity = value; OnPropertyChanged(); }
+        }
+
+        private int _canvasScale = 100;
+
+        public int CanvasScale
+        {
+            get => _canvasScale;
+            set { _canvasScale = value; OnPropertyChanged(); }
         }
     }
 }

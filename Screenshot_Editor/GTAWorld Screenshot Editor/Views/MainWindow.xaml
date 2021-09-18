@@ -61,6 +61,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
@@ -90,6 +91,7 @@
                                     <Label Grid.Column="0" Grid.Row="8" Content="Font Size"/>
                                     <Label Grid.Column="0" Grid.Row="9" Content="Font Weight (Thickness)"/>
                                     <Label Grid.Column="0" Grid.Row="10" Content="Stroke Thickness"/>
+                                    <Label Grid.Column="0" Grid.Row="11" Content="Text Shadow Opacity"/>
                                     <Label Grid.Column="0" Grid.Row="12" Content="Pased Text:"/>
 
                                     <Grid Grid.Column="1" Grid.Row="1">
@@ -131,7 +133,7 @@
                                         </i:Interaction.Triggers>
                                     </ComboBox>
 
-                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="4"
+                                    <mah:NumericUpDown x:Name="ImageWidth" Grid.Column="1" Grid.Row="4"
                                                    IsEnabled="{Binding SelectedResolution.AllowEdit}"
                                                    Value="{Binding SelectedResolution.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <i:Interaction.Triggers>
@@ -141,7 +143,7 @@
                                         </i:Interaction.Triggers>
                                     </mah:NumericUpDown>
 
-                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="5"
+                                    <mah:NumericUpDown x:Name="ImageHeight" Grid.Column="1" Grid.Row="5"
                                                    IsEnabled="{Binding SelectedResolution.AllowEdit}"
                                                    Value="{Binding SelectedResolution.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <i:Interaction.Triggers>
@@ -186,11 +188,41 @@
                                         </ComboBox.Items>
                                     </ComboBox>
 
-                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="10"
+                                    <!--<mah:NumericUpDown Grid.Column="1" Grid.Row="10"
                                                    Value="{Binding TextSettings.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </mah:NumericUpDown>
+                                    </mah:NumericUpDown>-->
 
-                                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11">
+                                    <Grid Grid.Column="1" Grid.Row="10" Margin="0 10 0 10">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Slider Minimum="0" Maximum="100" Interval="10"
+                                                 Value="{Binding TextSettings.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label Grid.Column="1" Content="{Binding TextSettings.StrokeThickness, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                               ContentStringFormat=" {0:#0}%"/>
+
+                                    </Grid>
+
+                                    <Grid Grid.Column="1" Grid.Row="11" Margin="0 10 0 10">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Slider Minimum="0" Maximum="100" Interval="10"
+                                                Value="{Binding TextSettings.ShadowOpacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                        <Label Grid.Column="1" Content="{Binding TextSettings.ShadowOpacity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                               ContentStringFormat=" {0:#0}%"/>
+
+                                    </Grid>
+
+                                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12">
                                         <Button Content="Parse Chat from ragemp" Command="{Binding ParseChatCommand}"
                                                 IsEnabled="{qc:Binding '$P != 0', P={Binding RageFolder.Length}}"/>
 
@@ -242,7 +274,7 @@
                                          Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          ScrollViewer.VerticalScrollBarVisibility="Visible"/>-->
 
-                                    <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13"
+                                    <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="14"
                                                       FontSize="15"
                                                       Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
@@ -259,38 +291,55 @@
 
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
-                        <ScrollViewer Grid.Row="0"
+                        <Grid Grid.Row="0" Margin="0 0 0 10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Column="0" FontSize="20" FontWeight="Bold" Content="{Binding ElementName=CanvasZoom, Path=Value}" ContentStringFormat="Canvas Zoom: {0:#0}%"/>
+
+                            <Slider x:Name="CanvasZoom" Grid.Column="1" Minimum="10" Maximum="100" Interval="10" Margin="10 0 10 0"
+                                    ValueChanged="CanvasZoom_OnValueChanged" Value="{Binding TextSettings.CanvasScale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+
+                        <!--<ScrollViewer Grid.Row="1"
                                       VerticalScrollBarVisibility="Auto"
                                       HorizontalScrollBarVisibility="Auto">
 
-                            <Canvas x:Name="ScreenshotCanvas"
-                                    MouseMove="ScreenshotCanvas_OnMouseMove"
-                                    HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"
-                                    Height="{Binding SelectedResolution.Height}"
-                                    Width="{Binding SelectedResolution.Width}">
+                            
 
-                                <Image Source="{Binding SelectedImage.Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                       Height="{Binding SelectedResolution.Height}"
-                                       Width="{Binding SelectedResolution.Width}"/>
+                        </ScrollViewer>-->
 
-                                <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotText}"
-                                              MaxWidth="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel IsItemsHost="True"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                </ItemsControl>
+                        <Canvas x:Name="ScreenshotCanvas" Grid.Row="1"
+                                MouseMove="ScreenshotCanvas_OnMouseMove"
+                                HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"
+                                Height="{Binding SelectedResolution.Height}"
+                                Width="{Binding SelectedResolution.Width}">
 
-                            </Canvas>
+                            <Image Source="{Binding SelectedImage.Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                   Height="{Binding SelectedResolution.Height}"
+                                   Width="{Binding SelectedResolution.Width}"/>
 
-                        </ScrollViewer>
+                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotText}"
+                                          MaxWidth="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel IsItemsHost="True"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
 
-                        <Grid Grid.Row="1"
+                        </Canvas>
+
+                        <Grid Grid.Row="2"
                               IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>

@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using ExtensionMethods;
 using GTAWorld_Screenshot_Editor.Models;
 using Microsoft.Win32;
@@ -215,13 +216,19 @@ namespace GTAWorld_Screenshot_Editor
                 //remove highlight if left
                 ParsedChat = ParsedChat.Replace("[!] ", "");
 
-                var lines = ParsedChat.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Where(w => !string.IsNullOrEmpty(w));
+                var lines = ParsedChat.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Where(w => !string.IsNullOrEmpty(w));
 
                 if (lines.Count() > 100)
                     throw new Exception(
                         "Your parse chat contains more than 100 lines, please edit the some out and try again.");
 
                 var lineCount = 0;
+
+                var shadowColor = new Color();
+
+                shadowColor.R = Byte.MinValue;
+                shadowColor.G = Byte.MinValue;
+                shadowColor.B = Byte.MinValue;
 
                 foreach (var line in lines)
                 {
@@ -237,19 +244,19 @@ namespace GTAWorld_Screenshot_Editor
                         Text = $"{(line.EndsWith(".") ? line : str)}{newLine}",
                         Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(GetColor(line)),
                         Stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000"),
-                        StrokeThickness = TextSettings.StrokeThickness,
+                        StrokeThickness = TextSettings.StrokeThickness / 100,
                         FontSize = TextSettings.FontSize,
                         FontFamily = new FontFamily(TextSettings.FontFamily),
                         TextWrapping = TextWrapping.WrapWithOverflow,
                         FontWeight = FontWeight.FromOpenTypeWeight(TextSettings.FontWeight),
-                        //Effect = new DropShadowEffect()
-                        //{
-                        //    //BlurRadius = 1,
-                        //    Color = shadowColor,
-                        //    //ShadowDepth = 1,
-                        //    //Direction = 1,
-                        //    Opacity = 1
-                        //}
+                        Effect = new DropShadowEffect()
+                        {
+                            //BlurRadius = 1,
+                            Color = shadowColor,
+                            //ShadowDepth = 1,
+                            //Direction = 1,
+                            Opacity = TextSettings.ShadowOpacity / 100
+                        }
                     };
 
                     ScreenshotText.Add(_outlinedTextBlock);
