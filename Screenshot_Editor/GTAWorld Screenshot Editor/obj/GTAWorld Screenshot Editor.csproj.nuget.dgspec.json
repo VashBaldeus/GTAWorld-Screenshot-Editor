@@ -38,6 +38,10 @@
       "frameworks": {
         "net48": {
           "dependencies": {
+            "Autoupdater.NET.Official": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
             "Blend.Interctivity.WPF.v4.0": {
               "target": "Package",
               "version": "[1.0.3, )"

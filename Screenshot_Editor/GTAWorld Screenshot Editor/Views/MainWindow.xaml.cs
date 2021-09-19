@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using AutoUpdaterDotNET;
 using ExtensionMethods;
 using MahApps.Metro.Controls;
 using Microsoft.Win32;
@@ -30,6 +31,8 @@ namespace GTAWorld_Screenshot_Editor
         public MainWindow()
         {
             InitializeComponent();
+
+            CheckForUpdate();
         }
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
@@ -47,12 +50,6 @@ namespace GTAWorld_Screenshot_Editor
 
             _client = new GitHubClient(new ProductHeaderValue(ProductHeader));
             _client.SetRequestTimeout(new TimeSpan(0, 0, 0, 4));
-
-            //TryCheckingForUpdates();
-
-#if !DEBUG
-            CheckForUpdates();
-#endif
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
@@ -175,63 +172,63 @@ namespace GTAWorld_Screenshot_Editor
             ScreenshotCanvas.RenderTransform = new ScaleTransform(value, value); // transform Canvas size
         }
 
-        /// <summary>
-        /// Checks for updates
-        /// </summary>
-        /// <param name="manual"></param>
-#pragma warning disable 162
-        [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
-        [SuppressMessage("ReSharper", "UnreachableCode")]
-        private void CheckForUpdates(bool manual = false)
-        {
+//        /// <summary>
+//        /// Checks for updates
+//        /// </summary>
+//        /// <param name="manual"></param>
+//#pragma warning disable 162
+//        [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalse")]
+//        [SuppressMessage("ReSharper", "UnreachableCode")]
+//        private void CheckForUpdates(bool manual = false)
+//        {
             
-            string installedVersion = _Version;
+//            string installedVersion = _Version;
 
-            try
-            {
-                IReadOnlyList<Release> releases = _client.Repository.Release.GetAll("VashBaldeus", ProductHeader).Result;
+//            try
+//            {
+//                IReadOnlyList<Release> releases = _client.Repository.Release.GetAll("VashBaldeus", ProductHeader).Result;
 
-                string newVersion = string.Empty;
-                bool isNewVersionBeta = false;
+//                string newVersion = string.Empty;
+//                bool isNewVersionBeta = false;
 
-                // Prereleases are a go
-                if (false)
-                {
-                    newVersion = releases[0].TagName;
-                    isNewVersionBeta = releases[0].Prerelease;
-                }
-                else
-                {
-                    // If the user does not want to
-                    // look for prereleases during
-                    // the update check, ignore them
-                    foreach (Release release in releases)
-                    {
-                        if (release.Prerelease)
-                            continue;
+//                // Prereleases are a go
+//                if (false)
+//                {
+//                    newVersion = releases[0].TagName;
+//                    isNewVersionBeta = releases[0].Prerelease;
+//                }
+//                else
+//                {
+//                    // If the user does not want to
+//                    // look for prereleases during
+//                    // the update check, ignore them
+//                    foreach (Release release in releases)
+//                    {
+//                        if (release.Prerelease)
+//                            continue;
 
-                        newVersion = release.TagName;
-                        isNewVersionBeta = release.Prerelease;
-                        break;
-                    }
-                }
+//                        newVersion = release.TagName;
+//                        isNewVersionBeta = release.Prerelease;
+//                        break;
+//                    }
+//                }
 
-                if (!isNewVersionBeta && installedVersion != newVersion || installedVersion != newVersion)
-                { // Update available
+//                if (!isNewVersionBeta && installedVersion != newVersion || installedVersion != newVersion)
+//                { // Update available
 
-                    var update =
-                        $"A new version of the chat log parser is now available on GitHub.\n\nInstalled Version: {installedVersion}\nAvailable Version: {newVersion}\n\nWould you like to visit the releases page now?";
+//                    var update =
+//                        $"A new version of the chat log parser is now available on GitHub.\n\nInstalled Version: {installedVersion}\nAvailable Version: {newVersion}\n\nWould you like to visit the releases page now?";
 
-                    DisplayUpdateMessage(update, "Update Available", MessageBoxButton.YesNo, MessageBoxImage.Information);
-                }
-            }
-            catch // No internet
-            {
-                if (manual)
-                    DisplayUpdateMessage($"No updates could be found.\nTry checking your internet connection or increasing the update check timeout in the settings window.\n\nInstalled Version: {installedVersion}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-#pragma warning restore 162
+//                    DisplayUpdateMessage(update, "Update Available", MessageBoxButton.YesNo, MessageBoxImage.Information);
+//                }
+//            }
+//            catch // No internet
+//            {
+//                if (manual)
+//                    DisplayUpdateMessage($"No updates could be found.\nTry checking your internet connection or increasing the update check timeout in the settings window.\n\nInstalled Version: {installedVersion}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+//            }
+//        }
+//#pragma warning restore 162
 
         /// <summary>
         /// Displays a message box
@@ -255,6 +252,68 @@ namespace GTAWorld_Screenshot_Editor
             if (ScreenCacheListView.SelectedItem != null)
             {
                 MainTabControl.SelectedIndex = 0;
+            }
+        }
+
+        private void CheckForUpdate()
+        {
+            try
+            {
+                AutoUpdater.AppTitle = "GTAWorld Screenshot Editor";
+
+                AutoUpdater.Synchronous = true;
+
+                AutoUpdater.Mandatory = true;
+
+                AutoUpdater.UpdateMode = Mode.Forced;
+
+                AutoUpdater.ShowSkipButton = false;
+
+                AutoUpdater.ShowRemindLaterButton = false;
+
+                AutoUpdater.DownloadPath = Environment.CurrentDirectory;
+
+                AutoUpdater.ApplicationExitEvent += delegate
+                {
+                    System.Windows.Application.Current.Shutdown();
+                };
+
+                var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
+
+                if (currentDirectory.Parent != null)
+                {
+                    AutoUpdater.InstallationPath = currentDirectory.FullName;
+
+                    // ReSharper disable once LocalizableElement
+                    Debug.WriteLine($"{currentDirectory.FullName}");
+                }
+
+                AutoUpdater.ReportErrors = true;
+
+                AutoUpdater.CheckForUpdateEvent += delegate (UpdateInfoEventArgs args)
+                {
+                    if (args == null) return;
+
+                    if (!args.IsUpdateAvailable) return;
+
+                    try
+                    {
+                        if (AutoUpdater.DownloadUpdate(args))
+                        {
+                            this.Close();
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        Message.Log(exception);
+                    }
+                };
+
+                AutoUpdater.Start(@"http://screenshot.vashbaldeus.pw/updates.xml");
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
             }
         }
     }

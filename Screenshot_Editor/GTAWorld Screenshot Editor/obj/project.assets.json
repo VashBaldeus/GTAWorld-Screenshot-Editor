@@ -2,6 +2,26 @@
   "version": 3,
   "targets": {
     ".NETFramework,Version=v4.8": {
+      "Autoupdater.NET.Official/1.7.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "PresentationFramework",
+          "System",
+          "System.Data",
+          "System.Drawing",
+          "System.Runtime.Serialization",
+          "System.Windows.Forms",
+          "System.Xaml",
+          "System.Xml",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        }
+      },
       "Blend.Interctivity.WPF.v4.0/1.0.3": {
         "type": "package",
         "compile": {
@@ -1267,6 +1287,26 @@
       }
     },
     ".NETFramework,Version=v4.8/win": {
+      "Autoupdater.NET.Official/1.7.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "PresentationFramework",
+          "System",
+          "System.Data",
+          "System.Drawing",
+          "System.Runtime.Serialization",
+          "System.Windows.Forms",
+          "System.Xaml",
+          "System.Xml",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        }
+      },
       "Blend.Interctivity.WPF.v4.0/1.0.3": {
         "type": "package",
         "compile": {
@@ -2468,6 +2508,26 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x64": {
+      "Autoupdater.NET.Official/1.7.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "PresentationFramework",
+          "System",
+          "System.Data",
+          "System.Drawing",
+          "System.Runtime.Serialization",
+          "System.Windows.Forms",
+          "System.Xaml",
+          "System.Xml",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        }
+      },
       "Blend.Interctivity.WPF.v4.0/1.0.3": {
         "type": "package",
         "compile": {
@@ -3669,6 +3729,26 @@
       }
     },
     ".NETFramework,Version=v4.8/win-x86": {
+      "Autoupdater.NET.Official/1.7.0": {
+        "type": "package",
+        "frameworkAssemblies": [
+          "PresentationFramework",
+          "System",
+          "System.Data",
+          "System.Drawing",
+          "System.Runtime.Serialization",
+          "System.Windows.Forms",
+          "System.Xaml",
+          "System.Xml",
+          "WindowsBase"
+        ],
+        "compile": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        },
+        "runtime": {
+          "lib/net45/AutoUpdater.NET.dll": {}
+        }
+      },
       "Blend.Interctivity.WPF.v4.0/1.0.3": {
         "type": "package",
         "compile": {
@@ -4871,6 +4951,68 @@
     }
   },
   "libraries": {
+    "Autoupdater.NET.Official/1.7.0": {
+      "sha512": "gNBNXwaiLc9oNtJ0WWwRvWsmGVpCN8ii2acpHpYtttkKh3xYJjmbLG2uf243r+nXbmo6KVauXGC82Igt2kHhxw==",
+      "type": "package",
+      "path": "autoupdater.net.official/1.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "autoupdater.net.official.1.7.0.nupkg.sha512",
+        "autoupdater.net.official.nuspec",
+        "lib/net45/AutoUpdater.NET.dll",
+        "lib/net45/AutoUpdater.NET.pdb",
+        "lib/net45/AutoUpdater.NET.xml",
+        "lib/net5.0-windows/AutoUpdater.NET.deps.json",
+        "lib/net5.0-windows/AutoUpdater.NET.dll",
+        "lib/net5.0-windows/AutoUpdater.NET.pdb",
+        "lib/net5.0-windows/AutoUpdater.NET.xml",
+        "lib/net5.0-windows/ar/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/cs/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/da/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/de/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/es/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/fr/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/it/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/ja-JP/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/ko/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/nl/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/pl/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/pt-BR/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/pt/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/ru/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/sk/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/sv/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/th/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/tr/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/zh-tw/AutoUpdater.NET.resources.dll",
+        "lib/net5.0-windows/zh/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/AutoUpdater.NET.deps.json",
+        "lib/netcoreapp3.1/AutoUpdater.NET.dll",
+        "lib/netcoreapp3.1/AutoUpdater.NET.pdb",
+        "lib/netcoreapp3.1/AutoUpdater.NET.xml",
+        "lib/netcoreapp3.1/ar/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/cs/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/da/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/de/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/es/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/fr/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/it/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/ja-JP/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/ko/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/nl/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/pl/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/pt-BR/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/pt/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/ru/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/sk/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/sv/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/th/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/tr/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/zh-tw/AutoUpdater.NET.resources.dll",
+        "lib/netcoreapp3.1/zh/AutoUpdater.NET.resources.dll"
+      ]
+    },
     "Blend.Interctivity.WPF.v4.0/1.0.3": {
       "sha512": "MZPw1X5alKniDa7fh4dtKO9cVer1bp2qAGwTjtx3p29AvULtxQQz78CFflniwAUUwjPfi302Ky0INJJUvcIccA==",
       "type": "package",
@@ -10125,6 +10267,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETFramework,Version=v4.8": [
+      "Autoupdater.NET.Official >= 1.7.0",
       "Blend.Interctivity.WPF.v4.0 >= 1.0.3",
       "CommonServiceLocator >= 2.0.5",
       "ControlzEx >= 4.4.0",
@@ -10243,6 +10386,10 @@
     "frameworks": {
       "net48": {
         "dependencies": {
+          "Autoupdater.NET.Official": {
+            "target": "Package",
+            "version": "[1.7.0, )"
+          },
           "Blend.Interctivity.WPF.v4.0": {
             "target": "Package",
             "version": "[1.0.3, )"

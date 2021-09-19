@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "sFGZPkknLu/SdGCgyoN5jKFAB0poq3VgggTXL7wn+iNGCNT7n6LpsWQh4WdaD6bkZwRTcVS6d/qSLFMEmQH3OA==",
+  "dgSpecHash": "yBxWdu4rQTobJBCnZtG5QshWuDtArvWfQxypPmY5LCUd8YnZgm39SJlLzjutc66uV+j65Ch2UwN02io8B3jdvA==",
   "success": true,
   "projectFilePath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\xcast\\.nuget\\packages\\autoupdater.net.official\\1.7.0\\autoupdater.net.official.1.7.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\blend.interctivity.wpf.v4.0\\1.0.3\\blend.interctivity.wpf.v4.0.1.0.3.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\commonservicelocator\\2.0.5\\commonservicelocator.2.0.5.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\controlzex\\4.4.0\\controlzex.4.4.0.nupkg.sha512",
