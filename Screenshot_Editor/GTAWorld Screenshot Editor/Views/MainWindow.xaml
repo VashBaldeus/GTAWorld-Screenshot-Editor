@@ -65,34 +65,103 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
-                                    <Expander Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0">
+                                    <Expander x:Name="InstructionsExpander" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                                              Expanded="ChatFilterExpander_OnExpanded" Collapsed="ChatFilterExpander_OnExpanded"
+                                              Margin="0 0 0 10">
                                         <Expander.Header>
                                             <Label Foreground="White">
-                                                INSTRUCTIONS
+                                                USEAGE INSTRUCTIONS (CLICK HERE!)
                                             </Label>
                                         </Expander.Header>
 
-                                        <TextBlock TextWrapping="WrapWithOverflow" FontSize="15"
+                                        <StackPanel>
+
+                                            <StackPanel.Resources>
+                                                <Style TargetType="{x:Type TextBlock}"
+                                                       BasedOn="{StaticResource MahApps.Styles.TextBlock}">
+                                                    <Setter Property="FontFamily" Value="Arial" />
+                                                    <Setter Property="FontSize" Value="15" />
+                                                    <Setter Property="Foreground"
+                                                            Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                                    <Setter Property="Margin" Value="10 0 0 0"/>
+                                                    <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                                                </Style>
+
+                                                <Style TargetType="{x:Type BulletDecorator}">
+                                                    <Setter Property="Margin" Value="0 0 0 10"/>
+                                                </Style>
+                                            </StackPanel.Resources>
+
+                                            <BulletDecorator>
+                                                <BulletDecorator.Bullet>
+                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                                </BulletDecorator.Bullet>
+
+                                                <TextBlock Text="To move parsed chat text over image, hold Shift and move your mouse over the image until you are satisfied with location, release Shift after."/>
+                                            </BulletDecorator>
+
+                                            <BulletDecorator>
+                                                <BulletDecorator.Bullet>
+                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                                </BulletDecorator.Bullet>
+
+                                                <TextBlock Text="You can drag and drop a screenshot you want to edit, drop location does not matter as long as its anywhere on the app."/>
+                                            </BulletDecorator>
+
+                                            <BulletDecorator>
+                                                <BulletDecorator.Bullet>
+                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                                </BulletDecorator.Bullet>
+
+                                                <TextBlock>
+                                                    Custom line color: (#hex_color_code)line_text<LineBreak/>
+                                                    Example: (#fff000)John Smith says: Blah.
+                                                </TextBlock>
+                                            </BulletDecorator>
+
+                                            <BulletDecorator>
+                                                <BulletDecorator.Bullet>
+                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                                </BulletDecorator.Bullet>
+
+                                                <TextBlock>
+                                                    If you lack chat log, you can drag and drop image that has chat visible, click "READ IMAGE OCR", it will read visible chat off it.<LineBreak/>
+                                                    Make sure to proof read text!<LineBreak/>
+                                                    After that drag and drop image you want to use that has no chat visible.
+                                                </TextBlock>
+                                            </BulletDecorator>
+                                        </StackPanel>
+
+                                        <!--<TextBlock TextWrapping="WrapWithOverflow" FontSize="15"
                                                    Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 0 0 5">
                                             To move parsed chat text over image, hold Shift and move your mouse over the image until you are satisfied with location, release Shift after.
                                             <LineBreak/>
                                             <LineBreak/>
                                             You can drag and drop a screenshot you want to edit.
-                                        </TextBlock>
+                                            <LineBreak/>
+                                            <LineBreak/>
+                                            Custom line color: (#hex_color_code)line_text<LineBreak/>
+                                            Example: (#fff000)John Smith says: Blah.
+                                            <LineBreak/>
+                                            <LineBreak/>
+                                            If you lack chat log, you can drag and drop image that has chat visible, click "READ IMAGE OCR", it will read visible chat off it.<LineBreak/>
+                                            Make sure to proof read text!<LineBreak/>
+                                            After that drag and drop image you want to use that has no chat visible.
+                                        </TextBlock>-->
                                     </Expander>
 
                                     <Label Grid.Column="0" Grid.Row="1" Content="RageMP Folder"/>
                                     <Label Grid.Column="0" Grid.Row="2" Content="Selected Image"/>
                                     <Label Grid.Column="0" Grid.Row="3" Content="Image Resolution"/>
-                                    <Label Grid.Column="0" Grid.Row="4" Content="Image Width"/>
-                                    <Label Grid.Column="0" Grid.Row="5" Content="Image Height"/>
+                                    <Label Grid.Column="0" Grid.Row="4" Content="Image Width" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
+                                    <Label Grid.Column="0" Grid.Row="5" Content="Image Height" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
                                     <Label Grid.Column="0" Grid.Row="6" Content="Text Box Width"/>
                                     <Label Grid.Column="0" Grid.Row="7" Content="Font Family"/>
                                     <Label Grid.Column="0" Grid.Row="8" Content="Font Size"/>
                                     <Label Grid.Column="0" Grid.Row="9" Content="Font Weight (Thickness)"/>
                                     <Label Grid.Column="0" Grid.Row="10" Content="Stroke Thickness"/>
                                     <Label Grid.Column="0" Grid.Row="11" Content="Text Shadow Opacity"/>
-                                    <Label Grid.Column="0" Grid.Row="12" Content="Pased Text:"/>
+                                    <Label Grid.Column="0" Grid.Row="13" Content="Pased Text:"/>
 
                                     <Grid Grid.Column="1" Grid.Row="1">
                                         <Grid.ColumnDefinitions>
@@ -135,7 +204,8 @@
 
                                     <mah:NumericUpDown x:Name="ImageWidth" Grid.Column="1" Grid.Row="4"
                                                    IsEnabled="{Binding SelectedResolution.AllowEdit}"
-                                                   Value="{Binding SelectedResolution.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                   Value="{Binding SelectedResolution.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                   Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="ValueChanged">
                                                 <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
@@ -145,7 +215,8 @@
 
                                     <mah:NumericUpDown x:Name="ImageHeight" Grid.Column="1" Grid.Row="5"
                                                    IsEnabled="{Binding SelectedResolution.AllowEdit}"
-                                                   Value="{Binding SelectedResolution.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                                   Value="{Binding SelectedResolution.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                   Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}">
                                         <i:Interaction.Triggers>
                                             <i:EventTrigger EventName="ValueChanged">
                                                 <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
@@ -187,10 +258,6 @@
                                             <ComboBoxItem Tag="900" Content="Black (Heavy)" FontWeight="Black"/>
                                         </ComboBox.Items>
                                     </ComboBox>
-
-                                    <!--<mah:NumericUpDown Grid.Column="1" Grid.Row="10"
-                                                   Value="{Binding TextSettings.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </mah:NumericUpDown>-->
 
                                     <Grid Grid.Column="1" Grid.Row="10" Margin="0 10 0 10">
 
@@ -254,11 +321,6 @@
                                                         <DataTemplate>
                                                             <mah:ToggleSwitch Content="{Binding Name}" IsOn="{Binding Selected}"
                                                                               Margin="10 0 0 0">
-                                                                <!--<i:Interaction.Triggers>
-                                                                    <i:EventTrigger EventName="IsEnabledChanged">
-                                                                        <i:InvokeCommandAction Command="{Binding DataContext.SaveParseSettingsCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
-                                                                    </i:EventTrigger>
-                                                                </i:Interaction.Triggers>-->
                                                             </mah:ToggleSwitch>
                                                         </DataTemplate>
                                                     </ItemsControl.ItemTemplate>
@@ -270,9 +332,24 @@
                                                 IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
                                     </StackPanel>
 
-                                    <!--<TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13" VerticalContentAlignment="Top"
-                                         Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         ScrollViewer.VerticalScrollBarVisibility="Visible"/>-->
+                                    <Grid Grid.Column="1" Grid.Row="13">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <xctk:ColorPicker x:Name="HexColor" Grid.Column="0"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
+                                                           DropDownBackground="#252525" ShowStandardColors="False" ShowTabHeaders="False" ButtonStyle="{StaticResource ColorPickerButton}"
+                                                           SelectedColor="White" Margin="0 0 5 0" UsingAlphaChannel="False"/>
+
+                                        <Button Grid.Column="1" Height="Auto" Command="{Binding CopyColorCodeCommand}" CommandParameter="{Binding ElementName=HexColor, Path=SelectedColor}">
+                                            <Button.Content>
+                                                <DockPanel>
+                                                    <iconpacks:PackIconBoxIcons Kind="SolidColorFill" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+                                                    <Label Content="Copy Color" DockPanel.Dock="Right"/>
+                                                </DockPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </Grid>
 
                                     <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="14"
                                                       FontSize="15"
@@ -375,36 +452,45 @@
             </TabItem>
             
             <TabItem Header="Cached Screenshots">
-                <ListView x:Name="ScreenCacheListView" ItemsSource="{Binding ScreenCache}"
-                          MouseDoubleClick="ScreenCacheListView_OnMouseDoubleClick">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger EventName="MouseDoubleClick">
-                            <i:InvokeCommandAction Command="{Binding LoadCacheCommand}" CommandParameter="{Binding ElementName=ScreenCacheListView, Path=SelectedItem}"/>
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" FontSize="20" Content="Double click image to select it"/>
 
-                                <TextBlock Text="{Binding Guid}" Grid.Column="0" TextWrapping="WrapWithOverflow" MaxWidth="150" FontSize="20"/>
+                    <ListView x:Name="ScreenCacheListView" ItemsSource="{Binding ScreenCache}"
+                              MouseDoubleClick="ScreenCacheListView_OnMouseDoubleClick" Grid.Row="1">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding LoadCacheCommand}" CommandParameter="{Binding ElementName=ScreenCacheListView, Path=SelectedItem}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
 
-                                <Label Content="{Binding ScreenshotDate}" Grid.Column="1" Foreground="White" FontSize="20"/>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
 
-                                <Image Source="{Binding Bitmap}" Grid.Column="2" MaxHeight="128"/>
+                                    <TextBlock Text="{Binding Guid}" Grid.Column="0" TextWrapping="WrapWithOverflow" MaxWidth="150" FontSize="20"/>
 
-                                <Button Content="Delete" Command="{Binding Command}" CommandParameter="{Binding}"
-                                        Grid.Column="3"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    <Label Content="{Binding ScreenshotDate}" Grid.Column="1" Foreground="White" FontSize="20"/>
+
+                                    <Image Source="{Binding Bitmap}" Grid.Column="2" MaxHeight="128"/>
+
+                                    <Button Content="Delete" Command="{Binding Command}" CommandParameter="{Binding}"
+                                            Grid.Column="3"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

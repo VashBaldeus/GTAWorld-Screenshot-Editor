@@ -122,6 +122,23 @@ namespace GTAWorld_Screenshot_Editor
                 if (removeTimestamps)
                     log = Regex.Replace(log, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
 
+                //remvoe paid date if you were paid
+                log = Regex.Replace(log,
+                    @"(\(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\)\.)", string.Empty);
+
+                //remove paid amount and replace with $xxxx
+                log = Regex.Replace(log,
+                    @"(?<SYMBOL>[$]){1}\s*(?<AMOUNT>[\d.,]+)", "$xxxx");
+
+                //remove amount of given item
+                log = Regex.Replace(log, @"\((?<AMOUNT>[\d.,]+)\)\s(to)", "(x) to");
+
+                //remove amount of received item
+                log = Regex.Replace(log, @"(received).\s*(?<AMOUNT>[\d.,]+)", "received (x) of");
+                
+                log = log.Replace("Character | Money: $xxxx / Bank: $xxxx / Debt: $xxxx / Total Assets: $xxxx", string.Empty);
+                log = log.Replace("You were taxed $xxxx for your paycheck income", string.Empty);
+
                 return log;
             }
             catch
@@ -133,15 +150,12 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="fastFilter"></param>
-        public static string TryToFilter(string ChatLog, List<Criteria> regs)
+        public static string TryToFilter(string ChatLog, List<Criteria> args, bool includeOther)
         {
-            string logToCheck = ChatLog;
-            string[] lines = logToCheck.Split('\n');
-            string filtered = string.Empty;
+            var lines =
+                ChatLog.Split('\n').Where(w => !string.IsNullOrEmpty(w));//.Reverse().Take(100).Reverse();
+
+            var filteredResult = string.Empty;
 
             //KeyValuePair<string, Tuple<string, bool>> keyValuePair in _filterCriteria
             //    .Where(keyValuePair => !string.IsNullOrWhiteSpace(keyValuePair.Key) &&
@@ -149,56 +163,99 @@ namespace GTAWorld_Screenshot_Editor
             //        Regex.IsMatch(Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty),
             //            keyValuePair.Value.Item1, RegexOptions.IgnoreCase));
 
-            // Loop through every line in the
-            // loaded chat log
-            foreach (string line in lines)
+            foreach (var line in lines)
             {
-                if (string.IsNullOrEmpty(line))
-                    continue;
+                var isCriterionEnabled = false;
+                var matchedRegularCriterion = false;
 
-                bool matchedRegularCriterion = false;
-                bool otherSelected = false;
-
-                foreach (var reg in regs)
+                foreach (var criteria in
+                    args.Where(keyValuePair => !string.IsNullOrEmpty(keyValuePair.Name) &&
+                                               !string.IsNullOrWhiteSpace(keyValuePair.Filter))
+                        .Where(keyValuePair =>
+                            Regex.IsMatch(Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty),
+                                keyValuePair.Filter, RegexOptions.IgnoreCase)))
                 {
-                    if (reg.Name == "Other")
-                    {
-                        otherSelected = true;
-                        break;
-                    }
-
                     matchedRegularCriterion = Regex.IsMatch(
-                        Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty), reg.Filter, RegexOptions.IgnoreCase);
+                        Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty), $@"{criteria.Filter}",
+                        RegexOptions.IgnoreCase);
 
-                    //Console.WriteLine($"reg:{reg.Name}\nline: {line}\nmatchedRegularCriterion: {matchedRegularCriterion}\notherSelected: {otherSelected}");
+                    if (criteria.Selected != true) continue;
 
-                    if (matchedRegularCriterion)
-                        break;
+                    isCriterionEnabled = true;
+                    break;
                 }
 
-                // Add the line to the filtered chat log if the criterion is
-                // enabled or if it didn't match any criterion and Other is enabled
-                if (matchedRegularCriterion || otherSelected)
-                    filtered += line + "\n";
+                if (isCriterionEnabled || !matchedRegularCriterion && includeOther)
+                    filteredResult += $"{line}\n";
             }
 
-            // Filter successful
-            if (filtered.Length > 0)
-            {
-                filtered = filtered.TrimEnd('\r', '\n');
-                
-                filtered = Regex.Replace(filtered, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
-
-                ChatLog = filtered;
-            }
-            else // Nothing found
-            {
-                logToCheck = Regex.Replace(logToCheck, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
-
-                ChatLog = logToCheck;
-            }
-
-            return ChatLog;
+            return filteredResult;
         }
+
+        ///// <summary>
+        ///// 
+        ///// </summary>
+        ///// <param name="fastFilter"></param>
+        //public static Dictionary<int, string> TryToFilter(string ChatLog, List<Criteria> regs)
+        //{
+        //    string logToCheck = ChatLog;
+        //    string[] lines = logToCheck.Split('\n');
+        //    List<string> filtered = new List<string>();
+        //    Dictionary<int, string> filteredResult = new Dictionary<int, string>();
+        //    var count = 0;
+
+        //    // Loop through every line in the
+        //    // loaded chat log
+        //    foreach (string line in lines)
+        //    {
+        //        if (string.IsNullOrEmpty(line))
+        //            continue;
+
+        //        bool matchedRegularCriterion = false;
+        //        bool otherSelected = false;
+
+        //        foreach (var reg in regs)
+        //        {
+        //            if (reg.Name == "Other")
+        //            {
+        //                otherSelected = true;
+        //                break;
+        //            }
+
+        //            matchedRegularCriterion = Regex.IsMatch(
+        //                Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty), reg.Filter, RegexOptions.IgnoreCase);
+
+        //            //Console.WriteLine($"reg:{reg.Name}\nline: {line}\nmatchedRegularCriterion: {matchedRegularCriterion}\notherSelected: {otherSelected}");
+
+        //            if (matchedRegularCriterion)
+        //                break;
+        //        }
+
+        //        // Add the line to the filtered chat log if the criterion is
+        //        // enabled or if it didn't match any criterion and Other is enabled
+        //        if (matchedRegularCriterion || otherSelected)
+        //            filtered.Add($"{line}\n");
+        //    }
+
+        //    // Filter successful
+        //    if (filtered.Count > 0)
+        //    {
+        //        foreach (var s in filtered)
+        //        {
+        //            var str = s.TrimEnd('\r', '\n');
+
+        //            filteredResult.Add(count++, Regex.Replace(str, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty));
+        //        }
+        //    }
+        //    else // Nothing found
+        //    {
+        //        foreach (var s in filtered)
+        //        {
+        //            filteredResult.Add(count++, Regex.Replace(s, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty));
+        //        }
+        //    }
+
+        //    return filteredResult;
+        //}
     }
 }

@@ -50,7 +50,9 @@ namespace GTAWorld_Screenshot_Editor
 
             //TryCheckingForUpdates();
 
+#if !DEBUG
             CheckForUpdates();
+#endif
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
@@ -92,7 +94,7 @@ namespace GTAWorld_Screenshot_Editor
 
         private void ChatFilterExpander_OnExpanded(object sender, RoutedEventArgs e)
         {
-            ControlsScrollViewer.VerticalScrollBarVisibility = ChatFilterExpander.IsExpanded
+            ControlsScrollViewer.VerticalScrollBarVisibility = ChatFilterExpander.IsExpanded || InstructionsExpander.IsExpanded
                 ? ScrollBarVisibility.Auto
                 : ScrollBarVisibility.Disabled;
         }
@@ -216,16 +218,12 @@ namespace GTAWorld_Screenshot_Editor
 
                 if (!isNewVersionBeta && installedVersion != newVersion || installedVersion != newVersion)
                 { // Update available
-                    //if (Visibility != Visibility.Visible)
-                    //    ResumeTrayStripMenuItem_Click(this, EventArgs.Empty);
 
                     var update =
                         $"A new version of the chat log parser is now available on GitHub.\n\nInstalled Version: {installedVersion}\nAvailable Version: {newVersion}\n\nWould you like to visit the releases page now?";
 
                     DisplayUpdateMessage(update, "Update Available", MessageBoxButton.YesNo, MessageBoxImage.Information);
                 }
-                //else if (manual) // Latest version
-                //    DisplayUpdateMessage($"You are running the latest version of the chat log parser.\n\nInstalled Version: {installedVersion}", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch // No internet
             {
@@ -252,20 +250,6 @@ namespace GTAWorld_Screenshot_Editor
             });
         }
 
-        ///// <summary>
-        ///// Disables the controls on the main window
-        ///// and checks for updates
-        ///// </summary>
-        //private readonly ManualResetEvent _resetEvent = new ManualResetEvent(false);
-        //private void TryCheckingForUpdates(bool manual = false)
-        //{
-        //    if (!manual)
-        //    {
-        //        _resetEvent.Reset();
-
-        //        ThreadPool.QueueUserWorkItem(_ => CheckForUpdates(ref manual));
-        //    }
-        //}
         private void ScreenCacheListView_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (ScreenCacheListView.SelectedItem != null)

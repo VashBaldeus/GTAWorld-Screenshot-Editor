@@ -1,0 +1,537 @@
+====================
+[Date] 2021-09-19 02:08:42
+[PC Name] STAMPEDE
+[Error Message] Empty file name is not legal.
+Parameter name: sourceFileName
+[Stack Trace]
+   at System.IO.File.Copy(String sourceFileName, String destFileName)
+   at GTAWorld_Screenshot_Editor.MainViewModel.CacheCurrentImageAndText()
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:08:55
+[PC Name] STAMPEDE
+[Error Message] Your parse chat contains more than 100 lines, please edit the some out and try again.
+[Stack Trace]
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:30:09
+[PC Name] STAMPEDE
+[Error Message] parsing "^[/\(\( \(/, /(\*\*\[S\:)/, /(\:\ \*\*\ \[)/$" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:46:39
+[PC Name] STAMPEDE
+[Error Message] parsing "^[/\(\( \(/, /(\*\*\[S\:)/, /(\:\ \*\*\ \[)/$" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:48:59
+[PC Name] STAMPEDE
+[Error Message] parsing "^[/\(\( \(/, /(\*\*\[S\:)/, /(\:\ \*\*\ \[)/$" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:49:32
+[PC Name] STAMPEDE
+[Error Message] parsing "[/\(\( \(/, /(\*\*\[S\:)/, /(\:\ \*\*\ \[)/" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:50:08
+[PC Name] STAMPEDE
+[Error Message] parsing "^[\(\(\($" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:51:04
+[PC Name] STAMPEDE
+[Error Message] parsing "^[\(\(\($" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 02:54:15
+[PC Name] STAMPEDE
+[Error Message] parsing "[\(\(\(" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:05:52
+[PC Name] STAMPEDE
+[Error Message] parsing "(\*\(?!\[)(?!\)\))(?!Location)(?!PhoneNumber)(?!Situation)(?!LogNumber)(?!Message)(?!NON-EMERGENCY)(?!EMERGENCY)(?!Driver))|(\)\)\*)" - Too many )'s.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:08:09
+[PC Name] STAMPEDE
+[Error Message] parsing "(\:\\*\*\\[)" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:16:00
+[PC Name] STAMPEDE
+[Error Message] parsing "^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\])(\(cellphone\){0,1}:.*$" - Not enough )'s.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:17:50
+[PC Name] STAMPEDE
+[Error Message] parsing "(\:\\*\*\\[)" - Unterminated [] set.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ScanCharClass(Boolean caseInsensitive, Boolean scanOnly)
+   at System.Text.RegularExpressions.RegexParser.CountCaptures()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:18:36
+[PC Name] STAMPEDE
+[Error Message] parsing "(\(\(\PM)" - Incomplete \p{X} character escape.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ParseProperty()
+   at System.Text.RegularExpressions.RegexParser.ScanBackslash()
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:19:44
+[PC Name] STAMPEDE
+[Error Message] parsing "((\(\PM)" - Incomplete \p{X} character escape.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ParseProperty()
+   at System.Text.RegularExpressions.RegexParser.ScanBackslash()
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:21:57
+[PC Name] STAMPEDE
+[Error Message] parsing "(\(\PM)" - Incomplete \p{X} character escape.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ParseProperty()
+   at System.Text.RegularExpressions.RegexParser.ScanBackslash()
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:39:06
+[PC Name] STAMPEDE
+[Error Message] Empty file name is not legal.
+Parameter name: sourceFileName
+[Stack Trace]
+   at System.IO.File.Copy(String sourceFileName, String destFileName)
+   at GTAWorld_Screenshot_Editor.MainViewModel.CacheCurrentImageAndText()
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 03:41:14
+[PC Name] STAMPEDE
+[Error Message] Empty file name is not legal.
+Parameter name: sourceFileName
+[Stack Trace]
+   at System.IO.File.Copy(String sourceFileName, String destFileName)
+   at GTAWorld_Screenshot_Editor.MainViewModel.CacheCurrentImageAndText()
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:03:45
+[PC Name] STAMPEDE
+[Error Message] Specified argument was out of the range of valid values.
+Parameter name: 'C:\Users\xcast\Desktop\WPF-Win10-OCR-master.zip' is not an image.
+[Stack Trace]
+   at GTAWorld_Screenshot_Editor.MainViewModel.DragDropExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:04:01
+[PC Name] STAMPEDE
+[Error Message] Specified argument was out of the range of valid values.
+Parameter name: 'C:\Users\xcast\Desktop\WPF-Win10-OCR-master.zip' is not an image.
+[Stack Trace]
+   at GTAWorld_Screenshot_Editor.MainViewModel.DragDropExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:04:15
+[PC Name] STAMPEDE
+[Error Message] 'C:\Users\xcast\Desktop\WPF-Win10-OCR-master.zip' is not an image.
+[Stack Trace]
+   at GTAWorld_Screenshot_Editor.MainViewModel.DragDropExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:53:10
+[PC Name] STAMPEDE
+[Error Message] Token is not valid.
+[Stack Trace]
+   at MS.Internal.Parsers.ParseBrush(String brush, IFormatProvider formatProvider, ITypeDescriptorContext context)
+   at System.Windows.Media.Brush.Parse(String value, ITypeDescriptorContext context)
+   at System.Windows.Media.BrushConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(Object value)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:54:47
+[PC Name] STAMPEDE
+[Error Message] Token is not valid.
+[Stack Trace]
+   at MS.Internal.Parsers.ParseBrush(String brush, IFormatProvider formatProvider, ITypeDescriptorContext context)
+   at System.Windows.Media.Brush.Parse(String value, ITypeDescriptorContext context)
+   at System.Windows.Media.BrushConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(Object value)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:55:38
+[PC Name] STAMPEDE
+[Error Message] Token is not valid.
+[Stack Trace]
+   at MS.Internal.Parsers.ParseBrush(String brush, IFormatProvider formatProvider, ITypeDescriptorContext context)
+   at System.Windows.Media.Brush.Parse(String value, ITypeDescriptorContext context)
+   at System.Windows.Media.BrushConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(Object value)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 12:56:43
+[PC Name] STAMPEDE
+[Error Message] Token is not valid.
+[Stack Trace]
+   at MS.Internal.Parsers.ParseBrush(String brush, IFormatProvider formatProvider, ITypeDescriptorContext context)
+   at System.Windows.Media.Brush.Parse(String value, ITypeDescriptorContext context)
+   at System.Windows.Media.BrushConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(Object value)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 13:01:26
+[PC Name] STAMPEDE
+[Error Message] Token is not valid.
+[Stack Trace]
+   at MS.Internal.Parsers.ParseBrush(String brush, IFormatProvider formatProvider, ITypeDescriptorContext context)
+   at System.Windows.Media.Brush.Parse(String value, ITypeDescriptorContext context)
+   at System.Windows.Media.BrushConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(Object value)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 13:04:45
+[PC Name] STAMPEDE
+[Error Message] BrushConverter cannot convert from (null).
+[Stack Trace]
+   at System.ComponentModel.TypeConverter.GetConvertFromException(Object value)
+   at System.Windows.Media.BrushConverter.ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, Object value)
+   at System.ComponentModel.TypeConverter.ConvertFrom(Object value)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 13:06:59
+[PC Name] STAMPEDE
+[Error Message] Specified argument was out of the range of valid values.
+Parameter name: i
+[Stack Trace]
+   at System.Text.RegularExpressions.MatchCollection.get_Item(Int32 i)
+   at GTAWorld_Screenshot_Editor.MainViewModel.GetColor(String& line)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 13:07:13
+[PC Name] STAMPEDE
+[Error Message] Specified argument was out of the range of valid values.
+Parameter name: i
+[Stack Trace]
+   at System.Text.RegularExpressions.MatchCollection.get_Item(Int32 i)
+   at GTAWorld_Screenshot_Editor.MainViewModel.GetColor(String& line)
+   at GTAWorld_Screenshot_Editor.MainViewModel.AddTextToImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-19 13:30:24
+[PC Name] STAMPEDE
+[Error Message] parsing "(\paid)" - Malformed \p{X} character escape.
+[Stack Trace]
+   at System.Text.RegularExpressions.RegexParser.ParseProperty()
+   at System.Text.RegularExpressions.RegexParser.ScanBackslash()
+   at System.Text.RegularExpressions.RegexParser.ScanRegex()
+   at System.Text.RegularExpressions.RegexParser.Parse(String re, RegexOptions op)
+   at System.Text.RegularExpressions.Regex..ctor(String pattern, RegexOptions options, TimeSpan matchTimeout, Boolean useCache)
+   at System.Text.RegularExpressions.Regex.IsMatch(String input, String pattern, RegexOptions options)
+   at GTAWorld_Screenshot_Editor.ChatParser.<>c__DisplayClass5_0.<TryToFilter>b__2(Criteria keyValuePair)
+   at System.Linq.Enumerable.<>c__DisplayClass6_0`1.<CombinePredicates>b__0(TSource x)
+   at System.Linq.Enumerable.WhereListIterator`1.MoveNext()
+   at GTAWorld_Screenshot_Editor.ChatParser.TryToFilter(String ChatLog, List`1 args, Boolean includeOther)
+   at GTAWorld_Screenshot_Editor.MainViewModel.ParseChatExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 

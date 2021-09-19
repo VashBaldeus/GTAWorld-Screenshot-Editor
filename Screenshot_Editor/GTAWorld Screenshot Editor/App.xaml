@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:GTAWorld_Screenshot_Editor"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -64,6 +65,44 @@
                 <Setter Property="Maximum" Value="3840"/>
                 <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+            </Style>
+
+            <Style TargetType="{x:Type ToggleButton}" x:Key="ColorPickerButton">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton" xmlns:chrome="clr-namespace:Xceed.Wpf.Toolkit.Chromes;assembly=Xceed.Wpf.Toolkit">
+                            <Grid SnapsToDevicePixels="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Border Background="{TemplateBinding Background}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        Padding="{TemplateBinding Padding}"
+                                        SnapsToDevicePixels="True">
+                                        <ContentPresenter Content="{TemplateBinding Content}"
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                    ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+                                    </Border>
+                                    <chrome:ButtonChrome x:Name="ToggleButtonChrome"
+                                                    Grid.Column="1"
+                                                    CornerRadius="0,2.75,2.75,0"
+                                                    Visibility="{Binding ShowDropDownButton, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=xctk:ColorPicker}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                    RenderChecked="{Binding IsOpen, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=xctk:ColorPicker}}"
+                                                    RenderEnabled="{Binding IsEnabled, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=xctk:ColorPicker}}"
+                                                    RenderMouseOver="{TemplateBinding IsMouseOver}"
+                                                    RenderPressed="{TemplateBinding IsPressed}">
+                                    </chrome:ButtonChrome>
+                                </Grid>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

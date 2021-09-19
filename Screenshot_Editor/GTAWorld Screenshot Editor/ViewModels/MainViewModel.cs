@@ -1,25 +1,21 @@
-﻿using System;
+﻿using ExtensionMethods;
+using GTAWorld_Screenshot_Editor.Controllers;
+using GTAWorld_Screenshot_Editor.Models;
+using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
-using System.Windows.Media.Imaging;
-using Windows.Media.Ocr;
-using ExtensionMethods;
-using GTAWorld_Screenshot_Editor.Models;
-using Microsoft.Win32;
-using Octokit;
 using Windows.System.UserProfile;
-using GTAWorld_Screenshot_Editor.Controllers;
+using Clipboard = System.Windows.Clipboard;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -58,6 +54,8 @@ namespace GTAWorld_Screenshot_Editor
             DeleteCachedImageCommand = new RelayCommand(DeleteCachedImageExecute);
 
             ReadOcrCommand = new RelayCommand(ReadOcrExecute);
+
+            CopyColorCodeCommand = new RelayCommand(CopyColorCodeExecute);
         }
 
         #endregion
@@ -181,6 +179,9 @@ namespace GTAWorld_Screenshot_Editor
                 if (obj == null)
                     return;
 
+                if(!CheckIfFileIsImage(obj.ToString()))
+                    throw new Exception($"'{obj}' is not an image.");
+
                 SelectedImage.Path = obj.ToString();
 
                 SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
@@ -214,12 +215,13 @@ namespace GTAWorld_Screenshot_Editor
                     return;
                 }
 
+                //parse chat log
                 ParsedChat = ChatParser.ParseChatLog(RageFolder, true, true);
 
-                var regexStrings = ParserSettings.Where(w => w.Selected).Select(s => s.Filter);
-
-                ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.Where(w => w.Selected).ToList());
-
+                //filter chatlog based on selections
+                ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(), ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)").Selected);
+                
+                //reset rtf textbox line height
                 LineHeight = 1;
             }
             catch (Exception ex)
@@ -250,39 +252,40 @@ namespace GTAWorld_Screenshot_Editor
 
                 var lineCount = 0;
 
-                var shadowColor = new Color();
-
-                shadowColor.R = Byte.MinValue;
-                shadowColor.G = Byte.MinValue;
-                shadowColor.B = Byte.MinValue;
+                var shadowColor = new Color
+                {
+                    R = Byte.MinValue,
+                    G = Byte.MinValue,
+                    B = Byte.MinValue
+                };
 
                 foreach (var line in lines)
                 {
-                    var str = line;
+                    var str = line.TrimEnd(' ');
+
+                    Console.WriteLine(line);
 
                     if (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!"))
-                        str = $"{line}.";
+                        str = $"{line.TrimEnd(' ')}.";
 
                     var newLine = lineCount + 1 == lines.Count() ? "" : "\n";
 
-                    var _outlinedTextBlock = new OutlinedTextBlock()
+                    var _outlinedTextBlock = new OutlinedTextBlock();
+
+                    var color = GetColor(str);
+
+                    _outlinedTextBlock.Text = $"{str.Replace($"({color})", string.Empty).TrimEnd(' ')}{newLine}";
+                    _outlinedTextBlock.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
+                    _outlinedTextBlock.Stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000");
+                    _outlinedTextBlock.StrokeThickness = TextSettings.StrokeThickness / 100;
+                    _outlinedTextBlock.FontSize = TextSettings.FontSize;
+                    _outlinedTextBlock.FontFamily = new FontFamily(TextSettings.FontFamily);
+                    _outlinedTextBlock.TextWrapping = TextWrapping.WrapWithOverflow;
+                    _outlinedTextBlock.FontWeight = FontWeight.FromOpenTypeWeight(TextSettings.FontWeight);
+                    _outlinedTextBlock.Effect = new DropShadowEffect
                     {
-                        Text = $"{(line.EndsWith(".") ? line : str)}{newLine}",
-                        Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(GetColor(line)),
-                        Stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000"),
-                        StrokeThickness = TextSettings.StrokeThickness / 100,
-                        FontSize = TextSettings.FontSize,
-                        FontFamily = new FontFamily(TextSettings.FontFamily),
-                        TextWrapping = TextWrapping.WrapWithOverflow,
-                        FontWeight = FontWeight.FromOpenTypeWeight(TextSettings.FontWeight),
-                        Effect = new DropShadowEffect()
-                        {
-                            //BlurRadius = 1,
-                            Color = shadowColor,
-                            //ShadowDepth = 1,
-                            //Direction = 1,
-                            Opacity = TextSettings.ShadowOpacity / 100
-                        }
+                        Color = shadowColor,
+                        Opacity = TextSettings.ShadowOpacity / 100
                     };
 
                     ScreenshotText.Add(_outlinedTextBlock);
@@ -404,6 +407,25 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        public ICommand CopyColorCodeCommand { get; set; }
+
+        public void CopyColorCodeExecute(object obj)
+        {
+            try
+            {
+                if (obj == null)
+                    return;
+
+                var hex = obj.ToString();
+
+                Clipboard.SetText($"({hex})");
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -512,12 +534,6 @@ namespace GTAWorld_Screenshot_Editor
         {
             new Criteria
             {
-                Name = "OOC",
-                Filter = @"^\(\( \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$"
-            },
-
-            new Criteria
-            {
                 Name = "IC",
                 Filter = @"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$",
                 Selected = true
@@ -525,47 +541,84 @@ namespace GTAWorld_Screenshot_Editor
 
             new Criteria
             {
-                Name = "Emote",
-                Filter = @"^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$",
-                Selected = true
+                Selected = true,
+                Name = "Cellphone",
+                Filter = @"(\(cellphone\))"
             },
 
             new Criteria
             {
-                Name = "Action",
-                Filter = @"^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$",
-                Selected = true
+                Selected = true,
+                Name = "Whispers",
+                Filter = @"\whispers:"
             },
 
             new Criteria
             {
-                Name = "PM",
-                Filter = @"^\(\( PM (to|from) \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$"
+                Selected = true,
+                Name = "Payments",
+                Filter = @".(\$xxxx)."
+            },
+
+            new Criteria
+            {
+                Selected = true,
+                Name = "Items",
+                Filter = @".(\(x\) to|received \(x\) of)."
             },
 
             new Criteria
             {
                 Name = "Radio",
-                Filter = @"^\*\*\[S: .* CH: .*\] [\p{L}]+ {0,1}([\p{L}]+){0,1}.*$",
-                Selected = true
+                Filter = @"(\*\*\[S\:)"
             },
 
             new Criteria
             {
-                Name = "Advertisements",
-                Filter = @"^\[.*Advertisement.*\] .*$"
+                Name = "Dept. Radio",
+                Filter = @"[(\:\\*\*\\[)]"
             },
 
-            //new Criteria
-            //{
-            //    Name = "Timestamps",
-            //    Filter = @"^\[\d{1,2}:\d{1,2}:\d{1,2}\] $"
-            //},
+            new Criteria
+            {
+                Name = "Megaphone",
+                Filter = @"(\[Megaphone\])"
+            },
+
+            new Criteria
+            {
+                Name = "OOC",
+                Filter = @"[\(\(\(]"
+            },
+
+            new Criteria
+            {
+                Name = "PM",
+                Filter = @"^\(\( PM (to|from)"
+            },
+
+            new Criteria
+            {
+                Name = "AD",
+                Filter = @"(\[Advertisement])"
+            },
+
+            new Criteria
+            {
+                Name = "BAD",
+                Filter = @"(\[BusinessAdvertisement])"
+            },
+
+            new Criteria
+            {
+                Name = "CAD",
+                Filter = @"(\[CompanyAdvertisement])"
+            },
 
             new Criteria
             {
                 Name = "Other (non listed)",
-                Filter = @"Other"
+                Filter = string.Empty
             },
         };
 
@@ -621,6 +674,22 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private string GetColor(string line)
         {
+            // Detect if line starts with hex color code
+            // If found, pull it out and remove from line,
+            // return hex-color code to paint this line.
+            var eightHex = Regex.IsMatch(line, @"^\(#(?:[0-9a-fA-F]{4}){1,2}\)", RegexOptions.IgnoreCase);
+
+            if (eightHex || Regex.IsMatch(line, @"^\(#(?:[0-9a-fA-F]{3}){1,2}\)", RegexOptions.IgnoreCase))
+            {
+                return eightHex
+                    ? Regex.Matches(line, @"^\(#(?:[0-9a-fA-F]{4}){1,2}\)")[0].Value
+                        .Replace("(", string.Empty)
+                        .Replace(")", string.Empty)
+                    : Regex.Matches(line, @"^\(#(?:[0-9a-fA-F]{3}){1,2}\)")[0].Value
+                    .Replace("(", string.Empty)
+                        .Replace(")", string.Empty);
+            }
+
             if (line.Contains("*") || line.Contains(">"))
             {
                 return "#bea3d6";//purple
@@ -631,7 +700,7 @@ namespace GTAWorld_Screenshot_Editor
                 return "#a6a4a6";//grey
             }
 
-            if (line.Contains("paid") || line.Contains("gave"))
+            if (line.Contains("paid") || line.Contains("gave") || line.Contains("received (x)"))
             {
                 return "#29943e";//green
             }
@@ -681,7 +750,7 @@ namespace GTAWorld_Screenshot_Editor
 
         private void CacheCurrentImageAndText()
         {
-            if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0)
+            if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0 || string.IsNullOrEmpty(SelectedImage.Path))
                 return;
 
             var cached = new CacheScreenshot
@@ -712,6 +781,12 @@ namespace GTAWorld_Screenshot_Editor
                 new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));
 
             Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{cacheDir}\screenshots.cache", ScreenCache);
+        }
+
+        private bool CheckIfFileIsImage(string file)
+        {
+            return Regex.IsMatch(Path.GetExtension(file).ToLower(),
+                "(jpg|jpeg|jfif|png|bmp|webp|gif)$", RegexOptions.Compiled);
         }
 
         #endregion
