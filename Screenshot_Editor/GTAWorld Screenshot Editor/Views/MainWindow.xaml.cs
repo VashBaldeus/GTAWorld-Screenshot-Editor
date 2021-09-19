@@ -298,6 +298,9 @@ namespace GTAWorld_Screenshot_Editor
 
                     try
                     {
+                        if (File.Exists(@"parser.cfg"))
+                            File.Delete(@"parser.cfg");
+
                         if (AutoUpdater.DownloadUpdate(args))
                         {
                             this.Close();
