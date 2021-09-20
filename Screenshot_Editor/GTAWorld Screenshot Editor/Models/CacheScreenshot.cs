@@ -44,6 +44,27 @@ namespace GTAWorld_Screenshot_Editor.Models
 
         public string ImageFullPath =>
             $@"{Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName)}\{ImageFilePath}";
+
+        private TextModel _text = new TextModel();
+
+        public TextModel Text
+        {
+            get => _text;
+            set { _text = value; OnPropertyChanged(); }
+        }
+
+        private ResolutionPreset _res = new ResolutionPreset
+        {
+            Name = "720p",
+            Width = 1280,
+            Height = 720
+        };
+
+        public ResolutionPreset Resolution
+        {
+            get => _res;
+            set { _res = value; OnPropertyChanged(); }
+        }
         
         [XmlIgnore]
         public ICommand Command { get; set; }

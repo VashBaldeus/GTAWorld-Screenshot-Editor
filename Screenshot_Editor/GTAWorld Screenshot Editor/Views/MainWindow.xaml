@@ -32,7 +32,8 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Grid.Column="0">
+                    <GroupBox Grid.Column="0"
+                              IsEnabled="{qc:Binding '!$P', P={Binding ElementName=CropImageToggle, Path=IsChecked}}">
                         <GroupBox.Header>
                             <Label Foreground="White">
                                 CONTROLS
@@ -458,10 +459,10 @@
                             <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy to Clipboard" Click="SaveLocally_OnClick" FontSize="20"
                                     IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
 
-                            <Button Grid.Column="2" Content="RESET FIELDS" Command="{Binding ResetCommand}" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
+                            <Button Grid.Column="2" Content="RESET FIELDS" Command="{Binding ResetCommand}" FontSize="20"/>
 
-                            <Button Grid.Column="3" Content="READ IMAGE OCR" Command="{Binding ReadOcrCommand}" FontSize="20" IsEnabled="True"/>
+                            <Button Grid.Column="3" Content="READ IMAGE OCR" Command="{Binding ReadOcrCommand}" FontSize="20"
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}"/>
                         </Grid>
                     </Grid>
                 </Grid>

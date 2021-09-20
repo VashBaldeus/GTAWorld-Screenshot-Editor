@@ -344,6 +344,10 @@ namespace GTAWorld_Screenshot_Editor
                 SelectedImage.Guid = cache.Guid;
 
                 SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
+
+                SelectedResolution = cache.Resolution;
+
+                TextSettings = cache.Text;
             }
             catch (Exception ex)
             {
@@ -484,7 +488,10 @@ namespace GTAWorld_Screenshot_Editor
 
                     //apply image resolution to canvas
                     SelectedResolution.Height = (int)SelectedImage.Bitmap.Height;
+
                     SelectedResolution.Width = (int)SelectedImage.Bitmap.Width;
+
+                    TextSettings.Width = (int)(SelectedResolution.Width * 0.85);
                 }
             }
             catch (Exception ex)
@@ -569,10 +576,32 @@ namespace GTAWorld_Screenshot_Editor
 
         private ObservableCollection<Criteria> _parserSettings = new ObservableCollection<Criteria>
         {
+            /*
+                // Assign each filter criterion to a regex pattern
+                private readonly Dictionary<string, Tuple<string, bool>> _filterCriteria = new Dictionary<string, Tuple<string, bool>>
+                {
+                    // Filter, regex pattern, isEnabled (false = remove from log)
+                    { "OOC", Tuple.Create(@"^\(\( \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.OOCCriterionEnabled) },
+                    { "IC", Tuple.Create(@"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$", Properties.Settings.Default.ICCriterionEnabled) },
+                    { "Emote", Tuple.Create(@"^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$", Properties.Settings.Default.EmoteCriterionEnabled) },
+                    { "Action", Tuple.Create(@"^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$", Properties.Settings.Default.ActionCriterionEnabled) },
+                    { "PM", Tuple.Create(@"^\(\( PM (to|from) \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.PMCriterionEnabled) },
+                    { "Radio", Tuple.Create(@"^\*\*\[S: .* CH: .*\] [\p{L}]+ {0,1}([\p{L}]+){0,1}.*$", Properties.Settings.Default.RadioCriterionEnabled) },
+                    { "Ads", Tuple.Create(@"^\[.*Advertisement.*\] .*$", Properties.Settings.Default.AdsCriterionEnabled) }
+                };
+             */
+
             new Criteria
             {
                 Name = "IC",
                 Filter = @"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$",
+                Selected = true
+            },
+
+            new Criteria
+            {
+                Name = "Emote",
+                Filter = @"(^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$)|(^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$)",
                 Selected = true
             },
 
@@ -858,6 +887,10 @@ namespace GTAWorld_Screenshot_Editor
             cached.ImageFilePath = fileName;
 
             cached.InitImage();
+
+            cached.Text = TextSettings;
+
+            cached.Resolution = SelectedResolution;
 
             ScreenCache =
                 new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));
