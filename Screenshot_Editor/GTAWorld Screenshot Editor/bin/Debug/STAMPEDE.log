@@ -535,3 +535,131 @@ Parameter name: i
 
 ====================
  
+====================
+[Date] 2021-09-20 19:59:48
+[PC Name] STAMPEDE
+[Error Message] Value cannot be null.
+Parameter name: uriSource
+[Stack Trace]
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource, RequestCachePolicy uriCachePolicy)
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource)
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-20 20:08:31
+[PC Name] STAMPEDE
+[Error Message] Value cannot be null.
+Parameter name: uriSource
+[Stack Trace]
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource, RequestCachePolicy uriCachePolicy)
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource)
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-20 20:16:54
+[PC Name] STAMPEDE
+[Error Message] BitmapImage has not been initialized.  Call the BeginInit method, set the appropriate properties, and then call the EndInit method.
+[Stack Trace]
+   at System.Windows.Media.Imaging.BitmapInitialize.EnsureInitializedComplete()
+   at System.Windows.Media.Imaging.BitmapSource.get_DpiY()
+   at System.Windows.Media.Imaging.BitmapSource.GetHeightInternal()
+   at System.Windows.Media.Imaging.BitmapSource.get_Height()
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-20 20:32:03
+[PC Name] STAMPEDE
+[Error Message] The given path's format is not supported.
+[Stack Trace]
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Windows.Media.Imaging.BitmapDecoder.SetupDecoderFromUriOrStream(Uri uri, Stream stream, BitmapCacheOption cacheOption, Guid& clsId, Boolean& isOriginalWritable, Stream& uriStream, UnmanagedMemoryStream& unmanagedMemoryStream, SafeFileHandle& safeFilehandle)
+   at System.Windows.Media.Imaging.BitmapDecoder.CreateFromUriOrStream(Uri baseUri, Uri uri, Stream stream, BitmapCreateOptions createOptions, BitmapCacheOption cacheOption, RequestCachePolicy uriCachePolicy, Boolean insertInDecoderCache)
+   at System.Windows.Media.Imaging.BitmapImage.FinalizeCreation()
+   at System.Windows.Media.Imaging.BitmapImage.EndInit()
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource, RequestCachePolicy uriCachePolicy)
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource)
+   at GTAWorld_Screenshot_Editor.Models.ImageModel.InitImage()
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-20 20:32:46
+[PC Name] STAMPEDE
+[Error Message] The given path's format is not supported.
+[Stack Trace]
+   at System.Security.Permissions.FileIOPermission.EmulateFileIOPermissionChecks(String fullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize, FileOptions options, String msgPath, Boolean bFromProxy)
+   at System.IO.FileStream..ctor(String path, FileMode mode)
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-20 20:34:25
+[PC Name] STAMPEDE
+[Error Message] The process cannot access the file 'C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\temp\temp_20210920_203420.jpg' because it is being used by another process.
+[Stack Trace]
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Windows.Media.Imaging.BitmapDecoder.SetupDecoderFromUriOrStream(Uri uri, Stream stream, BitmapCacheOption cacheOption, Guid& clsId, Boolean& isOriginalWritable, Stream& uriStream, UnmanagedMemoryStream& unmanagedMemoryStream, SafeFileHandle& safeFilehandle)
+   at System.Windows.Media.Imaging.BitmapDecoder.CreateFromUriOrStream(Uri baseUri, Uri uri, Stream stream, BitmapCreateOptions createOptions, BitmapCacheOption cacheOption, RequestCachePolicy uriCachePolicy, Boolean insertInDecoderCache)
+   at System.Windows.Media.Imaging.BitmapImage.FinalizeCreation()
+   at System.Windows.Media.Imaging.BitmapImage.EndInit()
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource, RequestCachePolicy uriCachePolicy)
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource)
+   at GTAWorld_Screenshot_Editor.Models.ImageModel.InitImage()
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 
+====================
+[Date] 2021-09-20 20:36:46
+[PC Name] STAMPEDE
+[Error Message] The process cannot access the file 'C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\temp\temp_20210920_203622.jpg' because it is being used by another process.
+[Stack Trace]
+   at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   at System.Windows.Media.Imaging.BitmapDecoder.SetupDecoderFromUriOrStream(Uri uri, Stream stream, BitmapCacheOption cacheOption, Guid& clsId, Boolean& isOriginalWritable, Stream& uriStream, UnmanagedMemoryStream& unmanagedMemoryStream, SafeFileHandle& safeFilehandle)
+   at System.Windows.Media.Imaging.BitmapDecoder.CreateFromUriOrStream(Uri baseUri, Uri uri, Stream stream, BitmapCreateOptions createOptions, BitmapCacheOption cacheOption, RequestCachePolicy uriCachePolicy, Boolean insertInDecoderCache)
+   at System.Windows.Media.Imaging.BitmapImage.FinalizeCreation()
+   at System.Windows.Media.Imaging.BitmapImage.EndInit()
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource, RequestCachePolicy uriCachePolicy)
+   at System.Windows.Media.Imaging.BitmapImage..ctor(Uri uriSource)
+   at GTAWorld_Screenshot_Editor.Models.ImageModel.InitImage()
+   at GTAWorld_Screenshot_Editor.MainViewModel.CropImageExecute(Object obj)
+
+
+[InnerException]
+
+====================
+ 

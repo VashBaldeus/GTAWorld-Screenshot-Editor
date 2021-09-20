@@ -10,15 +10,18 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Windows.Media.Imaging;
 using Windows.System.UserProfile;
 using Clipboard = System.Windows.Clipboard;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using CroppingAdorner = CroppingImageLibrary.CroppingAdorner;
 
 namespace GTAWorld_Screenshot_Editor
 {
@@ -56,6 +59,8 @@ namespace GTAWorld_Screenshot_Editor
             ReadOcrCommand = new RelayCommand(ReadOcrExecute);
 
             CopyColorCodeCommand = new RelayCommand(CopyColorCodeExecute);
+
+            CropImageCommand = new RelayCommand(CropImageExecute);
         }
 
         #endregion
@@ -426,6 +431,68 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        public ICommand CropImageCommand { get; set; }
+
+        public void CropImageExecute(object obj)
+        {
+            try
+            {
+                var adornerLayer = AdornerLayer.GetAdornerLayer(Canvas);
+
+                //initiate crop
+                if ((bool)obj)
+                {
+                    //add cropping to ui on canvas
+                    CroppingAdorner = new CroppingAdorner(Canvas);
+
+                    adornerLayer?.Add(CroppingAdorner);
+                }
+                //finish crop and store image
+                else
+                {
+                    //create temp image folder
+                    if (!Directory.Exists(@"temp"))
+                        Directory.CreateDirectory(@"temp");
+
+                    //file datetime
+                    var date = $"{DateTime.Now:yyyyMMdd_HHmmss}";
+
+                    //save crop in temp folder
+                    using (var fs = new FileStream($@"temp/temp_{date}.jpg", FileMode.Create))
+                    {
+                        var encoder = new JpegBitmapEncoder();
+
+                        encoder.Frames.Add(CroppingAdorner.GetCroppedBitmapFrame());
+
+                        //remove cropping from ui
+                        adornerLayer?.Remove(CroppingAdorner);
+
+                        encoder.Save(fs);
+                    }
+
+                    //load new image from temp
+                    SelectedImage.Path = $@"{AppDomain.CurrentDomain.BaseDirectory}temp\temp_{date}.jpg";
+
+                    //init image onto canvas
+                    SelectedImage.InitImage();
+
+                    //select custom resolutiuon
+                    SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "Custom");
+
+                    if (SelectedResolution == null)
+                        return;
+
+                    //apply image resolution to canvas
+                    SelectedResolution.Height = (int)SelectedImage.Bitmap.Height;
+                    SelectedResolution.Width = (int)SelectedImage.Bitmap.Width;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -499,36 +566,6 @@ namespace GTAWorld_Screenshot_Editor
                 Height = 2160
             },
         };
-
-        public ObservableCollection<ResolutionPreset> Resolutions
-        {
-            get => _resolutions;
-            set { _resolutions = value; OnPropertyChanged(); }
-        }
-
-        private ResolutionPreset _selectedResolution;
-
-        public ResolutionPreset SelectedResolution
-        {
-            get => _selectedResolution;
-            set { _selectedResolution = value; OnPropertyChanged(); }
-        }
-
-        private ImageModel _selectedImage = new ImageModel();
-
-        public ImageModel SelectedImage
-        {
-            get => _selectedImage;
-            set { _selectedImage = value; OnPropertyChanged(); }
-        }
-
-        private TextModel _textSettings = new TextModel();
-
-        public TextModel TextSettings
-        {
-            get => _textSettings;
-            set { _textSettings = value; OnPropertyChanged(); }
-        }
 
         private ObservableCollection<Criteria> _parserSettings = new ObservableCollection<Criteria>
         {
@@ -628,6 +665,35 @@ namespace GTAWorld_Screenshot_Editor
             set { _parserSettings = value; OnPropertyChanged(); }
         }
 
+        public ObservableCollection<ResolutionPreset> Resolutions
+        {
+            get => _resolutions;
+            set { _resolutions = value; OnPropertyChanged(); }
+        }
+
+        private ResolutionPreset _selectedResolution;
+
+        public ResolutionPreset SelectedResolution
+        {
+            get => _selectedResolution;
+            set { _selectedResolution = value; OnPropertyChanged(); }
+        }
+
+        private ImageModel _selectedImage = new ImageModel();
+
+        public ImageModel SelectedImage
+        {
+            get => _selectedImage;
+            set { _selectedImage = value; OnPropertyChanged(); }
+        }
+
+        private TextModel _textSettings = new TextModel();
+
+        public TextModel TextSettings
+        {
+            get => _textSettings;
+            set { _textSettings = value; OnPropertyChanged(); }
+        }
 
         private ObservableCollection<string> _fonts = new ObservableCollection<string>();
 
@@ -651,6 +717,22 @@ namespace GTAWorld_Screenshot_Editor
         {
             get => _screenCache;
             set { _screenCache = value; OnPropertyChanged(); }
+        }
+
+        private CroppingAdorner _cropping;
+
+        public CroppingAdorner CroppingAdorner
+        {
+            get => _cropping;
+            set { _cropping = value; OnPropertyChanged(); }
+        }
+
+        private System.Windows.Controls.Canvas _canvas;
+
+        public System.Windows.Controls.Canvas Canvas
+        {
+            get => _canvas;
+            set { _canvas = value; OnPropertyChanged(); }
         }
 
         #endregion

@@ -12,7 +12,8 @@
         mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
         Title="GTAWorld Screenshot Editor" Height="720" Width="1280"
         Icon="../Resources/screenshot.ico"
-        Drop="MainWindow_OnDrop" AllowDrop="True">
+        Drop="MainWindow_OnDrop" AllowDrop="True"
+        Closed="MainWindow_OnClosed">
     <mah:MetroWindow.DataContext>
         <local:MainViewModel/>
     </mah:MetroWindow.DataContext>
@@ -385,6 +386,33 @@
 
                             <Slider x:Name="CanvasZoom" Grid.Column="1" Minimum="10" Maximum="100" Interval="10" Margin="10 0 10 0"
                                     ValueChanged="CanvasZoom_OnValueChanged" Value="{Binding TextSettings.CanvasScale, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <ToggleButton x:Name="CropImageToggle" Grid.Column="2"
+                                          CommandParameter="{Binding ElementName=CropImageToggle, Path=IsChecked}"
+                                          Command="{Binding CropImageCommand}"
+                                          IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}">
+                                <ToggleButton.Style>
+                                    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton}">
+                                        <Setter Property="MinHeight" Value="32"/>
+                                        <Setter Property="FontFamily" Value="Arial"/>
+                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="FontWeight" Value="Bold"/>
+                                        <Setter Property="Margin" Value="2.5"/>
+                                        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsChecked" Value="True">
+                                                <Setter Property="Content" Value="SAVE CROP"/>
+                                            </Trigger>
+
+                                            <Trigger Property="IsChecked" Value="False">
+                                                <Setter Property="Content" Value="CROP IMAGE"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ToggleButton.Style>
+                            </ToggleButton>
                         </Grid>
 
                         <!--<ScrollViewer Grid.Row="1"
@@ -401,7 +429,7 @@
                                 Height="{Binding SelectedResolution.Height}"
                                 Width="{Binding SelectedResolution.Width}">
 
-                            <Image Source="{Binding SelectedImage.Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                            <Image x:Name="ScreenshotImage" Source="{Binding SelectedImage.Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                    Height="{Binding SelectedResolution.Height}"
                                    Width="{Binding SelectedResolution.Width}"/>
 

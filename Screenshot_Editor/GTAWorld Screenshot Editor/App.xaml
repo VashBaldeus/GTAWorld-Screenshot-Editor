@@ -47,6 +47,17 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
             </Style>
 
+            <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton}">
+                <Setter Property="MinHeight" Value="32"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Margin" Value="2.5"/>
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+            </Style>
+
             <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
                 <Setter Property="FontFamily" Value="Arial"/>
                 <Setter Property="FontSize" Value="15"/>

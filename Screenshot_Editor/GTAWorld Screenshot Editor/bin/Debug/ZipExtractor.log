@@ -13,3 +13,18 @@ Extracting GTAWorld Screenshot Editor.exe.config [100%]
 Successfully launched the updated application.
 
 
+Monday, 20 September 2021 19:44:54
+
+ZipExtractor started with following command line arguments.
+[0] C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\ZipExtractor.exe
+[1] C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\Release.zip
+[2] C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug
+[3] C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Debug\GTAWorld Screenshot Editor.exe
+
+BackgroundWorker started successfully.
+Found total of 2 files and folders inside the zip file.
+Extracting GTAWorld Screenshot Editor.exe [50%]
+Extracting GTAWorld Screenshot Editor.exe.config [100%]
+Successfully launched the updated application.
+
+
