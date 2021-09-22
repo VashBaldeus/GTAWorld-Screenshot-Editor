@@ -46,5 +46,17 @@ namespace GTAWorld_Screenshot_Editor.Properties {
                 this["AccentTheme"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StrokeTextBoxOrWeb {
+            get {
+                return ((bool)(this["StrokeTextBoxOrWeb"]));
+            }
+            set {
+                this["StrokeTextBoxOrWeb"] = value;
+            }
+        }
     }
 }

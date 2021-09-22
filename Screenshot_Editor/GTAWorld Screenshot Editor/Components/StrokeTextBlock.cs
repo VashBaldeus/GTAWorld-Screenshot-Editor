@@ -170,8 +170,6 @@ namespace GTAWorld_Screenshot_Editor
         {
             this.EnsureGeometry();
 
-            
-
             drawingContext.DrawGeometry(this.Fill, new Pen(this.Stroke, this.StrokeThickness), this.textGeometry);
         }
 
@@ -240,7 +238,7 @@ namespace GTAWorld_Screenshot_Editor
                 this.FlowDirection,
                 new Typeface(this.FontFamily, this.FontStyle, this.FontWeight, FontStretches.Normal),
                 this.FontSize,
-                Brushes.Black);
+                Fill ?? Brushes.Black);
 
             this.UpdateFormattedText();
         }

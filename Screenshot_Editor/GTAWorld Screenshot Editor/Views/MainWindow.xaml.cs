@@ -31,7 +31,7 @@ namespace GTAWorld_Screenshot_Editor
 
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
-            var dc = (dynamic)DataContext;
+            var dc = (MainViewModel)DataContext;
 
             if (dc == null)
                 return;
@@ -42,9 +42,9 @@ namespace GTAWorld_Screenshot_Editor
 
             this.Title = $"{this.Title} - version {_version}";
 
-            dc.OnLoadCommand.Execute(null);
-
             dc.Canvas = ScreenshotCanvas;
+
+            dc.OnLoadCommand.Execute(null);
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
@@ -54,7 +54,8 @@ namespace GTAWorld_Screenshot_Editor
             if (dc == null)
                 return;
 
-            if ((Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift)) && !string.IsNullOrEmpty(dc.SelectedImage.Path))
+            if ((Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift))
+                && !string.IsNullOrEmpty(dc.SelectedImage.Path))
             {
                 var point = Mouse.GetPosition(ScreenshotCanvas);
 
@@ -86,9 +87,6 @@ namespace GTAWorld_Screenshot_Editor
 
         private void ChatFilterExpander_OnExpanded(object sender, RoutedEventArgs e)
         {
-            ControlsScrollViewer.VerticalScrollBarVisibility = ChatFilterExpander.IsExpanded || InstructionsExpander.IsExpanded
-                ? ScrollBarVisibility.Auto
-                : ScrollBarVisibility.Disabled;
         }
 
         private void SaveLocally_OnClick(object sender, RoutedEventArgs e)
@@ -251,6 +249,11 @@ namespace GTAWorld_Screenshot_Editor
             //delete temp file folder
             var dir = new DirectoryInfo(dirPath);
             dir.Delete(true);
+        }
+
+        private void ScreenshotCanvas_OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

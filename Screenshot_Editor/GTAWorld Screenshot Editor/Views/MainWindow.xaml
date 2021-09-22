@@ -41,197 +41,179 @@
                         </GroupBox.Header>
 
                         <GroupBox.Content>
-                            <ScrollViewer x:Name="ControlsScrollViewer" HorizontalScrollBarVisibility="Disabled" 
+                            <!--<ScrollViewer x:Name="ControlsScrollViewer" HorizontalScrollBarVisibility="Disabled" 
                                           FlowDirection="RightToLeft">
-                                <Grid FlowDirection="LeftToRight">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+                                
+                            </ScrollViewer>-->
 
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                            <Grid FlowDirection="LeftToRight">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                                    <Expander x:Name="InstructionsExpander" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Expander x:Name="InstructionsExpander" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
                                               Expanded="ChatFilterExpander_OnExpanded" Collapsed="ChatFilterExpander_OnExpanded"
                                               Margin="0 0 0 10">
-                                        <Expander.Header>
-                                            <Label Foreground="White">
-                                                USEAGE INSTRUCTIONS (CLICK HERE!)
-                                            </Label>
-                                        </Expander.Header>
+                                    <Expander.Header>
+                                        <Label Foreground="White">
+                                            USEAGE INSTRUCTIONS (CLICK HERE!)
+                                        </Label>
+                                    </Expander.Header>
 
-                                        <StackPanel>
+                                    <StackPanel>
 
-                                            <StackPanel.Resources>
-                                                <Style TargetType="{x:Type TextBlock}"
+                                        <StackPanel.Resources>
+                                            <Style TargetType="{x:Type TextBlock}"
                                                        BasedOn="{StaticResource MahApps.Styles.TextBlock}">
-                                                    <Setter Property="FontFamily" Value="Arial" />
-                                                    <Setter Property="FontSize" Value="15" />
-                                                    <Setter Property="Foreground"
+                                                <Setter Property="FontFamily" Value="Arial" />
+                                                <Setter Property="FontSize" Value="15" />
+                                                <Setter Property="Foreground"
                                                             Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                    <Setter Property="Margin" Value="10 0 0 0"/>
-                                                    <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
-                                                </Style>
+                                                <Setter Property="Margin" Value="10 0 0 0"/>
+                                                <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
+                                            </Style>
 
-                                                <Style TargetType="{x:Type BulletDecorator}">
-                                                    <Setter Property="Margin" Value="0 0 0 10"/>
-                                                </Style>
-                                            </StackPanel.Resources>
+                                            <Style TargetType="{x:Type BulletDecorator}">
+                                                <Setter Property="Margin" Value="0 0 0 10"/>
+                                            </Style>
+                                        </StackPanel.Resources>
 
-                                            <BulletDecorator>
-                                                <BulletDecorator.Bullet>
-                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
-                                                </BulletDecorator.Bullet>
+                                        <BulletDecorator>
+                                            <BulletDecorator.Bullet>
+                                                <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                            </BulletDecorator.Bullet>
 
-                                                <TextBlock Text="To move parsed chat text over image, hold Shift and move your mouse over the image until you are satisfied with location, release Shift after."/>
-                                            </BulletDecorator>
+                                            <TextBlock Text="To move parsed chat text over image, hold Shift and move your mouse over the image until you are satisfied with location, release Shift after."/>
+                                        </BulletDecorator>
 
-                                            <BulletDecorator>
-                                                <BulletDecorator.Bullet>
-                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
-                                                </BulletDecorator.Bullet>
+                                        <BulletDecorator>
+                                            <BulletDecorator.Bullet>
+                                                <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                            </BulletDecorator.Bullet>
 
-                                                <TextBlock Text="You can drag and drop a screenshot you want to edit, drop location does not matter as long as its anywhere on the app."/>
-                                            </BulletDecorator>
+                                            <TextBlock Text="You can drag and drop a screenshot you want to edit, drop location does not matter as long as its anywhere on the app."/>
+                                        </BulletDecorator>
 
-                                            <BulletDecorator>
-                                                <BulletDecorator.Bullet>
-                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
-                                                </BulletDecorator.Bullet>
+                                        <BulletDecorator>
+                                            <BulletDecorator.Bullet>
+                                                <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                            </BulletDecorator.Bullet>
 
-                                                <TextBlock>
+                                            <TextBlock>
                                                     Custom line color: (#hex_color_code)line_text<LineBreak/>
                                                     Example: (#fff000)John Smith says: Blah.
-                                                </TextBlock>
-                                            </BulletDecorator>
+                                            </TextBlock>
+                                        </BulletDecorator>
 
-                                            <BulletDecorator>
-                                                <BulletDecorator.Bullet>
-                                                    <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
-                                                </BulletDecorator.Bullet>
+                                        <BulletDecorator>
+                                            <BulletDecorator.Bullet>
+                                                <Ellipse Height="10" Width="10" Fill="{DynamicResource MahApps.Brushes.Accent}"/>
+                                            </BulletDecorator.Bullet>
 
-                                                <TextBlock>
+                                            <TextBlock>
                                                     If you lack chat log, you can drag and drop image that has chat visible, click "READ IMAGE OCR", it will read visible chat off it.<LineBreak/>
                                                     Make sure to proof read text!<LineBreak/>
                                                     After that drag and drop image you want to use that has no chat visible.
-                                                </TextBlock>
-                                            </BulletDecorator>
-                                        </StackPanel>
+                                            </TextBlock>
+                                        </BulletDecorator>
+                                    </StackPanel>
+                                </Expander>
 
-                                        <!--<TextBlock TextWrapping="WrapWithOverflow" FontSize="15"
-                                                   Foreground="{DynamicResource MahApps.Brushes.Accent}" Margin="0 0 0 5">
-                                            To move parsed chat text over image, hold Shift and move your mouse over the image until you are satisfied with location, release Shift after.
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            You can drag and drop a screenshot you want to edit.
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            Custom line color: (#hex_color_code)line_text<LineBreak/>
-                                            Example: (#fff000)John Smith says: Blah.
-                                            <LineBreak/>
-                                            <LineBreak/>
-                                            If you lack chat log, you can drag and drop image that has chat visible, click "READ IMAGE OCR", it will read visible chat off it.<LineBreak/>
-                                            Make sure to proof read text!<LineBreak/>
-                                            After that drag and drop image you want to use that has no chat visible.
-                                        </TextBlock>-->
-                                    </Expander>
-
-                                    <Label Grid.Column="0" Grid.Row="1" Content="RageMP Folder"/>
-                                    <Label Grid.Column="0" Grid.Row="2" Content="Selected Image"/>
-                                    <Label Grid.Column="0" Grid.Row="3" Content="Image Resolution"/>
-                                    <Label Grid.Column="0" Grid.Row="4" Content="Image Width" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
-                                    <Label Grid.Column="0" Grid.Row="5" Content="Image Height" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
-                                    <Label Grid.Column="0" Grid.Row="6" Content="Text Box Width"/>
-                                    <Label Grid.Column="0" Grid.Row="7" Content="Font Family"/>
+                                <Label Grid.Column="0" Grid.Row="1" Content="RageMP Folder"/>
+                                <Label Grid.Column="0" Grid.Row="2" Content="Selected Image"/>
+                                <Label Grid.Column="0" Grid.Row="3" Content="Image Resolution"/>
+                                <Label Grid.Column="0" Grid.Row="4" Content="Image Width" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
+                                <Label Grid.Column="0" Grid.Row="5" Content="Image Height" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
+                                <Label Grid.Column="0" Grid.Row="6" Content="Text Box Width"/>
+                                <!--<Label Grid.Column="0" Grid.Row="7" Content="Font Family"/>
                                     <Label Grid.Column="0" Grid.Row="8" Content="Font Size"/>
-                                    <Label Grid.Column="0" Grid.Row="9" Content="Font Weight (Thickness)"/>
-                                    <Label Grid.Column="0" Grid.Row="10" Content="Stroke Thickness"/>
-                                    <Label Grid.Column="0" Grid.Row="11" Content="Text Shadow Opacity"/>
-                                    <Label Grid.Column="0" Grid.Row="13" Content="Pased Text:"/>
+                                    <Label Grid.Column="0" Grid.Row="9" Content="Font Weight (Thickness)"/>-->
+                                <!--<Label Grid.Column="0" Grid.Row="10" Content="Stroke Thickness"/>
+                                    <Label Grid.Column="0" Grid.Row="11" Content="Text Shadow Opacity"/>-->
+                                <Label Grid.Column="0" Grid.Row="7" Content="Number of Last Lines to Parse"/>
+                                <Label Grid.Column="0" Grid.Row="9" Content="Pased Text:"/>
 
-                                    <Grid Grid.Column="1" Grid.Row="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" Grid.Row="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <TextBox Grid.Column="0" Text="{Binding RageFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBox Grid.Column="0" Text="{Binding RageFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                        <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding RageMPFolderCommand}">
-                                            <Button.Content>
-                                                <iconpacks:PackIconBoxIcons Kind="RegularFolder" VerticalContentAlignment="Center"/>
-                                            </Button.Content>
-                                        </Button>
-                                    </Grid>
+                                    <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding RageMPFolderCommand}">
+                                        <Button.Content>
+                                            <iconpacks:PackIconBoxIcons Kind="RegularFolder" VerticalContentAlignment="Center"/>
+                                        </Button.Content>
+                                    </Button>
+                                </Grid>
 
-                                    <Grid Grid.Column="1" Grid.Row="2">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="1" Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <TextBox Grid.Column="0" Text="{Binding SelectedImage.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    <TextBox Grid.Column="0" Text="{Binding SelectedImage.Path, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                        <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding SelectImageCommand}">
-                                            <Button.Content>
-                                                <iconpacks:PackIconBoxIcons Kind="RegularImage" VerticalAlignment="Center"/>
-                                            </Button.Content>
-                                        </Button>
-                                    </Grid>
+                                    <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding SelectImageCommand}">
+                                        <Button.Content>
+                                            <iconpacks:PackIconBoxIcons Kind="RegularImage" VerticalAlignment="Center"/>
+                                        </Button.Content>
+                                    </Button>
+                                </Grid>
 
-                                    <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Resolutions}" DisplayMemberPath="Name"
+                                <ComboBox Grid.Column="1" Grid.Row="3" ItemsSource="{Binding Resolutions}" DisplayMemberPath="Name"
                                           SelectedItem="{Binding SelectedResolution, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="SelectionChanged">
-                                                <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </ComboBox>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="SelectionChanged">
+                                            <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ComboBox>
 
-                                    <mah:NumericUpDown x:Name="ImageWidth" Grid.Column="1" Grid.Row="4"
+                                <mah:NumericUpDown x:Name="ImageWidth" Grid.Column="1" Grid.Row="4"
                                                    IsEnabled="{Binding SelectedResolution.AllowEdit}"
                                                    Value="{Binding SelectedResolution.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                    Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="ValueChanged">
-                                                <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </mah:NumericUpDown>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="ValueChanged">
+                                            <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </mah:NumericUpDown>
 
-                                    <mah:NumericUpDown x:Name="ImageHeight" Grid.Column="1" Grid.Row="5"
+                                <mah:NumericUpDown x:Name="ImageHeight" Grid.Column="1" Grid.Row="5"
                                                    IsEnabled="{Binding SelectedResolution.AllowEdit}"
                                                    Value="{Binding SelectedResolution.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                    Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger EventName="ValueChanged">
-                                                <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </mah:NumericUpDown>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="ValueChanged">
+                                            <i:InvokeCommandAction Command="{Binding ResizeImageCommandCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </mah:NumericUpDown>
 
-                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="6"
+                                <mah:NumericUpDown Grid.Column="1" Grid.Row="6"
                                                    Value="{Binding TextSettings.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </mah:NumericUpDown>
+                                </mah:NumericUpDown>
 
-                                    <!--<ComboBox Grid.Column="1" Grid.Row="7"></ComboBox>-->
-                                    <ComboBox x:Name="FontCombo" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Fonts}"
+                                <!--<ComboBox x:Name="FontCombo" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Fonts}"
                                               FontSize="15"
                                               SelectedItem="{Binding TextSettings.FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                         <ComboBox.ItemTemplate>
@@ -243,9 +225,9 @@
 
                                     <mah:NumericUpDown Grid.Column="1" Grid.Row="8"
                                                    Value="{Binding TextSettings.FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </mah:NumericUpDown>
+                                    </mah:NumericUpDown>-->
 
-                                    <ComboBox x:Name="FontWeightCombo" Grid.Column="1" Grid.Row="9"
+                                <!--<ComboBox x:Name="FontWeightCombo" Grid.Column="1" Grid.Row="9"
                                           SelectedValuePath="Tag"
                                           SelectedValue="{Binding TextSettings.FontWeight}">
                                         <ComboBox.Items>
@@ -259,16 +241,16 @@
                                             <ComboBoxItem Tag="800" Content="Extra-bold (Ultra-bold)" FontWeight="ExtraBold"/>
                                             <ComboBoxItem Tag="900" Content="Black (Heavy)" FontWeight="Black"/>
                                         </ComboBox.Items>
-                                    </ComboBox>
+                                    </ComboBox>-->
 
-                                    <Grid Grid.Column="1" Grid.Row="10" Margin="0 10 0 10">
+                                <!--<Grid Grid.Column="1" Grid.Row="10" Margin="0 10 0 10">
 
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <Slider Minimum="0" Maximum="100" Interval="10"
+                                        <Slider Minimum="0" Maximum="200" Interval="10"
                                                  Value="{Binding TextSettings.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                         <Label Grid.Column="1" Content="{Binding TextSettings.StrokeThickness, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
@@ -289,87 +271,116 @@
                                         <Label Grid.Column="1" Content="{Binding TextSettings.ShadowOpacity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                ContentStringFormat=" {0:#0}%"/>
 
-                                    </Grid>
+                                    </Grid>-->
 
-                                    <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12">
-                                        <Button Content="Parse Chat from ragemp" Command="{Binding ParseChatCommand}"
+                                <!--<mah:NumericUpDown Grid.Column="1" Grid.Row="12" Minimum="100" Maximum="500" Value="{Binding TextSettings.ParseLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
+
+                                <Grid Grid.Column="1" Grid.Row="7" Margin="0 10 0 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Slider Minimum="100" Maximum="500" Interval="100"
+                                                Value="{Binding TextSettings.ParseLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <Label Grid.Column="1" Content="{Binding TextSettings.ParseLines, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </Grid>
+
+                                <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8">
+                                    <Button Content="Parse Chat from ragemp" Command="{Binding ParseChatCommand}"
                                                 IsEnabled="{qc:Binding '$P != 0', P={Binding RageFolder.Length}}"/>
 
-                                        <Expander x:Name="ChatFilterExpander" Expanded="ChatFilterExpander_OnExpanded" Collapsed="ChatFilterExpander_OnExpanded">
-                                            <Expander.Header>
-                                                <Label Foreground="White">
-                                                    CHAT FILTER (What you select will be kept!)
-                                                </Label>
-                                            </Expander.Header>
+                                    <Expander x:Name="ChatFilterExpander" Expanded="ChatFilterExpander_OnExpanded" Collapsed="ChatFilterExpander_OnExpanded">
+                                        <Expander.Header>
+                                            <Label Foreground="White">
+                                                CHAT FILTER (What you select will be kept!)
+                                            </Label>
+                                        </Expander.Header>
 
-                                            <Expander.Resources>
-                                                <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                    <Setter Property="FontFamily" Value="Arial"/>
-                                                    <Setter Property="FontSize" Value="15"/>
-                                                    <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                    <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
-                                                </Style>
-                                            </Expander.Resources>
+                                        <Expander.Resources>
+                                            <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                <Setter Property="FontFamily" Value="Arial"/>
+                                                <Setter Property="FontSize" Value="15"/>
+                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                            </Style>
+                                        </Expander.Resources>
 
-                                            <Expander.Content>
-                                                <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                                                    <ItemsControl.ItemsPanel>
-                                                        <ItemsPanelTemplate>
-                                                            <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
-                                                        </ItemsPanelTemplate>
-                                                    </ItemsControl.ItemsPanel>
+                                        <Expander.Content>
+                                            <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
 
-                                                    <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <mah:ToggleSwitch Content="{Binding Name}" IsOn="{Binding Selected}"
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <mah:ToggleSwitch Content="{Binding Name}" IsOn="{Binding Selected}"
                                                                               Margin="10 0 0 0">
-                                                            </mah:ToggleSwitch>
-                                                        </DataTemplate>
-                                                    </ItemsControl.ItemTemplate>
-                                                </ItemsControl>
-                                            </Expander.Content>
-                                        </Expander>
+                                                        </mah:ToggleSwitch>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </Expander.Content>
+                                    </Expander>
 
-                                        <Button Content="Add / Refresh chat on image" Command="{Binding AddTextToImageCommand}"
+                                    <Button Content="Add / Refresh chat on image" Command="{Binding AddTextToImageCommand}"
                                                 IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
-                                    </StackPanel>
 
-                                    <Grid Grid.Column="1" Grid.Row="13">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <xctk:ColorPicker x:Name="HexColor" Grid.Column="0"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
+                                    <Button Content="Clear Image Text" Command="{Binding ClearImageTextCommand}"/>
+                                </StackPanel>
+
+                                <Grid Grid.Column="1" Grid.Row="9">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <xctk:ColorPicker x:Name="HexColor" Grid.Column="0"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
                                                            DropDownBackground="#252525" ShowStandardColors="False" ShowTabHeaders="False" ButtonStyle="{StaticResource ColorPickerButton}"
                                                            SelectedColor="White" Margin="0 0 5 0" UsingAlphaChannel="False"/>
 
-                                        <Button Grid.Column="1" Height="Auto" Command="{Binding CopyColorCodeCommand}" CommandParameter="{Binding ElementName=HexColor, Path=SelectedColor}">
-                                            <Button.Content>
-                                                <DockPanel>
-                                                    <iconpacks:PackIconBoxIcons Kind="SolidColorFill" VerticalAlignment="Center" DockPanel.Dock="Left"/>
-                                                    <Label Content="Copy Color" DockPanel.Dock="Right"/>
-                                                </DockPanel>
-                                            </Button.Content>
-                                        </Button>
-                                    </Grid>
+                                    <Button Grid.Column="1" Height="Auto" Command="{Binding CopyColorCodeCommand}" CommandParameter="{Binding ElementName=HexColor, Path=SelectedColor}">
+                                        <Button.Content>
+                                            <DockPanel>
+                                                <iconpacks:PackIconBoxIcons Kind="SolidColorFill" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+                                                <Label Content="Copy Color" DockPanel.Dock="Right"/>
+                                            </DockPanel>
+                                        </Button.Content>
+                                    </Button>
+                                </Grid>
 
-                                    <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="14"
+                                <!--<mah:ToggleSwitch Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="15"
+                                                      OnContent="Regular Stroke Text" OffContent="Web Stroke Text"
+                                                      IsOn="{Binding StrokeTextBoxOrWeb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <mah:ToggleSwitch.Style>
+                                            <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                <Setter Property="FontFamily" Value="Arial"/>
+                                                <Setter Property="FontSize" Value="15"/>
+                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                                            </Style>
+                                        </mah:ToggleSwitch.Style>
+                                    </mah:ToggleSwitch>-->
+
+                                <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10"
                                                       FontSize="15"
                                                       Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                                                       Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                                        <xctk:RichTextBox.TextFormatter>
-                                            <xctk:PlainTextFormatter/>
-                                        </xctk:RichTextBox.TextFormatter>
-                                    </xctk:RichTextBox>
-                                </Grid>
-                            </ScrollViewer>
+                                    <xctk:RichTextBox.TextFormatter>
+                                        <xctk:PlainTextFormatter/>
+                                    </xctk:RichTextBox.TextFormatter>
+                                </xctk:RichTextBox>
+                            </Grid>
                         </GroupBox.Content>
                     </GroupBox>
 
                     <Grid Grid.Column="1">
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
@@ -390,13 +401,12 @@
 
                             <ToggleButton x:Name="CropImageToggle" Grid.Column="2"
                                           CommandParameter="{Binding ElementName=CropImageToggle, Path=IsChecked}"
-                                          Command="{Binding CropImageCommand}"
-                                          IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}">
+                                          Command="{Binding CropImageCommand}">
                                 <ToggleButton.Style>
                                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MahApps.Styles.ToggleButton}">
                                         <Setter Property="MinHeight" Value="32"/>
                                         <Setter Property="FontFamily" Value="Arial"/>
-                                        <Setter Property="FontSize" Value="15"/>
+                                        <Setter Property="FontSize" Value="20"/>
                                         <Setter Property="VerticalContentAlignment" Value="Center"/>
                                         <Setter Property="FontWeight" Value="Bold"/>
                                         <Setter Property="Margin" Value="2.5"/>
@@ -410,22 +420,43 @@
                                             <Trigger Property="IsChecked" Value="False">
                                                 <Setter Property="Content" Value="CROP IMAGE"/>
                                             </Trigger>
+
+                                            <DataTrigger Binding="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}" Value="False">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                            </DataTrigger>
+
+                                            <DataTrigger Binding="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}" Value="True">
+                                                <Setter Property="IsEnabled" Value="False"/>
+                                            </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
                                 </ToggleButton.Style>
                             </ToggleButton>
                         </Grid>
 
-                        <!--<ScrollViewer Grid.Row="1"
-                                      VerticalScrollBarVisibility="Auto"
-                                      HorizontalScrollBarVisibility="Auto">
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                            
+                            <Button Grid.Column="0" x:Name="SaveLocally" Content="Save Locally" Click="SaveLocally_OnClick" FontSize="20"
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
 
-                        </ScrollViewer>-->
+                            <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy to Clipboard" Click="SaveLocally_OnClick" FontSize="20"
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
 
-                        <Canvas x:Name="ScreenshotCanvas" Grid.Row="1"
+                            <Button Grid.Column="2" Content="READ IMAGE OCR" Command="{Binding ReadOcrCommand}" FontSize="20"
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}"/>
+
+                            <Button Grid.Column="3" Content="RESET FIELDS" Command="{Binding ResetCommand}" FontSize="20"/>
+                        </Grid>
+
+                        <Canvas x:Name="ScreenshotCanvas" Grid.Row="2"
                                 MouseMove="ScreenshotCanvas_OnMouseMove"
+                                MouseDown="ScreenshotCanvas_OnMouseDown"
                                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"
                                 Height="{Binding SelectedResolution.Height}"
                                 Width="{Binding SelectedResolution.Width}">
@@ -441,43 +472,77 @@
                                         <StackPanel IsItemsHost="True"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
+
+                                <!--<ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <local:OutlinedTextBlock Text="{Binding String}"
+                                                                 FontSize="{Binding FontSize}"
+                                                                 FontFamily="{Binding FontFamily}"
+                                                                 FontWeight="{Binding FontWeight}"
+                                                                 TextWrapping="{Binding TextWrapping}"
+                                                                 Fill="{Binding Foreground}"
+                                                                 Effect="{Binding Effect}"
+                                                                 StrokeThickness="{Binding StrokeThickness}"
+                                                                 Stroke="{Binding Stroke}" />
+
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>-->
                             </ItemsControl>
 
+                            <!--<wpf1:WebView2 x:Name="ScreenshotTextWeb" Source="https://google.com" Visibility="Hidden"
+                                           Height="{Binding SelectedResolution.Height}"
+                                           Width="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Canvas.Left="100" Canvas.Top="100"/>-->
+
                         </Canvas>
-
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button x:Name="SaveLocally" Content="Save Locally" Click="SaveLocally_OnClick" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
-
-                            <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy to Clipboard" Click="SaveLocally_OnClick" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
-
-                            <Button Grid.Column="2" Content="RESET FIELDS" Command="{Binding ResetCommand}" FontSize="20"/>
-
-                            <Button Grid.Column="3" Content="READ IMAGE OCR" Command="{Binding ReadOcrCommand}" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}"/>
-                        </Grid>
                     </Grid>
+
+                    
                 </Grid>
             </TabItem>
 
             <TabItem Header="Parsed Chat">
-                <xctk:RichTextBox  x:Name="ParsedChatBig" FontSize="15"
-                                   Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                   Foreground="{DynamicResource MahApps.Brushes.Accent}"
-                                   ScrollViewer.VerticalScrollBarVisibility="Visible"
-                                   Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                    <xctk:RichTextBox.TextFormatter>
-                        <xctk:PlainTextFormatter/>
-                    </xctk:RichTextBox.TextFormatter>
-                </xctk:RichTextBox>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <xctk:ColorPicker x:Name="HexColor2" Grid.Column="0"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
+                                          DropDownBackground="#252525" ShowStandardColors="False" ShowTabHeaders="False" ButtonStyle="{StaticResource ColorPickerButton}"
+                                          SelectedColor="White" Margin="0 0 5 0" UsingAlphaChannel="False"/>
+
+                        <Button Grid.Column="1" Height="Auto" Command="{Binding CopyColorCodeCommand}" CommandParameter="{Binding ElementName=HexColor2, Path=SelectedColor}">
+                            <Button.Content>
+                                <DockPanel>
+                                    <iconpacks:PackIconBoxIcons Kind="SolidColorFill" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+                                    <Label Content="Copy Color" DockPanel.Dock="Right"/>
+                                </DockPanel>
+                            </Button.Content>
+                        </Button>
+
+                        <!--<Label Grid.Column="2" Content="Search:" FontSize="20"/>
+                        
+                        <TextBox Grid.Column="3" x:Name="ParsedChatSearchTxt" KeyDown="ParsedChatSearchTxt_OnKeyDown"/>-->
+                    </Grid>
+
+                    <xctk:RichTextBox  Grid.Row="1" x:Name="ParsedChatBig" FontSize="15"
+                                       Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
+                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
+                                       Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <xctk:RichTextBox.TextFormatter>
+                            <xctk:PlainTextFormatter/>
+                        </xctk:RichTextBox.TextFormatter>
+                    </xctk:RichTextBox>
+                </Grid>
             </TabItem>
             
             <TabItem Header="Cached Screenshots">

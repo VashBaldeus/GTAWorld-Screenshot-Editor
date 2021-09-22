@@ -61,6 +61,8 @@ namespace GTAWorld_Screenshot_Editor
             CopyColorCodeCommand = new RelayCommand(CopyColorCodeExecute);
 
             CropImageCommand = new RelayCommand(CropImageExecute);
+
+            ClearImageTextCommand = new RelayCommand(ClearImageTextExecute);
         }
 
         #endregion
@@ -73,6 +75,8 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                ResetCommand.Execute(null);
+
                 LookForMainDirectory();
 
                 SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
@@ -168,6 +172,13 @@ namespace GTAWorld_Screenshot_Editor
             try
             {
                 SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
+
+                TextSettings.Width = (int)(SelectedResolution.Width * 0.85);
+
+                if (string.IsNullOrEmpty(ParsedChat))
+                    return;
+
+                AddTextToImageCommand.Execute(null);
             }
             catch (Exception ex)
             {
@@ -221,7 +232,7 @@ namespace GTAWorld_Screenshot_Editor
                 }
 
                 //parse chat log
-                ParsedChat = ChatParser.ParseChatLog(RageFolder, true, true);
+                ParsedChat = ChatParser.ParseChatLog(RageFolder, true, TextSettings.ParseLines, true);
 
                 //filter chatlog based on selections
                 ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(), ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)").Selected);
@@ -241,62 +252,10 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                if(obj == null || obj.ToString() != "no_save")
+                if (obj == null || obj.ToString() != "no_save")
                     CacheCurrentImageAndText();
 
-                ScreenshotText.Clear();
-
-                //remove highlight if left
-                ParsedChat = ParsedChat.Replace("[!] ", "");
-
-                var lines = ParsedChat.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).Where(w => !string.IsNullOrEmpty(w));
-
-                if (lines.Count() > 100)
-                    throw new Exception(
-                        "Your parse chat contains more than 100 lines, please edit the some out and try again.");
-
-                var lineCount = 0;
-
-                var shadowColor = new Color
-                {
-                    R = Byte.MinValue,
-                    G = Byte.MinValue,
-                    B = Byte.MinValue
-                };
-
-                foreach (var line in lines)
-                {
-                    var str = line.TrimEnd(' ');
-
-                    Console.WriteLine(line);
-
-                    if (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!"))
-                        str = $"{line.TrimEnd(' ')}.";
-
-                    var newLine = lineCount + 1 == lines.Count() ? "" : "\n";
-
-                    var _outlinedTextBlock = new OutlinedTextBlock();
-
-                    var color = GetColor(str);
-
-                    _outlinedTextBlock.Text = $"{str.Replace($"({color})", string.Empty).TrimEnd(' ')}{newLine}";
-                    _outlinedTextBlock.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
-                    _outlinedTextBlock.Stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000");
-                    _outlinedTextBlock.StrokeThickness = TextSettings.StrokeThickness / 100;
-                    _outlinedTextBlock.FontSize = TextSettings.FontSize;
-                    _outlinedTextBlock.FontFamily = new FontFamily(TextSettings.FontFamily);
-                    _outlinedTextBlock.TextWrapping = TextWrapping.WrapWithOverflow;
-                    _outlinedTextBlock.FontWeight = FontWeight.FromOpenTypeWeight(TextSettings.FontWeight);
-                    _outlinedTextBlock.Effect = new DropShadowEffect
-                    {
-                        Color = shadowColor,
-                        Opacity = TextSettings.ShadowOpacity / 100
-                    };
-
-                    ScreenshotText.Add(_outlinedTextBlock);
-
-                    lineCount++;
-                }
+                GenerateText();
             }
             catch (Exception ex)
             {
@@ -475,7 +434,7 @@ namespace GTAWorld_Screenshot_Editor
                     }
 
                     //load new image from temp
-                    SelectedImage.Path = $@"{AppDomain.CurrentDomain.BaseDirectory}temp\temp_{date}.jpg";
+                    SelectedImage.Path = $@"{StartupDirectory}temp\temp_{date}.jpg";
 
                     //init image onto canvas
                     SelectedImage.InitImage();
@@ -500,6 +459,20 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        public ICommand ClearImageTextCommand { get; set; }
+
+        public void ClearImageTextExecute(object obj)
+        {
+            try
+            {
+                ScreenshotText.Clear();
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -515,6 +488,21 @@ namespace GTAWorld_Screenshot_Editor
                 OnPropertyChanged();
 
                 Properties.Settings.Default.DirectoryPath = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private bool _strokeTextBoxOrWeb = Properties.Settings.Default.StrokeTextBoxOrWeb;
+
+        public bool StrokeTextBoxOrWeb
+        {
+            get => _strokeTextBoxOrWeb;
+            set
+            {
+                _strokeTextBoxOrWeb = value;
+                OnPropertyChanged();
+
+                Properties.Settings.Default.StrokeTextBoxOrWeb = value;
                 Properties.Settings.Default.Save();
             }
         }
@@ -601,7 +589,7 @@ namespace GTAWorld_Screenshot_Editor
             new Criteria
             {
                 Name = "Emote",
-                Filter = @"(^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$)|(^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$)",
+                Filter = @"(^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$)|(^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$)",
                 Selected = true
             },
 
@@ -623,14 +611,14 @@ namespace GTAWorld_Screenshot_Editor
             {
                 Selected = true,
                 Name = "Payments",
-                Filter = @".(\$xxxx)."
+                Filter = @"(You paid)\s(?<SYMBOL>[$]){1}(xxxx)\s(to)|(paid you)\s(?<SYMBOL>[$]){1}(xxxx)"
             },
 
             new Criteria
             {
                 Selected = true,
                 Name = "Items",
-                Filter = @".(\(x\) to|received \(x\) of)."
+                Filter = @".(gave).(\(x\) to|received \(x\) of)."
             },
 
             new Criteria
@@ -764,11 +752,27 @@ namespace GTAWorld_Screenshot_Editor
             set { _canvas = value; OnPropertyChanged(); }
         }
 
+        private string[] _html;
+
+        public string[] Html
+        {
+            get => _html;
+            set { _html = value; OnPropertyChanged(); }
+        }
+
+        private string _imageText = $@"{AppDomain.CurrentDomain.BaseDirectory}image_text.html";
+
+        public string ImageText
+        {
+            get => _imageText;
+            set { _imageText = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region Private Properties
 
-        private List<string> InstalledLanguages => GlobalizationPreferences.Languages.ToList();
+        public string StartupDirectory => AppDomain.CurrentDomain.BaseDirectory;
 
         #endregion
 
@@ -779,6 +783,64 @@ namespace GTAWorld_Screenshot_Editor
         #endregion
 
         #region Private Methods
+
+        private void GenerateText()
+        {
+            ScreenshotText.Clear();
+
+            //remove highlight if left
+            ParsedChat = ParsedChat.Replace("[!] ", "");
+
+            var lines =
+                ParsedChat.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Where(w => !string.IsNullOrEmpty(w)).ToList();
+
+            var lineCount = 0;
+
+            foreach (var line in lines)
+            {
+                var str = line.TrimEnd(' ');
+
+                if (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!"))
+                    str = $"{line.TrimEnd(' ')}.";
+
+                var newLine = lineCount + 1 == lines.Count ? "" : "\n";
+
+                var color = GetColor(str);
+
+                str = $"{str.Replace($"({color})", string.Empty).TrimEnd(' ')}{newLine}";
+
+                var outlinedTextBlock = new OutlinedTextBlock();
+
+                outlinedTextBlock.Text = str;
+                outlinedTextBlock.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
+                outlinedTextBlock.FontSize = SelectedResolution.Height < 960 ? 960 * ((double)1.6 / 100) : SelectedResolution.Height * ((double)1.6 / 100);
+                outlinedTextBlock.FontFamily = new FontFamily("Arial, Helvetica, sans-serif");
+                outlinedTextBlock.TextWrapping = TextWrapping.WrapWithOverflow;
+                outlinedTextBlock.FontWeight = FontWeight.FromOpenTypeWeight(750);
+                outlinedTextBlock.Stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000");
+                outlinedTextBlock.StrokeThickness = 0.25;
+                outlinedTextBlock.Effect = new DropShadowEffect
+                {
+                    Color = new Color
+                    {
+                        R = Byte.MinValue,
+                        G = Byte.MinValue,
+                        B = Byte.MinValue
+                    },
+                    Opacity = SelectedResolution.Height * ((double)0.18 / 100),
+                    BlurRadius = SelectedResolution.Height * ((double)0.18 / 100),
+                    Direction = SelectedResolution.Height * ((double)0.18 / 100),
+                    ShadowDepth = SelectedResolution.Height * ((double)0.18 / 100)
+                };
+
+                //Console.WriteLine($"{SelectedResolution.Height * ((double)0.18 / 100)}");
+
+                ScreenshotText.Add(outlinedTextBlock);
+
+                lineCount++;
+            }
+        }
 
         /// <summary>
         /// Get HEX color based on chat line type
@@ -801,7 +863,7 @@ namespace GTAWorld_Screenshot_Editor
                         .Replace(")", string.Empty);
             }
 
-            if (line.Contains("*") || line.Contains(">"))
+            if (line.StartsWith("*") || line.StartsWith(">"))
             {
                 return "#bea3d6";//purple
             }

@@ -94,6 +94,7 @@
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\ParserSettings.cs" />
     <Compile Include="Models\ResolutionPreset.cs" />
+    <Compile Include="Models\Text.cs" />
     <Compile Include="Models\TextModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -390,6 +391,8 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>DEL /F /Q *.xml
-DEL /F /Q *.pdb</PostBuildEvent>
+DEL /F /Q *.pdb
+
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -59,5 +59,13 @@ namespace GTAWorld_Screenshot_Editor.Models
             get => _canvasScale;
             set { _canvasScale = value; OnPropertyChanged(); }
         }
+
+        private int _parseLines = 100;
+
+        public int ParseLines
+        {
+            get => _parseLines;
+            set { _parseLines = value; OnPropertyChanged(); }
+        }
     }
 }
