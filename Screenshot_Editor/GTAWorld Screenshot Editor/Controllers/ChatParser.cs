@@ -148,7 +148,11 @@ namespace GTAWorld_Screenshot_Editor
                         .Aggregate(string.Empty, (cur, i) => cur += $"{i}\n");
                 }
 
-                return log;
+                //return parse with distinct lines, no duplicates
+                return log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToList()
+                    .Distinct()
+                    .Aggregate(string.Empty, (cur, i) => cur += $"{i}\n");
             }
             catch
             {
@@ -170,6 +174,8 @@ namespace GTAWorld_Screenshot_Editor
             {
                 var isCriterionEnabled = false;
                 var matchedRegularCriterion = false;
+
+                Console.WriteLine(line);
 
                 foreach (var criteria in
                     args.Where(keyValuePair => !string.IsNullOrEmpty(keyValuePair.Name) &&

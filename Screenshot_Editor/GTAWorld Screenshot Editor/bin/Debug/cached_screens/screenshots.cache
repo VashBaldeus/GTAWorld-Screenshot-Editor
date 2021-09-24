@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCacheScreenshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CacheScreenshot>
+    <Guid>4a3f4fa7-a991-453d-b524-94aad94f17cd-3f40bb04-2c84-404f-90a4-564d5b609f6e</Guid>
+    <ScreenshotDate>2021-09-24T19:36:40.3230269+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210924_073640.jpg</ImageFilePath>
+    <ScreenshotText>(Car) Mask_OA9C3_33 whispers: One second.
+</ScreenshotText>
+    <Text>
+      <Width>1000</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>67983de8-1412-4885-9d0d-1a9b0a8f2c3a-f87a410a-145d-4575-a2f9-e06eeb1cb831</Guid>
+    <ScreenshotDate>2021-09-24T01:28:42.620977+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210924_012842.jpg</ImageFilePath>
+    <ScreenshotText>Ryan Amsalem whispers: So, we got approached yesterday.
+&gt; Mikhail Argov nods as he listens to Ryan.
+Ryan Amsalem whispers: No idea how they know us to be honest. They need the green vests gone.
+Mikhail Argov whispers: The sharmutot who caused a racket last time here?
+Ryan Amsalem whispers: Yea, apparently they are not using vests at the moment, I went to the office before opening and downloaded the CCTV into a USB Flashdrive.
+&gt; Mikhail Argov nods.
+Mikhail Argov whispers: So, I take it someone wants to pay us to get rid of them, wonder why they asking us and hope they pay well, since that's wet-work.
+Ryan Amsalem whispers: Well, there's money involved. But apparently whos asking will be a good future business partner if they live to this.
+Ryan Amsalem whispers: I'm guessing they're a plug.
+Mikhail Argov whispers: Probably, now, two things, they have to pay half at the least, otherwise, it's riskier for us.
+Ryan Amsalem whispers: We will keep this on the low.
+Ryan Amsalem whispers: I don't want to get alot of people involved, greens find out and we're dead
+Mikhail Argov whispers: Need to Know basis is best right now.
+Ryan Amsalem whispers: We make them search but don't tell them why and for what reason.
+Ryan Amsalem whispers: I'm asking for names atleast.
+Ryan Amsalem whispers: With them I can ask our Jew Judge to run their on the database for an address.
+</ScreenshotText>
+    <Text>
+      <Width>1632</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+  </CacheScreenshot>
+</ArrayOfCacheScreenshot>

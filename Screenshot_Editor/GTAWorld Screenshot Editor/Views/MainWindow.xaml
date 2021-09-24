@@ -326,8 +326,11 @@
                                         </Expander.Content>
                                     </Expander>
 
-                                    <Button Content="Add / Refresh chat on image" Command="{Binding AddTextToImageCommand}"
-                                                IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
+                                    <Button Content="Add Parsed Chat to Image" Command="{Binding AddTextToImageCommand}"
+                                            IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
+
+                                    <Button Content="Add Typed Text /w Filteration to Image" Command="{Binding AddManuallyTypedToImageCommand}"
+                                            IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
 
                                     <Button Content="Clear Image Text" Command="{Binding ClearImageTextCommand}"/>
                                 </StackPanel>

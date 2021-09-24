@@ -63,6 +63,8 @@ namespace GTAWorld_Screenshot_Editor
             CropImageCommand = new RelayCommand(CropImageExecute);
 
             ClearImageTextCommand = new RelayCommand(ClearImageTextExecute);
+
+            AddManuallyTypedToImageCommand = new RelayCommand(AddManuallyTypedToImageExecute);
         }
 
         #endregion
@@ -75,6 +77,11 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                var str = "* Mask_0A9C3_33 speaks to Joe Mama.";
+
+                Console.WriteLine($"{str}\n{Regex.IsMatch(str, @"^(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts|whispers)( \[low\]){0,1}:.*$")}");
+                Console.WriteLine($"{str}\n{Regex.IsMatch(str, @"(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts|whispers)( \[low\]){0,1}:.*$")}");
+
                 ResetCommand.Execute(null);
 
                 LookForMainDirectory();
@@ -473,6 +480,29 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        public ICommand AddManuallyTypedToImageCommand { get; set; }
+
+        public void AddManuallyTypedToImageExecute(object obj)
+        {
+            try
+            {
+                //filter chatlog based on selections
+                ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(), ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)").Selected);
+
+                //reset rtf textbox line height
+                LineHeight = 1;
+
+                if (obj == null || obj.ToString() != "no_save")
+                    CacheCurrentImageAndText();
+
+                GenerateText();
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -582,14 +612,14 @@ namespace GTAWorld_Screenshot_Editor
             new Criteria
             {
                 Name = "IC",
-                Filter = @"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$",
+                Filter = @"^(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts|whispers)( \[low\]){0,1}:.*$",
                 Selected = true
             },
 
             new Criteria
             {
                 Name = "Emote",
-                Filter = @"(^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$)|(^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$)",
+                Filter = @"^(\*|\>|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
                 Selected = true
             },
 
@@ -773,6 +803,8 @@ namespace GTAWorld_Screenshot_Editor
         #region Private Properties
 
         public string StartupDirectory => AppDomain.CurrentDomain.BaseDirectory;
+
+        public const string PlayerName = @"([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+)";
 
         #endregion
 
