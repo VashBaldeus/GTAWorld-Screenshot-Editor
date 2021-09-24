@@ -262,7 +262,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 SelectedImage = new ImageModel();
 
-                ScreenshotTextCollection.Clear();
+                ScreenshotText.Clear();
             }
             catch (Exception ex)
             {
@@ -450,7 +450,7 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                ScreenshotTextCollection.Clear();
+                ScreenshotText.Clear();
             }
             catch (Exception ex)
             {
@@ -532,7 +532,7 @@ namespace GTAWorld_Screenshot_Editor
         /// <summary>
         /// Text that shows on top of canvas for screenshot
         /// </summary>
-        public ObservableCollection<Text> ScreenshotTextCollection
+        public ObservableCollection<Text> ScreenshotText
         {
             get => _screenshotTextCollection;
             set { _screenshotTextCollection = value; OnPropertyChanged(); }
@@ -857,7 +857,7 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private void GenerateText()
         {
-            ScreenshotTextCollection.Clear();
+            ScreenshotText.Clear();
 
             //remove highlight if left
             ParsedChat = ParsedChat.Replace("[!] ", "");
@@ -896,7 +896,7 @@ namespace GTAWorld_Screenshot_Editor
                 txt.Effect.Direction = SelectedResolution.Height * (0.18 / 100);
                 txt.Effect.ShadowDepth = SelectedResolution.Height * (0.18 / 100);
 
-                ScreenshotTextCollection.Add(txt);
+                ScreenshotText.Add(txt);
 
                 lineCount++;
             }

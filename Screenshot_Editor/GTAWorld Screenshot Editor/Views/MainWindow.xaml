@@ -382,7 +382,7 @@
                                    Height="{Binding SelectedResolution.Height}"
                                    Width="{Binding SelectedResolution.Width}"/>
 
-                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotTextCollection}"
+                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotText}"
                                           MaxWidth="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
