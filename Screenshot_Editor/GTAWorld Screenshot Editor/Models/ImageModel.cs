@@ -44,8 +44,15 @@ namespace GTAWorld_Screenshot_Editor.Models
                 return;
 
             Bitmap = new BitmapImage(new Uri(Path));
-            Bitmap.DecodePixelHeight = y;
-            Bitmap.DecodePixelWidth = x;
+
+            //if image smaller than selection resolution ignore resolution change.
+            if (!(Bitmap.Height < y ||
+                  Bitmap.Width < x))
+            {
+                Bitmap.DecodePixelHeight = y;
+                Bitmap.DecodePixelWidth = x;
+            }
+
             Bitmap.CacheOption = BitmapCacheOption.OnLoad;
         }
 

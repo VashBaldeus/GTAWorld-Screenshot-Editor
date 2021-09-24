@@ -41,11 +41,6 @@
                         </GroupBox.Header>
 
                         <GroupBox.Content>
-                            <!--<ScrollViewer x:Name="ControlsScrollViewer" HorizontalScrollBarVisibility="Disabled" 
-                                          FlowDirection="RightToLeft">
-                                
-                            </ScrollViewer>-->
-
                             <Grid FlowDirection="LeftToRight">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -140,11 +135,6 @@
                                 <Label Grid.Column="0" Grid.Row="4" Content="Image Width" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
                                 <Label Grid.Column="0" Grid.Row="5" Content="Image Height" Visibility="{qc:Binding '$P ? Visibility.Visible : Visibility.Collapsed', P={Binding SelectedResolution.AllowEdit}}"/>
                                 <Label Grid.Column="0" Grid.Row="6" Content="Text Box Width"/>
-                                <!--<Label Grid.Column="0" Grid.Row="7" Content="Font Family"/>
-                                    <Label Grid.Column="0" Grid.Row="8" Content="Font Size"/>
-                                    <Label Grid.Column="0" Grid.Row="9" Content="Font Weight (Thickness)"/>-->
-                                <!--<Label Grid.Column="0" Grid.Row="10" Content="Stroke Thickness"/>
-                                    <Label Grid.Column="0" Grid.Row="11" Content="Text Shadow Opacity"/>-->
                                 <Label Grid.Column="0" Grid.Row="7" Content="Number of Last Lines to Parse"/>
                                 <Label Grid.Column="0" Grid.Row="9" Content="Pased Text:"/>
 
@@ -212,68 +202,6 @@
                                 <mah:NumericUpDown Grid.Column="1" Grid.Row="6"
                                                    Value="{Binding TextSettings.Width, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                 </mah:NumericUpDown>
-
-                                <!--<ComboBox x:Name="FontCombo" Grid.Column="1" Grid.Row="7" ItemsSource="{Binding Fonts}"
-                                              FontSize="15"
-                                              SelectedItem="{Binding TextSettings.FontFamily, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                        <ComboBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <Label FontFamily="{Binding}" Content="{Binding}"/>
-                                            </DataTemplate>
-                                        </ComboBox.ItemTemplate>
-                                    </ComboBox>
-
-                                    <mah:NumericUpDown Grid.Column="1" Grid.Row="8"
-                                                   Value="{Binding TextSettings.FontSize, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    </mah:NumericUpDown>-->
-
-                                <!--<ComboBox x:Name="FontWeightCombo" Grid.Column="1" Grid.Row="9"
-                                          SelectedValuePath="Tag"
-                                          SelectedValue="{Binding TextSettings.FontWeight}">
-                                        <ComboBox.Items>
-                                            <ComboBoxItem Tag="100" Content="Thin" FontWeight="Thin"/>
-                                            <ComboBoxItem Tag="200" Content="Extra-light (Ultra-light)" FontWeight="ExtraLight"/>
-                                            <ComboBoxItem Tag="300" Content="Light" FontWeight="Light"/>
-                                            <ComboBoxItem Tag="400" Content="Normal (Regular)" FontWeight="Normal"/>
-                                            <ComboBoxItem Tag="500" Content="Medium" FontWeight="Medium"/>
-                                            <ComboBoxItem Tag="600" Content="Semi-bold (Demi-bold)" FontWeight="SemiBold"/>
-                                            <ComboBoxItem Tag="700" Content="Bold" FontWeight="Bold"/>
-                                            <ComboBoxItem Tag="800" Content="Extra-bold (Ultra-bold)" FontWeight="ExtraBold"/>
-                                            <ComboBoxItem Tag="900" Content="Black (Heavy)" FontWeight="Black"/>
-                                        </ComboBox.Items>
-                                    </ComboBox>-->
-
-                                <!--<Grid Grid.Column="1" Grid.Row="10" Margin="0 10 0 10">
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Slider Minimum="0" Maximum="200" Interval="10"
-                                                 Value="{Binding TextSettings.StrokeThickness, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                        <Label Grid.Column="1" Content="{Binding TextSettings.StrokeThickness, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                               ContentStringFormat=" {0:#0}%"/>
-
-                                    </Grid>
-
-                                    <Grid Grid.Column="1" Grid.Row="11" Margin="0 10 0 10">
-
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Slider Minimum="0" Maximum="100" Interval="10"
-                                                Value="{Binding TextSettings.ShadowOpacity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-
-                                        <Label Grid.Column="1" Content="{Binding TextSettings.ShadowOpacity, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                               ContentStringFormat=" {0:#0}%"/>
-
-                                    </Grid>-->
-
-                                <!--<mah:NumericUpDown Grid.Column="1" Grid.Row="12" Minimum="100" Maximum="500" Value="{Binding TextSettings.ParseLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>-->
 
                                 <Grid Grid.Column="1" Grid.Row="7" Margin="0 10 0 10">
                                     <Grid.ColumnDefinitions>
@@ -353,19 +281,6 @@
                                         </Button.Content>
                                     </Button>
                                 </Grid>
-
-                                <!--<mah:ToggleSwitch Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="15"
-                                                      OnContent="Regular Stroke Text" OffContent="Web Stroke Text"
-                                                      IsOn="{Binding StrokeTextBoxOrWeb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                        <mah:ToggleSwitch.Style>
-                                            <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                <Setter Property="FontFamily" Value="Arial"/>
-                                                <Setter Property="FontSize" Value="15"/>
-                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
-                                            </Style>
-                                        </mah:ToggleSwitch.Style>
-                                    </mah:ToggleSwitch>-->
 
                                 <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10"
                                                       FontSize="15"
@@ -459,7 +374,6 @@
 
                         <Canvas x:Name="ScreenshotCanvas" Grid.Row="2"
                                 MouseMove="ScreenshotCanvas_OnMouseMove"
-                                MouseDown="ScreenshotCanvas_OnMouseDown"
                                 HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10 0 0 0"
                                 Height="{Binding SelectedResolution.Height}"
                                 Width="{Binding SelectedResolution.Width}">
@@ -468,7 +382,7 @@
                                    Height="{Binding SelectedResolution.Height}"
                                    Width="{Binding SelectedResolution.Width}"/>
 
-                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotText}"
+                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotTextCollection}"
                                           MaxWidth="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
@@ -476,7 +390,7 @@
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
 
-                                <!--<ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <local:OutlinedTextBlock Text="{Binding String}"
                                                                  FontSize="{Binding FontSize}"
@@ -489,13 +403,8 @@
                                                                  Stroke="{Binding Stroke}" />
 
                                     </DataTemplate>
-                                </ItemsControl.ItemTemplate>-->
+                                </ItemsControl.ItemTemplate>
                             </ItemsControl>
-
-                            <!--<wpf1:WebView2 x:Name="ScreenshotTextWeb" Source="https://google.com" Visibility="Hidden"
-                                           Height="{Binding SelectedResolution.Height}"
-                                           Width="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                           Canvas.Left="100" Canvas.Top="100"/>-->
 
                         </Canvas>
                     </Grid>
@@ -530,10 +439,6 @@
                                 </DockPanel>
                             </Button.Content>
                         </Button>
-
-                        <!--<Label Grid.Column="2" Content="Search:" FontSize="20"/>
-                        
-                        <TextBox Grid.Column="3" x:Name="ParsedChatSearchTxt" KeyDown="ParsedChatSearchTxt_OnKeyDown"/>-->
                     </Grid>
 
                     <xctk:RichTextBox  Grid.Row="1" x:Name="ParsedChatBig" FontSize="15"

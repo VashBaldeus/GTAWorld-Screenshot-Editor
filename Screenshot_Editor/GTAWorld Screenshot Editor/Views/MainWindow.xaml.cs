@@ -29,6 +29,75 @@ namespace GTAWorld_Screenshot_Editor
             CheckForUpdate();
         }
 
+        /// <summary>
+        /// Runs a check against GitHub releases
+        /// checking current program version agianst release
+        /// </summary>
+        private void CheckForUpdate()
+        {
+            try
+            {
+                AutoUpdater.AppTitle = "GTAWorld Screenshot Editor";
+
+                AutoUpdater.Synchronous = true;
+
+                AutoUpdater.Mandatory = true;
+
+                AutoUpdater.UpdateMode = Mode.Forced;
+
+                AutoUpdater.ShowSkipButton = false;
+
+                AutoUpdater.ShowRemindLaterButton = false;
+
+                AutoUpdater.DownloadPath = Environment.CurrentDirectory;
+
+                AutoUpdater.ApplicationExitEvent += delegate
+                {
+                    Application.Current.Shutdown();
+                };
+
+                var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
+
+                if (currentDirectory.Parent != null)
+                {
+                    AutoUpdater.InstallationPath = currentDirectory.FullName;
+
+                    // ReSharper disable once LocalizableElement
+                    Debug.WriteLine($"{currentDirectory.FullName}");
+                }
+
+                AutoUpdater.ReportErrors = true;
+
+                AutoUpdater.CheckForUpdateEvent += delegate (UpdateInfoEventArgs args)
+                {
+                    if (args == null) return;
+
+                    if (!args.IsUpdateAvailable) return;
+
+                    try
+                    {
+                        if (File.Exists(@"parser.cfg"))
+                            File.Delete(@"parser.cfg");
+
+                        if (AutoUpdater.DownloadUpdate(args))
+                        {
+                            this.Close();
+                        }
+                    }
+                    catch (Exception exception)
+                    {
+                        Message.Log(exception);
+                    }
+                };
+
+                AutoUpdater.Start(@"http://screenshot.vashbaldeus.pw/updates.xml");
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             var dc = (MainViewModel)DataContext;
@@ -93,12 +162,16 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                //get source button name
                 var control = (e.Source as Button).Name;
 
+                //picture canvas
                 var source = ScreenshotCanvas;
             
+                //variables for saving size
                 double Height, renderHeight, Width, renderWidth;
 
+                //assign sizes
                 Height = renderHeight = source.RenderSize.Height;
                 Width = renderWidth = source.RenderSize.Width;
 
@@ -124,12 +197,14 @@ namespace GTAWorld_Screenshot_Editor
 
                 encoder.Frames.Add(BitmapFrame.Create(renderTarget));
 
+                //copy image to clipboard
                 if (control == "CopyClipboard")
                 {
                     Clipboard.SetImage(renderTarget);
                 }
                 else
                 {
+                    //open dialog where to save image
                     var saveDialog = new SaveFileDialog
                     {
                         Title = "Select Where to save screenshot:",
@@ -143,6 +218,7 @@ namespace GTAWorld_Screenshot_Editor
                     if (string.IsNullOrEmpty(saveDialog.FileName))
                         return;
 
+                    //save file locally
                     using (var stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write))
                     {
                         encoder.Save(stream);
@@ -173,71 +249,6 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
-        private void CheckForUpdate()
-        {
-            try
-            {
-                AutoUpdater.AppTitle = "GTAWorld Screenshot Editor";
-
-                AutoUpdater.Synchronous = true;
-
-                AutoUpdater.Mandatory = true;
-
-                AutoUpdater.UpdateMode = Mode.Forced;
-
-                AutoUpdater.ShowSkipButton = false;
-
-                AutoUpdater.ShowRemindLaterButton = false;
-
-                AutoUpdater.DownloadPath = Environment.CurrentDirectory;
-
-                AutoUpdater.ApplicationExitEvent += delegate
-                {
-                    System.Windows.Application.Current.Shutdown();
-                };
-
-                var currentDirectory = new DirectoryInfo(Environment.CurrentDirectory);
-
-                if (currentDirectory.Parent != null)
-                {
-                    AutoUpdater.InstallationPath = currentDirectory.FullName;
-
-                    // ReSharper disable once LocalizableElement
-                    Debug.WriteLine($"{currentDirectory.FullName}");
-                }
-
-                AutoUpdater.ReportErrors = true;
-
-                AutoUpdater.CheckForUpdateEvent += delegate (UpdateInfoEventArgs args)
-                {
-                    if (args == null) return;
-
-                    if (!args.IsUpdateAvailable) return;
-
-                    try
-                    {
-                        if (File.Exists(@"parser.cfg"))
-                            File.Delete(@"parser.cfg");
-
-                        if (AutoUpdater.DownloadUpdate(args))
-                        {
-                            this.Close();
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        Message.Log(exception);
-                    }
-                };
-
-                AutoUpdater.Start(@"http://screenshot.vashbaldeus.pw/updates.xml");
-            }
-            catch (Exception ex)
-            {
-                Message.Log(ex);
-            }
-        }
-
         private void MainWindow_OnClosed(object sender, EventArgs e)
         {
             
@@ -249,11 +260,6 @@ namespace GTAWorld_Screenshot_Editor
             //delete temp file folder
             var dir = new DirectoryInfo(dirPath);
             dir.Delete(true);
-        }
-
-        private void ScreenshotCanvas_OnMouseDown(object sender, MouseButtonEventArgs e)
-        {
-
         }
     }
 }

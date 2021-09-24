@@ -3,7 +3,6 @@ using GTAWorld_Screenshot_Editor.Controllers;
 using GTAWorld_Screenshot_Editor.Models;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing.Text;
 using System.IO;
@@ -16,13 +15,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
-using Windows.System.UserProfile;
 using Clipboard = System.Windows.Clipboard;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using CroppingAdorner = CroppingImageLibrary.CroppingAdorner;
 
+// ReSharper disable InconsistentNaming
+
+// ReSharper disable once CheckNamespace
 namespace GTAWorld_Screenshot_Editor
 {
     public class MainViewModel : OnPropertyChange
@@ -77,38 +78,15 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                var str = "* Mask_0A9C3_33 speaks to Joe Mama.";
-
-                Console.WriteLine($"{str}\n{Regex.IsMatch(str, @"^(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts|whispers)( \[low\]){0,1}:.*$")}");
-                Console.WriteLine($"{str}\n{Regex.IsMatch(str, @"(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts|whispers)( \[low\]){0,1}:.*$")}");
-
-                ResetCommand.Execute(null);
+                DebugExecute();
 
                 LookForMainDirectory();
 
-                SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
+                InitFilters();
 
-                //load parser settings
-                if (File.Exists(@"./parser.cfg"))
-                {
-                    ParserSettings = Xml.Deserialize<ObservableCollection<Criteria>>(@"./parser.cfg");
-                }
-                else Xml.Serialize<ObservableCollection<Criteria>>(@"./parser.cfg", ParserSettings);
+                InitResolutions();
 
-                Fonts = new ObservableCollection<string>(new InstalledFontCollection().Families.Select(s => s.Name));
-
-                if (File.Exists(@"./cached_screens/screenshots.cache"))
-                {
-                    ScreenCache =
-                        Xml.Deserialize<ObservableCollection<CacheScreenshot>>(@"./cached_screens/screenshots.cache");
-
-                    foreach (var cacheScreenshot in ScreenCache)
-                    {
-                        cacheScreenshot.Command = DeleteCachedImageCommand;
-
-                        cacheScreenshot.InitImage();
-                    }
-                }
+                ResetCommand.Execute(null);
             }
             catch (Exception ex)
             {
@@ -129,6 +107,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 var dialog = new FolderBrowserDialog
                 {
+                    // ReSharper disable once LocalizableElement
                     Description = "Select RageMP Installation folder",
                     Tag = "RageMP",
                     ShowNewFolderButton = false
@@ -159,12 +138,11 @@ namespace GTAWorld_Screenshot_Editor
 
                 openFileDiag.ImageTypes();
 
-                if (openFileDiag.ShowDialog() == false)
+                //file dialog returned false or file was not selected
+                if (openFileDiag.ShowDialog() == false || string.IsNullOrEmpty(openFileDiag.FileName))
                     return;
 
-                SelectedImage.Path = openFileDiag.FileName;
-
-                SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
+                InitImage(openFileDiag.FileName);
             }
             catch (Exception ex)
             {
@@ -205,9 +183,7 @@ namespace GTAWorld_Screenshot_Editor
                 if(!CheckIfFileIsImage(obj.ToString()))
                     throw new Exception($"'{obj}' is not an image.");
 
-                SelectedImage.Path = obj.ToString();
-
-                SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
+                InitImage(obj.ToString());
             }
             catch (Exception ex)
             {
@@ -242,7 +218,9 @@ namespace GTAWorld_Screenshot_Editor
                 ParsedChat = ChatParser.ParseChatLog(RageFolder, true, TextSettings.ParseLines, true);
 
                 //filter chatlog based on selections
-                ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(), ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)").Selected);
+                ParsedChat =
+                    ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(),
+                        ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)")?.Selected ?? false);
                 
                 //reset rtf textbox line height
                 LineHeight = 1;
@@ -284,7 +262,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 SelectedImage = new ImageModel();
 
-                ScreenshotText.Clear();
+                ScreenshotTextCollection.Clear();
             }
             catch (Exception ex)
             {
@@ -472,7 +450,7 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                ScreenshotText.Clear();
+                ScreenshotTextCollection.Clear();
             }
             catch (Exception ex)
             {
@@ -487,7 +465,9 @@ namespace GTAWorld_Screenshot_Editor
             try
             {
                 //filter chatlog based on selections
-                ParsedChat = ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(), ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)").Selected);
+                ParsedChat =
+                    ChatParser.TryToFilter(ParsedChat, ParserSettings.ToList(),
+                        ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)")?.Selected ?? false);
 
                 //reset rtf textbox line height
                 LineHeight = 1;
@@ -509,6 +489,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private string _rageFolder = Properties.Settings.Default.DirectoryPath;
 
+        /// <summary>
+        /// RageMP Install directory
+        /// </summary>
         public string RageFolder
         {
             get => _rageFolder;
@@ -522,196 +505,56 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
-        private bool _strokeTextBoxOrWeb = Properties.Settings.Default.StrokeTextBoxOrWeb;
-
-        public bool StrokeTextBoxOrWeb
-        {
-            get => _strokeTextBoxOrWeb;
-            set
-            {
-                _strokeTextBoxOrWeb = value;
-                OnPropertyChanged();
-
-                Properties.Settings.Default.StrokeTextBoxOrWeb = value;
-                Properties.Settings.Default.Save();
-            }
-        }
-
         private string _parsedChat = string.Empty;
 
+        /// <summary>
+        /// Chat that was pulled or written manually
+        /// </summary>
         public string ParsedChat
         {
             get => _parsedChat;
             set { _parsedChat = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<OutlinedTextBlock> _screenshotText = new ObservableCollection<OutlinedTextBlock>();
+        private int _lineHeight = 1;
 
-        public ObservableCollection<OutlinedTextBlock> ScreenshotText
+        /// <summary>
+        /// Assigns Rich Text Box line height
+        /// </summary>
+        public int LineHeight
         {
-            get => _screenshotText;
-            set { _screenshotText = value; OnPropertyChanged(); }
+            get => _lineHeight;
+            set { _lineHeight = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<ResolutionPreset> _resolutions = new ObservableCollection<ResolutionPreset>()
+        private ObservableCollection<Text> _screenshotTextCollection = new ObservableCollection<Text>();
+
+        /// <summary>
+        /// Text that shows on top of canvas for screenshot
+        /// </summary>
+        public ObservableCollection<Text> ScreenshotTextCollection
         {
-            new ResolutionPreset
-            {
-                AllowEdit = true,
-                Name = "Custom",
-                Width = 1280,
-                Height = 720
-            },
+            get => _screenshotTextCollection;
+            set { _screenshotTextCollection = value; OnPropertyChanged(); }
+        }
 
-            new ResolutionPreset
-            {
-                Name = "720p",
-                Width = 1280,
-                Height = 720
-            },
+        private ObservableCollection<Criteria> _parserSettings;
 
-            new ResolutionPreset
-            {
-                Name = "1080p",
-                Width = 1920,
-                Height = 1080
-            },
-
-            new ResolutionPreset
-            {
-                Name = "1440p",
-                Width = 2560,
-                Height = 1440
-            },
-
-            new ResolutionPreset
-            {
-                Name = "4k",
-                Width = 3840,
-                Height = 2160
-            },
-        };
-
-        private ObservableCollection<Criteria> _parserSettings = new ObservableCollection<Criteria>
-        {
-            /*
-                // Assign each filter criterion to a regex pattern
-                private readonly Dictionary<string, Tuple<string, bool>> _filterCriteria = new Dictionary<string, Tuple<string, bool>>
-                {
-                    // Filter, regex pattern, isEnabled (false = remove from log)
-                    { "OOC", Tuple.Create(@"^\(\( \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.OOCCriterionEnabled) },
-                    { "IC", Tuple.Create(@"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$", Properties.Settings.Default.ICCriterionEnabled) },
-                    { "Emote", Tuple.Create(@"^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$", Properties.Settings.Default.EmoteCriterionEnabled) },
-                    { "Action", Tuple.Create(@"^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$", Properties.Settings.Default.ActionCriterionEnabled) },
-                    { "PM", Tuple.Create(@"^\(\( PM (to|from) \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.PMCriterionEnabled) },
-                    { "Radio", Tuple.Create(@"^\*\*\[S: .* CH: .*\] [\p{L}]+ {0,1}([\p{L}]+){0,1}.*$", Properties.Settings.Default.RadioCriterionEnabled) },
-                    { "Ads", Tuple.Create(@"^\[.*Advertisement.*\] .*$", Properties.Settings.Default.AdsCriterionEnabled) }
-                };
-             */
-
-            new Criteria
-            {
-                Name = "IC",
-                Filter = @"^(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts|whispers)( \[low\]){0,1}:.*$",
-                Selected = true
-            },
-
-            new Criteria
-            {
-                Name = "Emote",
-                Filter = @"^(\*|\>|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
-                Selected = true
-            },
-
-            new Criteria
-            {
-                Selected = true,
-                Name = "Cellphone",
-                Filter = @"(\(cellphone\))"
-            },
-
-            new Criteria
-            {
-                Selected = true,
-                Name = "Whispers",
-                Filter = @"\whispers:"
-            },
-
-            new Criteria
-            {
-                Selected = true,
-                Name = "Payments",
-                Filter = @"(You paid)\s(?<SYMBOL>[$]){1}(xxxx)\s(to)|(paid you)\s(?<SYMBOL>[$]){1}(xxxx)"
-            },
-
-            new Criteria
-            {
-                Selected = true,
-                Name = "Items",
-                Filter = @".(gave).(\(x\) to|received \(x\) of)."
-            },
-
-            new Criteria
-            {
-                Name = "Radio",
-                Filter = @"(\*\*\[S\:)"
-            },
-
-            new Criteria
-            {
-                Name = "Dept. Radio",
-                Filter = @"[(\:\\*\*\\[)]"
-            },
-
-            new Criteria
-            {
-                Name = "Megaphone",
-                Filter = @"(\[Megaphone\])"
-            },
-
-            new Criteria
-            {
-                Name = "OOC",
-                Filter = @"[\(\(\(]"
-            },
-
-            new Criteria
-            {
-                Name = "PM",
-                Filter = @"^\(\( PM (to|from)"
-            },
-
-            new Criteria
-            {
-                Name = "AD",
-                Filter = @"(\[Advertisement])"
-            },
-
-            new Criteria
-            {
-                Name = "BAD",
-                Filter = @"(\[BusinessAdvertisement])"
-            },
-
-            new Criteria
-            {
-                Name = "CAD",
-                Filter = @"(\[CompanyAdvertisement])"
-            },
-
-            new Criteria
-            {
-                Name = "Other (non listed)",
-                Filter = string.Empty
-            },
-        };
-
+        /// <summary>
+        /// Parser filter settings and patterns
+        /// </summary>
         public ObservableCollection<Criteria> ParserSettings
         {
             get => _parserSettings;
             set { _parserSettings = value; OnPropertyChanged(); }
         }
 
+        private ObservableCollection<ResolutionPreset> _resolutions;
+
+        /// <summary>
+        /// Resolutions user can choose from,
+        /// includes a Custom resolution allowing manual Height & Width input
+        /// </summary>
         public ObservableCollection<ResolutionPreset> Resolutions
         {
             get => _resolutions;
@@ -720,6 +563,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private ResolutionPreset _selectedResolution;
 
+        /// <summary>
+        /// Selected current resolution
+        /// </summary>
         public ResolutionPreset SelectedResolution
         {
             get => _selectedResolution;
@@ -728,6 +574,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private ImageModel _selectedImage = new ImageModel();
 
+        /// <summary>
+        /// Current loaded image on canvas
+        /// </summary>
         public ImageModel SelectedImage
         {
             get => _selectedImage;
@@ -736,30 +585,21 @@ namespace GTAWorld_Screenshot_Editor
 
         private TextModel _textSettings = new TextModel();
 
+        /// <summary>
+        /// Text Settings, mostly deprecated. TODO remove unused properties
+        /// </summary>
         public TextModel TextSettings
         {
             get => _textSettings;
             set { _textSettings = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<string> _fonts = new ObservableCollection<string>();
-
-        public ObservableCollection<string> Fonts
-        {
-            get => _fonts;
-            set { _fonts = value; OnPropertyChanged(); }
-        }
-
-        private int _lineHeight = 1;
-
-        public int LineHeight
-        {
-            get => _lineHeight;
-            set { _lineHeight = value; OnPropertyChanged(); }
-        }
-
         private ObservableCollection<CacheScreenshot> _screenCache = new ObservableCollection<CacheScreenshot>();
 
+        /// <summary>
+        /// Cached screenshots that were created in the past
+        /// saves the image and text in another folder locally
+        /// </summary>
         public ObservableCollection<CacheScreenshot> ScreenCache
         {
             get => _screenCache;
@@ -768,6 +608,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private CroppingAdorner _cropping;
 
+        /// <summary>
+        /// Cropping Adorner used for manual cropping of loaded image
+        /// </summary>
         public CroppingAdorner CroppingAdorner
         {
             get => _cropping;
@@ -776,35 +619,28 @@ namespace GTAWorld_Screenshot_Editor
 
         private System.Windows.Controls.Canvas _canvas;
 
+        /// <summary>
+        /// Reference to image Canvas for saving image
+        /// </summary>
         public System.Windows.Controls.Canvas Canvas
         {
             get => _canvas;
             set { _canvas = value; OnPropertyChanged(); }
         }
 
-        private string[] _html;
-
-        public string[] Html
-        {
-            get => _html;
-            set { _html = value; OnPropertyChanged(); }
-        }
-
-        private string _imageText = $@"{AppDomain.CurrentDomain.BaseDirectory}image_text.html";
-
-        public string ImageText
-        {
-            get => _imageText;
-            set { _imageText = value; OnPropertyChanged(); }
-        }
-
         #endregion
 
         #region Private Properties
 
+        /// <summary>
+        /// Startup folder of *.exe file
+        /// </summary>
         public string StartupDirectory => AppDomain.CurrentDomain.BaseDirectory;
 
-        public const string PlayerName = @"([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+)";
+        /// <summary>
+        /// Regex pattern, detects FirstName LastName or Mask format of player
+        /// </summary>
+        public const string PlayerNamePattern = @"([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+)";
 
         #endregion
 
@@ -816,9 +652,212 @@ namespace GTAWorld_Screenshot_Editor
 
         #region Private Methods
 
+        /// <summary>
+        /// Initialize Filters, load saved filter file if exits, otherwise create new file
+        /// </summary>
+        private void InitFilters()
+        {
+            ParserSettings = new ObservableCollection<Criteria>
+            {
+                /*
+                    // Assign each filter criterion to a regex pattern
+                    private readonly Dictionary<string, Tuple<string, bool>> _filterCriteria = new Dictionary<string, Tuple<string, bool>>
+                    {
+                        // Filter, regex pattern, isEnabled (false = remove from log)
+                        { "OOC", Tuple.Create(@"^\(\( \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.OOCCriterionEnabled) },
+                        { "IC", Tuple.Create(@"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$", Properties.Settings.Default.ICCriterionEnabled) },
+                        { "Emote", Tuple.Create(@"^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$", Properties.Settings.Default.EmoteCriterionEnabled) },
+                        { "Action", Tuple.Create(@"^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$", Properties.Settings.Default.ActionCriterionEnabled) },
+                        { "PM", Tuple.Create(@"^\(\( PM (to|from) \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.PMCriterionEnabled) },
+                        { "Radio", Tuple.Create(@"^\*\*\[S: .* CH: .*\] [\p{L}]+ {0,1}([\p{L}]+){0,1}.*$", Properties.Settings.Default.RadioCriterionEnabled) },
+                        { "Ads", Tuple.Create(@"^\[.*Advertisement.*\] .*$", Properties.Settings.Default.AdsCriterionEnabled) }
+                    };
+                 */
+
+                new Criteria
+                {
+                    Name = "IC",
+                    Filter =
+                        @"^(\(Car\) ){0,1}((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) (says|shouts)( \[low\]){0,1}:.*$",
+                    Selected = true
+                },
+
+                new Criteria
+                {
+                    Name = "Emote",
+                    Filter =
+                        @"^(\*|\>|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
+                    Selected = true
+                },
+
+                new Criteria
+                {
+                    Selected = true,
+                    Name = "Cellphone",
+                    Filter = @"(\(cellphone\))"
+                    //Filter = @"^((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})).( \[low\]){0,1}(\(cellphone\)):.$"
+                },
+
+                new Criteria
+                {
+                    Selected = true,
+                    Name = "Whispers",
+                    Filter = @"\whispers:"
+                    //Filter = @"^((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) \whispers:"
+                },
+
+                new Criteria
+                {
+                    Selected = true,
+                    Name = "Payments",
+                    Filter = @"(You paid)\s(?<SYMBOL>[$]){1}(xxxx)\s(to)|(paid you)\s(?<SYMBOL>[$]){1}(xxxx)"
+                },
+
+                new Criteria
+                {
+                    Selected = true,
+                    Name = "Items",
+                    Filter = @".(gave).(\(x\) to|received \(x\) of)."
+                },
+
+                new Criteria
+                {
+                    Name = "Radio",
+                    Filter = @"(\*\*\[S\:)"
+                },
+
+                new Criteria
+                {
+                    Name = "Dept. Radio",
+                    Filter = @"[(\:\\*\*\\[)]"
+                },
+
+                new Criteria
+                {
+                    Name = "Megaphone",
+                    Filter = @"(\[Megaphone\])"
+                },
+
+                new Criteria
+                {
+                    Name = "OOC",
+                    Filter = @"[\(\(\(]"
+                },
+
+                new Criteria
+                {
+                    Name = "PM",
+                    Filter = @"^\(\( PM (to|from)"
+                },
+
+                new Criteria
+                {
+                    Name = "AD",
+                    Filter = @"(\[Advertisement])"
+                },
+
+                new Criteria
+                {
+                    Name = "BAD",
+                    Filter = @"(\[BusinessAdvertisement])"
+                },
+
+                new Criteria
+                {
+                    Name = "CAD",
+                    Filter = @"(\[CompanyAdvertisement])"
+                },
+
+                new Criteria
+                {
+                    Name = "Other (non listed)",
+                    Filter = string.Empty
+                },
+            };
+
+            //load parser settings
+            if (File.Exists(@"./parser.cfg"))
+            {
+                ParserSettings = Xml.Deserialize<ObservableCollection<Criteria>>(@"./parser.cfg");
+            }
+            else Xml.Serialize<ObservableCollection<Criteria>>(@"./parser.cfg", ParserSettings);
+        }
+
+        /// <summary>
+        /// Initialize Resolutons list
+        /// </summary>
+        private void InitResolutions()
+        {
+            Resolutions = new ObservableCollection<ResolutionPreset>
+            {
+                new ResolutionPreset
+                {
+                    AllowEdit = true,
+                    Name = "Custom",
+                    Width = 1280,
+                    Height = 720
+                },
+
+                new ResolutionPreset
+                {
+                    Name = "720p",
+                    Width = 1280,
+                    Height = 720
+                },
+
+                new ResolutionPreset
+                {
+                    Name = "1080p",
+                    Width = 1920,
+                    Height = 1080
+                },
+
+                new ResolutionPreset
+                {
+                    Name = "1440p",
+                    Width = 2560,
+                    Height = 1440
+                },
+
+                new ResolutionPreset
+                {
+                    Name = "4k",
+                    Width = 3840,
+                    Height = 2160
+                },
+            };
+
+            SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
+        }
+
+        /// <summary>
+        /// Used for debugging during development
+        /// </summary>
+        private void DebugExecute()
+        {
+#if DEBUG
+            if(File.Exists(@"parser.cfg"))
+                File.Delete(@"parser.cfg");
+
+            var chat = new[]
+            {
+                "Ryan Amsalem says (cellphone): yes",
+                "Ryan Amsalem says [low] (cellphone): yes",
+            };
+
+            foreach (var s in chat)
+            {
+                Console.WriteLine($"{s}\n{Regex.IsMatch(s, @"^([\p{L}]+ {0,1} [\p{L}]+ {0,1}|:Mask+[a-zA-Z0-9_]+ {0,1})\s(says)\s(?:\[low\] ?)\(cellphone\):.$")}");
+            }
+#endif
+        }
+
+        /// <summary>
+        /// Generates text on image
+        /// </summary>
         private void GenerateText()
         {
-            ScreenshotText.Clear();
+            ScreenshotTextCollection.Clear();
 
             //remove highlight if left
             ParsedChat = ParsedChat.Replace("[!] ", "");
@@ -842,33 +881,22 @@ namespace GTAWorld_Screenshot_Editor
 
                 str = $"{str.Replace($"({color})", string.Empty).TrimEnd(' ')}{newLine}";
 
-                var outlinedTextBlock = new OutlinedTextBlock();
+                var txt = new Text();
 
-                outlinedTextBlock.Text = str;
-                outlinedTextBlock.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
-                outlinedTextBlock.FontSize = SelectedResolution.Height < 960 ? 960 * ((double)1.6 / 100) : SelectedResolution.Height * ((double)1.6 / 100);
-                outlinedTextBlock.FontFamily = new FontFamily("Arial, Helvetica, sans-serif");
-                outlinedTextBlock.TextWrapping = TextWrapping.WrapWithOverflow;
-                outlinedTextBlock.FontWeight = FontWeight.FromOpenTypeWeight(750);
-                outlinedTextBlock.Stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000");
-                outlinedTextBlock.StrokeThickness = 0.25;
-                outlinedTextBlock.Effect = new DropShadowEffect
-                {
-                    Color = new Color
-                    {
-                        R = Byte.MinValue,
-                        G = Byte.MinValue,
-                        B = Byte.MinValue
-                    },
-                    Opacity = SelectedResolution.Height * ((double)0.18 / 100),
-                    BlurRadius = SelectedResolution.Height * ((double)0.18 / 100),
-                    Direction = SelectedResolution.Height * ((double)0.18 / 100),
-                    ShadowDepth = SelectedResolution.Height * ((double)0.18 / 100)
-                };
+                txt.String = str;
 
-                //Console.WriteLine($"{SelectedResolution.Height * ((double)0.18 / 100)}");
+                txt.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
 
-                ScreenshotText.Add(outlinedTextBlock);
+                txt.FontSize = SelectedResolution.Height < 960
+                    ? 960 * (1.6 / 100)
+                    : SelectedResolution.Height * (1.6 / 100);
+
+                txt.Effect.Opacity = SelectedResolution.Height * (0.18 / 100);
+                txt.Effect.BlurRadius = SelectedResolution.Height * (0.18 / 100);
+                txt.Effect.Direction = SelectedResolution.Height * (0.18 / 100);
+                txt.Effect.ShadowDepth = SelectedResolution.Height * (0.18 / 100);
+
+                ScreenshotTextCollection.Add(txt);
 
                 lineCount++;
             }
@@ -953,6 +981,9 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        /// <summary>
+        /// Adds created screenshot into cache file
+        /// </summary>
         private void CacheCurrentImageAndText()
         {
             if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0 || string.IsNullOrEmpty(SelectedImage.Path))
@@ -992,10 +1023,40 @@ namespace GTAWorld_Screenshot_Editor
             Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{cacheDir}\screenshots.cache", ScreenCache);
         }
 
+        /// <summary>
+        /// Check if dropped file is an image file
+        /// </summary>
+        /// <param name="file">dropped file path</param>
+        /// <returns>boolean value indicating file type</returns>
         private bool CheckIfFileIsImage(string file)
         {
             return Regex.IsMatch(Path.GetExtension(file).ToLower(),
                 "(jpg|jpeg|jfif|png|bmp|webp|gif)$", RegexOptions.Compiled);
+        }
+
+        /// <summary>
+        /// Initialize dropped or selected iamge
+        /// </summary>
+        /// <param name="path">image file path</param>
+        private void InitImage(string path)
+        {
+            SelectedImage.Path = path;
+
+            SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
+
+            //if both height & width of selected image are smaller than selected
+            //resolution, set image resolution as custom.
+            if (SelectedImage.Bitmap.Height < SelectedResolution.Height ||
+                SelectedImage.Bitmap.Width < SelectedResolution.Width)
+            {
+                SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "Custom");
+
+                if (SelectedResolution == null)
+                    return;
+
+                SelectedResolution.Height = (int)SelectedImage.Bitmap.Height;
+                SelectedResolution.Width = (int)SelectedImage.Bitmap.Width;
+            }
         }
 
         #endregion

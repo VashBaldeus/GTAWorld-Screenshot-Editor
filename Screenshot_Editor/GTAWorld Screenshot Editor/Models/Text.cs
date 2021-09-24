@@ -48,9 +48,9 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _textWrapping = value; OnPropertyChanged(); }
         }
 
-        private int _fontWeight = 900;
+        private string _fontWeight = "Bold";
 
-        public int FontWeight
+        public string FontWeight
         {
             get => _fontWeight;
             set { _fontWeight = value; OnPropertyChanged(); }
@@ -64,7 +64,7 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _stroke = value; OnPropertyChanged(); }
         }
 
-        private double _strokeThickness = 0.5;
+        private double _strokeThickness = 0.25;
 
         public double StrokeThickness
         {
@@ -72,13 +72,13 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _strokeThickness = value; OnPropertyChanged(); }
         }
 
-        private DropShadowEffect _effect = new DropShadowEffect()
+        private DropShadowEffect _effect = new DropShadowEffect
         {
             Color = new Color
             {
-                R = Byte.MinValue,
-                G = Byte.MinValue,
-                B = Byte.MinValue
+                R = byte.MinValue,
+                G = byte.MinValue,
+                B = byte.MinValue
             },
         };
 
