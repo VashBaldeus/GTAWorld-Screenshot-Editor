@@ -6,7 +6,7 @@ using ExtensionMethods;
 
 namespace GTAWorld_Screenshot_Editor.Models
 {
-    public class Text : OnPropertyChange
+    public class ImageText : OnPropertyChange
     {
         private string _text = string.Empty;
 

@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:GTAWorld_Screenshot_Editor"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -21,12 +22,6 @@
                 <Setter Property="VerticalContentAlignment" Value="Center"/>
                 <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
             </Style>
-
-            <!--<Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource MahApps.Styles.TextBlock}">
-                <Setter Property="FontFamily" Value="Arial"/>
-                <Setter Property="FontSize" Value="15"/>
-                --><!--<Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>--><!--
-            </Style>-->
 
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MahApps.Styles.TextBox}">
                 <Setter Property="FontFamily" Value="Arial"/>
@@ -114,6 +109,52 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style TargetType="{x:Type xctk:DropDownButton}">
+                <Setter Property="MinHeight" Value="32"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                <Setter Property="Background" Value="#2F2F2F"/>
+                <Setter Property="DropDownContentBackground" Value="#2F2F2F"/>
+
+                <Style.Resources>
+                    <!--MouseOver-->
+                    <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type themes:ResourceKeys}, ResourceId=ButtonMouseOverOuterBorderKey}"
+                                     Color="#bbbbbb" />
+                    <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type themes:ResourceKeys}, ResourceId=ButtonMouseOverBackgroundKey}"
+                                     Color="#454545" />
+                    <!--Pressed-->
+                    <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type themes:ResourceKeys}, ResourceId=ButtonPressedOuterBorderKey}"
+                                     Color="#bbbbbb" />
+                    <SolidColorBrush x:Key="{ComponentResourceKey TypeInTargetAssembly={x:Type themes:ResourceKeys}, ResourceId=ButtonPressedBackgroundKey}"
+                                     Color="#454545" />
+                </Style.Resources>
+
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#ca8219"
+                                                Duration="0:0:0"
+                                                Storyboard.TargetProperty="Foreground.Color" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <EventTrigger RoutedEvent="MouseLeave">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation To="#ca8219"
+                                                Duration="0:0:0"
+                                                Storyboard.TargetProperty="Foreground.Color" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
             </Style>
         </ResourceDictionary>
     </Application.Resources>

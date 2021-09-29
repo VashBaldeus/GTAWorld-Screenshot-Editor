@@ -9,6 +9,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:qc="http://QuickConverter.CodePlex.com/"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
         mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
         Title="GTAWorld Screenshot Editor" Height="720" Width="1280"
         Icon="../Resources/screenshot.ico"
@@ -209,50 +210,64 @@
                                         <ColumnDefinition Width="Auto"/>
                                     </Grid.ColumnDefinitions>
 
-                                    <Slider Minimum="100" Maximum="500" Interval="100"
+                                    <Slider Minimum="100" Maximum="1000" Interval="100"
                                                 Value="{Binding TextSettings.ParseLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
                                     <Label Grid.Column="1" Content="{Binding TextSettings.ParseLines, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
                                 </Grid>
 
                                 <StackPanel Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8">
+                                    <xctk:DropDownButton Content="CHAT FILTERS"
+                                                         MaxDropDownHeight="384">
+                                        <xctk:DropDownButton.DropDownContent>
+                                            <Grid Margin="2.5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
+
+                                                <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
+                                                          HorizontalScrollBarVisibility="Disabled">
+                                                    <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              MaxWidth="512">
+
+                                                        <ItemsControl.Resources>
+                                                            <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                                <Setter Property="FontFamily" Value="Arial" />
+                                                                <Setter Property="FontSize" Value="15" />
+                                                                <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                                <Setter Property="Foreground"
+                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                                            </Style>
+                                                        </ItemsControl.Resources>
+
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <mah:ToggleSwitch Content="{Binding Name}"
+                                                                          IsOn="{Binding Selected}"
+                                                                          Margin="10 0 0 0">
+                                                                </mah:ToggleSwitch>
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </ScrollViewer>
+                                            </Grid>
+                                        </xctk:DropDownButton.DropDownContent>
+                                    </xctk:DropDownButton>
+
                                     <Button Content="Parse Chat from ragemp" Command="{Binding ParseChatCommand}"
-                                                IsEnabled="{qc:Binding '$P != 0', P={Binding RageFolder.Length}}"/>
+                                            IsEnabled="{qc:Binding '$P != 0', P={Binding RageFolder.Length}}"/>
 
-                                    <Expander x:Name="ChatFilterExpander" Expanded="ChatFilterExpander_OnExpanded" Collapsed="ChatFilterExpander_OnExpanded">
-                                        <Expander.Header>
-                                            <Label Foreground="White">
-                                                CHAT FILTER (What you select will be kept!)
-                                            </Label>
-                                        </Expander.Header>
-
-                                        <Expander.Resources>
-                                            <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                <Setter Property="FontFamily" Value="Arial"/>
-                                                <Setter Property="FontSize" Value="15"/>
-                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
-                                            </Style>
-                                        </Expander.Resources>
-
-                                        <Expander.Content>
-                                            <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal"/>
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <mah:ToggleSwitch Content="{Binding Name}" IsOn="{Binding Selected}"
-                                                                              Margin="10 0 0 0">
-                                                        </mah:ToggleSwitch>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </Expander.Content>
-                                    </Expander>
+                                    <Button Command="{Binding CopyChatToClipboardCommand}" Content="Copy Chat to Clipboard"
+                                            IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
 
                                     <Button Content="Add Parsed Chat to Image" Command="{Binding AddTextToImageCommand}"
                                             IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
@@ -425,6 +440,10 @@
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="150"/>
                             <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <xctk:ColorPicker x:Name="HexColor2" Grid.Column="0"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
@@ -439,6 +458,71 @@
                                 </DockPanel>
                             </Button.Content>
                         </Button>
+
+                        <xctk:DropDownButton Content="CHAT FILTERS" Grid.Column="2"
+                                                         MaxDropDownHeight="384">
+                            <xctk:DropDownButton.DropDownContent>
+                                <Grid Margin="2.5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
+
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
+                                                          HorizontalScrollBarVisibility="Disabled">
+                                        <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              MaxWidth="512">
+
+                                            <ItemsControl.Resources>
+                                                <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                    <Setter Property="FontFamily" Value="Arial" />
+                                                    <Setter Property="FontSize" Value="15" />
+                                                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                    <Setter Property="Foreground"
+                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                                </Style>
+                                            </ItemsControl.Resources>
+
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <mah:ToggleSwitch Content="{Binding Name}"
+                                                                          IsOn="{Binding Selected}"
+                                                                          Margin="10 0 0 0">
+                                                    </mah:ToggleSwitch>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </ScrollViewer>
+                                </Grid>
+                            </xctk:DropDownButton.DropDownContent>
+                        </xctk:DropDownButton>
+
+                        <Button Content="Parse Chat" Grid.Column="3" Command="{Binding ParseChatCommand}"/>
+
+                        <Label Content="Lines to Parse" Grid.Column="4"/>
+
+                        <Grid Grid.Column="5" Margin="10" Width="384">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Slider Minimum="100" Maximum="1000" Interval="100"
+                                    Value="{Binding TextSettings.ParseLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                            <Label Grid.Column="1" Content="{Binding TextSettings.ParseLines, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </Grid>
+
+                        <Button Grid.Column="6" Command="{Binding CopyChatToClipboardCommand}" Content="Copy Chat to Clipboard"
+                                IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
                     </Grid>
 
                     <xctk:RichTextBox  Grid.Row="1" x:Name="ParsedChatBig" FontSize="15"

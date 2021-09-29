@@ -66,6 +66,8 @@ namespace GTAWorld_Screenshot_Editor
             ClearImageTextCommand = new RelayCommand(ClearImageTextExecute);
 
             AddManuallyTypedToImageCommand = new RelayCommand(AddManuallyTypedToImageExecute);
+
+            CopyChatToClipboardCommand = new RelayCommand(CopyChatToClipboardExecute);
         }
 
         #endregion
@@ -78,8 +80,6 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                DebugExecute();
-
                 LookForMainDirectory();
 
                 InitFilters();
@@ -87,6 +87,8 @@ namespace GTAWorld_Screenshot_Editor
                 InitResolutions();
 
                 ResetCommand.Execute(null);
+
+                DebugExecute();
             }
             catch (Exception ex)
             {
@@ -215,7 +217,7 @@ namespace GTAWorld_Screenshot_Editor
                 }
 
                 //parse chat log
-                ParsedChat = ChatParser.ParseChatLog(RageFolder, true, TextSettings.ParseLines, true);
+                ParsedChat = ChatParser.ParseChatLog(RageFolder, TextSettings.ParseLines, true);
 
                 //filter chatlog based on selections
                 ParsedChat =
@@ -483,6 +485,23 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        public ICommand CopyChatToClipboardCommand { get; set; }
+
+        public void CopyChatToClipboardExecute(object obj)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(ParsedChat))
+                    return;
+
+                Clipboard.SetText(ParsedChat);
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -527,12 +546,12 @@ namespace GTAWorld_Screenshot_Editor
             set { _lineHeight = value; OnPropertyChanged(); }
         }
 
-        private ObservableCollection<Text> _screenshotTextCollection = new ObservableCollection<Text>();
+        private ObservableCollection<ImageText> _screenshotTextCollection = new ObservableCollection<ImageText>();
 
         /// <summary>
         /// Text that shows on top of canvas for screenshot
         /// </summary>
-        public ObservableCollection<Text> ScreenshotText
+        public ObservableCollection<ImageText> ScreenshotText
         {
             get => _screenshotTextCollection;
             set { _screenshotTextCollection = value; OnPropertyChanged(); }
@@ -659,21 +678,6 @@ namespace GTAWorld_Screenshot_Editor
         {
             ParserSettings = new ObservableCollection<Criteria>
             {
-                /*
-                    // Assign each filter criterion to a regex pattern
-                    private readonly Dictionary<string, Tuple<string, bool>> _filterCriteria = new Dictionary<string, Tuple<string, bool>>
-                    {
-                        // Filter, regex pattern, isEnabled (false = remove from log)
-                        { "OOC", Tuple.Create(@"^\(\( \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.OOCCriterionEnabled) },
-                        { "IC", Tuple.Create(@"^(\(Car\) ){0,1}[\p{L}]+ {0,1}([\p{L}]+){0,1} (says|shouts|whispers)( \[low\]){0,1}:.*$", Properties.Settings.Default.ICCriterionEnabled) },
-                        { "Emote", Tuple.Create(@"^\* [\p{L}]+ {0,1}([\p{L}]+){0,1} .*$", Properties.Settings.Default.EmoteCriterionEnabled) },
-                        { "Action", Tuple.Create(@"^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$", Properties.Settings.Default.ActionCriterionEnabled) },
-                        { "PM", Tuple.Create(@"^\(\( PM (to|from) \(\d*\) [\p{L}]+ {0,1}([\p{L}]+){0,1}:.*?\)\)$", Properties.Settings.Default.PMCriterionEnabled) },
-                        { "Radio", Tuple.Create(@"^\*\*\[S: .* CH: .*\] [\p{L}]+ {0,1}([\p{L}]+){0,1}.*$", Properties.Settings.Default.RadioCriterionEnabled) },
-                        { "Ads", Tuple.Create(@"^\[.*Advertisement.*\] .*$", Properties.Settings.Default.AdsCriterionEnabled) }
-                    };
-                 */
-
                 new Criteria
                 {
                     Name = "IC",
@@ -686,7 +690,14 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Name = "Emote",
                     Filter =
-                        @"^(\*|\>|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
+                        @"^(\*|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
+                    Selected = true
+                },
+
+                new Criteria
+                {
+                    Name = "Above Emote",
+                    Filter = @"^(\> .*)((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
                     Selected = true
                 },
 
@@ -695,7 +706,6 @@ namespace GTAWorld_Screenshot_Editor
                     Selected = true,
                     Name = "Cellphone",
                     Filter = @"(\(cellphone\))"
-                    //Filter = @"^((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})).( \[low\]){0,1}(\(cellphone\)):.$"
                 },
 
                 new Criteria
@@ -703,21 +713,20 @@ namespace GTAWorld_Screenshot_Editor
                     Selected = true,
                     Name = "Whispers",
                     Filter = @"\whispers:"
-                    //Filter = @"^((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) \whispers:"
                 },
 
                 new Criteria
                 {
                     Selected = true,
                     Name = "Payments",
-                    Filter = @"(You paid)\s(?<SYMBOL>[$]){1}(xxxx)\s(to)|(paid you)\s(?<SYMBOL>[$]){1}(xxxx)"
+                    Filter = @"^[\p{L}]+ [\p{L}]+ paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+).$|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1} [\p{L}]+ {0,1}).$"
                 },
 
                 new Criteria
                 {
                     Selected = true,
                     Name = "Items",
-                    Filter = @".(gave).(\(x\) to|received \(x\) of)."
+                    Filter = @"^You (gave|received) [\p{L}]+ \((\d{1,2})\) (to|from) [\p{L}]+ [\p{L}]+.$"
                 },
 
                 new Criteria
@@ -838,17 +847,6 @@ namespace GTAWorld_Screenshot_Editor
 #if DEBUG
             if(File.Exists(@"parser.cfg"))
                 File.Delete(@"parser.cfg");
-
-            var chat = new[]
-            {
-                "Ryan Amsalem says (cellphone): yes",
-                "Ryan Amsalem says [low] (cellphone): yes",
-            };
-
-            foreach (var s in chat)
-            {
-                Console.WriteLine($"{s}\n{Regex.IsMatch(s, @"^([\p{L}]+ {0,1} [\p{L}]+ {0,1}|:Mask+[a-zA-Z0-9_]+ {0,1})\s(says)\s(?:\[low\] ?)\(cellphone\):.$")}");
-            }
 #endif
         }
 
@@ -859,45 +857,81 @@ namespace GTAWorld_Screenshot_Editor
         {
             ScreenshotText.Clear();
 
-            //remove highlight if left
-            ParsedChat = ParsedChat.Replace("[!] ", "");
-
+            //split parsed chat into lines, remove empty strings
             var lines =
                 ParsedChat.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
                     .Where(w => !string.IsNullOrEmpty(w)).ToList();
 
+            //line count, used to ignore last line receiving '\n'
             var lineCount = 0;
 
             foreach (var line in lines)
             {
                 var str = line.TrimEnd(' ');
 
-                if (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!"))
+                //if string missing '.' at end, add it.
+                if (line.EndsWith("$xxxx") || (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!")))
                     str = $"{line.TrimEnd(' ')}.";
 
+                //if string ends with '\' replace with '.'
+                if (line.EndsWith(@"\"))
+                {
+                    str = $"{line.TrimEnd('\\')}.";
+                }
+
+                //new line marker, last line does not receive new line command
                 var newLine = lineCount + 1 == lines.Count ? "" : "\n";
 
+                //get hex color
                 var color = GetColor(str);
 
+                //if manually color exists, remove it
                 str = $"{str.Replace($"({color})", string.Empty).TrimEnd(' ')}{newLine}";
 
-                var txt = new Text();
+                //replace payment amount with '$xxxx'
+                if (Regex.IsMatch(str,
+                    @"^[\p{L}]+ [\p{L}]+ paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)\.$|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1} [\p{L}]+ {0,1})\.$"))
+                {
+                    str = Regex.Replace(str, @"(?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)", "$xxxx");
+                }
 
+                //replace given/received item amount with '(x)'
+                if (Regex.IsMatch(str,
+                    @"^You (gave|received) [\p{L}]+ \((\d{1,2})\) (to|from) [\p{L}]+ [\p{L}]+.$"))
+                {
+                    str = Regex.Replace(str, @"\((?<AMOUNT>[\d.]+)\)", "(x)");
+                }
+
+                var txt = new ImageText();
+
+                //set line text
                 txt.String = str;
 
+                //set foreground of line
                 txt.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
 
+                // select font size based on selected resolution
+                // if resolution smaller than 960, will use 960 for font base
                 txt.FontSize = SelectedResolution.Height < 960
                     ? 960 * (1.6 / 100)
                     : SelectedResolution.Height * (1.6 / 100);
 
+                //line shadow opacity
                 txt.Effect.Opacity = SelectedResolution.Height * (0.18 / 100);
+
+                //line shadow blur radius
                 txt.Effect.BlurRadius = SelectedResolution.Height * (0.18 / 100);
+
+                //line shadow direction
                 txt.Effect.Direction = SelectedResolution.Height * (0.18 / 100);
+
+                //line shadow depth
                 txt.Effect.ShadowDepth = SelectedResolution.Height * (0.18 / 100);
 
+                //add line to collection to dispaly on image
                 ScreenshotText.Add(txt);
 
+                //count line
                 lineCount++;
             }
         }
@@ -923,31 +957,38 @@ namespace GTAWorld_Screenshot_Editor
                         .Replace(")", string.Empty);
             }
 
-            if (line.StartsWith("*") || line.StartsWith(">"))
+            //emote
+            if (Regex.IsMatch(line, @"^(\*|\>|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)"))
             {
                 return "#bea3d6";//purple
             }
 
+            //low speech
             if (line.Contains("[low]"))
             {
                 return "#a6a4a6";//grey
             }
-
-            if (line.Contains("paid") || line.Contains("gave") || line.Contains("received (x)"))
+            
+            //money & item transfers
+            if (Regex.IsMatch(line, @"^[\p{L}]+ [\p{L}]+ paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)\.$|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1} [\p{L}]+ {0,1})\.$")
+                || Regex.IsMatch(line, @"^You (gave|received) [\p{L}]+ \((\d{1,2})\) (to|from) [\p{L}]+ [\p{L}]+.$"))
             {
                 return "#29943e";//green
             }
 
-            if (line.Contains("whispers") && line.Contains("(Car)"))
+            //in-car whispers
+            if (Regex.IsMatch(line, @"^(\(Car\) )((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( whispers:).*$"))
             {
                 return "#f9fb12";//yellow
             }
 
-            if (line.Contains("whispers"))
+            //regular whispers
+            if (Regex.IsMatch(line, @"^((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( whispers:).*$"))
             {
                 return "#eda841";//orange
             }
 
+            //default
             return "#fff";//white
         }
 

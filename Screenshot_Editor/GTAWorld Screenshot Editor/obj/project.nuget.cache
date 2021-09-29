@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yBxWdu4rQTobJBCnZtG5QshWuDtArvWfQxypPmY5LCUd8YnZgm39SJlLzjutc66uV+j65Ch2UwN02io8B3jdvA==",
+  "dgSpecHash": "b+VaoTxa4UzC10ISBVIpCN7gx/KHCPEtO0N247tfrfkaobKhjsk22W2PHnmn/x4R5wqqn0AQNfpMtnIE2ZrGdA==",
   "success": true,
   "projectFilePath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
   "expectedPackageFiles": [
@@ -79,10 +79,7 @@
     "C:\\Users\\xcast\\.nuget\\packages\\system.threading.timer\\4.3.0\\system.threading.timer.4.3.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\system.valuetuple\\4.4.0\\system.valuetuple.4.4.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "C:\\Users\\xcast\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\xcast\\.nuget\\packages\\uno.core\\3.0.0\\uno.core.3.0.0.nupkg.sha512",
-    "C:\\Users\\xcast\\.nuget\\packages\\uno.diagnostics.eventing\\1.0.4\\uno.diagnostics.eventing.1.0.4.nupkg.sha512",
-    "C:\\Users\\xcast\\.nuget\\packages\\uno.sourcegenerationtasks\\3.2.0\\uno.sourcegenerationtasks.3.2.0.nupkg.sha512"
+    "C:\\Users\\xcast\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

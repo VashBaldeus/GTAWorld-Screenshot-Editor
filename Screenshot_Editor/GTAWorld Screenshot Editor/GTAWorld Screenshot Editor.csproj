@@ -64,9 +64,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Windows">
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\UnionMetadata\10.0.19041.0\Windows.winmd</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -134,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Classes\" />
+    <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AppIcon.ico" />
@@ -160,7 +158,7 @@
     </PackageReference>
     <PackageReference Include="Costura.Fody">
       <Version>5.6.0</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <!--<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>-->
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Extended.Wpf.Toolkit">
@@ -378,21 +376,9 @@
     <PackageReference Include="System.Xml.XDocument">
       <Version>4.3.0</Version>
     </PackageReference>
-    <PackageReference Include="Uno.Core">
-      <Version>3.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Uno.Diagnostics.Eventing">
-      <Version>1.0.4</Version>
-    </PackageReference>
-    <PackageReference Include="Uno.SourceGenerationTasks">
-      <Version>3.2.0</Version>
-    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>DEL /F /Q *.xml
-DEL /F /Q *.pdb
-
-</PostBuildEvent>
+    <PostBuildEvent>DEL /F /Q *.pdb</PostBuildEvent>
   </PropertyGroup>
 </Project>

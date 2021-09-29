@@ -1,223 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCacheScreenshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CacheScreenshot>
-    <Guid>d03c546f-11ef-4c03-9794-4ec5b9fdf8fe-81790b8d-52e1-4edf-b83a-4cf98a400f8a</Guid>
-    <ScreenshotDate>2021-09-25T00:57:49.6593713+03:00</ScreenshotDate>
-    <ImageFilePath>cached_screens\screenshot_20210925_125749.png</ImageFilePath>
-    <ScreenshotText>* Joseph Kazarian nods to the ziploc on the table.
-* Lior Amsalem takes a look at it.
-Joseph Kazarian says: Counts up to xxxx.
-Lior Amsalem says: Alright. How much for all of it? 
-Joseph Kazarian says: Pass me one eighty per tab and see it as a gesture from me.
-Joseph Kazarian says: Uhhh.
-Joseph Kazarian says: People that like to hallucinate.
-Joseph Kazarian says: This is some trippy shit, dog.
-Joseph Kazarian says: You will see some weird shit if you pop one, that's for sure.
-Joseph Kazarian says: Why don't you try?
-Lior Amsalem says: So that's great. Just what I'm looking for. 
-* Joseph Kazarian smirks at Lior.
-Lior Amsalem says: I'm not using, brother. 
-Joseph Kazarian says: I have no clue what they're worth on the streets but I'm positive it's way over one eighty.
-Lior Amsalem says: Let me send my man here. 
-Joseph Kazarian says: So should be easy to get some profit.
-Joseph Kazarian says: Alright, sure.
-Shlomi Dahan says (cellphone): Alo.
-Lior Amsalem says (cellphone): Go to the road, where you came when we set in the club. 
-Shlomi Dahan says (cellphone): Okay, bro.
-Lior Amsalem says (cellphone): There's an ATM. Get 6 large. 
-Shlomi Dahan says (cellphone): Cool! 
-* There would be four containers that's filled with the tabs. ((Joseph Kazarian))*
-* Joseph Kazarian nods to Shlomi.
-* Shlomi Dahan takes out a wad of cash, counting it briefly before offering it to Lior.
-&gt; Shlomi Dahan nods to Joseph.
-* Lior Amsalem nods once, extending his right to Shlomi. He grabs the money, handing it to Joseph.
-Shlomi Dahan paid you $xxxx
-You paid $xxxx to Joseph Kazarian.
-Joseph Kazarian gave you xxxx LSD. 
-* Joseph Kazarian grabs the cash from Lior and nods once.
-* Shlomi Dahan eyes the containers, nodding his head slowly.
-Joseph Kazarian says: Maybe your boy here likes to trip.
-* Joseph Kazarian smirks.
-&gt; Shlomi Dahan chuckles.
-Lior Amsalem says: Nah. I'll save it for something else. 
-Lior Amsalem says: Yallah ahi. I'll be in touch. 
-Joseph Kazarian says: Say less then.
-Joseph Kazarian says: Catch you later.
-* Lior Amsalem grabs all the containers, pocketing them.
-
-</ScreenshotText>
-    <Text>
-      <Width>1349</Width>
-      <FontFamily>Arial Black</FontFamily>
-      <FontSize>20</FontSize>
-      <FontWeight>700</FontWeight>
-      <StrokeThickness>75</StrokeThickness>
-      <ShadowOpacity>50</ShadowOpacity>
-      <CanvasScale>100</CanvasScale>
-      <ParseLines>100</ParseLines>
-    </Text>
-    <Resolution>
-      <AllowEdit>true</AllowEdit>
-      <Name>Custom</Name>
-      <Width>1588</Width>
-      <Height>792</Height>
-    </Resolution>
-  </CacheScreenshot>
-  <CacheScreenshot>
-    <Guid>bdf699e9-18b2-4b35-acfa-ab1d3ae162bf-156a5f4e-d0ae-48de-935f-60fbde9eed03</Guid>
-    <ScreenshotDate>2021-09-25T00:36:42.7165262+03:00</ScreenshotDate>
-    <ImageFilePath>cached_screens\screenshot_20210925_123642.png</ImageFilePath>
-    <ScreenshotText>* Joseph Kazarian nods to the ziploc on the table.
-* Lior Amsalem takes a look at it.
-Joseph Kazarian says: Counts up to xxxx.
-Lior Amsalem says: Alright. How much for all of it? 
-Joseph Kazarian says: Pass me one eighty per tab and see it as a gesture from me.
-Joseph Kazarian says: Uhhh.
-Joseph Kazarian says: People that like to hallucinate.
-Joseph Kazarian says: This is some trippy shit, dog.
-Joseph Kazarian says: You will see some weird shit if you pop one, that's for sure.
-Joseph Kazarian says: Why don't you try?
-Lior Amsalem says: So that's great. Just what I'm looking for. 
-* Joseph Kazarian smirks at Lior.
-Lior Amsalem says: I'm not using, brother. 
-Joseph Kazarian says: I have no clue what they're worth on the streets but I'm positive it's way over one eighty.
-Lior Amsalem says: Let me send my man here. 
-Joseph Kazarian says: So should be easy to get some profit.
-Joseph Kazarian says: Alright, sure.
-</ScreenshotText>
-    <Text>
-      <Width>600</Width>
-      <FontFamily>Arial Black</FontFamily>
-      <FontSize>20</FontSize>
-      <FontWeight>700</FontWeight>
-      <StrokeThickness>75</StrokeThickness>
-      <ShadowOpacity>50</ShadowOpacity>
-      <CanvasScale>100</CanvasScale>
-      <ParseLines>100</ParseLines>
-    </Text>
-    <Resolution>
-      <AllowEdit>true</AllowEdit>
-      <Name>Custom</Name>
-      <Width>706</Width>
-      <Height>772</Height>
-    </Resolution>
-  </CacheScreenshot>
-  <CacheScreenshot>
-    <Guid>06475c2e-d212-4eb1-9ae3-9cee2b3f231a-3dc39df6-5fa5-4a9e-824c-740f26514a4e</Guid>
-    <ScreenshotDate>2021-09-25T00:30:16.1658424+03:00</ScreenshotDate>
-    <ImageFilePath>cached_screens\screenshot_20210925_123016.png</ImageFilePath>
-    <ScreenshotText>sdd
-</ScreenshotText>
-    <Text>
-      <Width>1088</Width>
-      <FontFamily>Arial Black</FontFamily>
-      <FontSize>20</FontSize>
-      <FontWeight>700</FontWeight>
-      <StrokeThickness>75</StrokeThickness>
-      <ShadowOpacity>50</ShadowOpacity>
-      <CanvasScale>100</CanvasScale>
-      <ParseLines>100</ParseLines>
-    </Text>
-    <Resolution>
-      <AllowEdit>false</AllowEdit>
-      <Name>720p</Name>
-      <Width>1280</Width>
-      <Height>720</Height>
-    </Resolution>
-  </CacheScreenshot>
-  <CacheScreenshot>
-    <Guid>af23cd6d-64c8-41f4-9006-5c442b2a3b50-436b7845-ace8-4dcb-93b2-22985d85d5bc</Guid>
-    <ScreenshotDate>2021-09-25T00:29:22.6184817+03:00</ScreenshotDate>
-    <ImageFilePath>cached_screens\screenshot_20210925_122922.png</ImageFilePath>
-    <ScreenshotText>* Joseph Kazarian nods to the ziploc on the table.
-* Lior Amsalem takes a look at it.
-Joseph Kazarian says: Counts up to xxxx.
-Lior Amsalem says: Alright. How much for all of it? 
-Joseph Kazarian says: Pass me one eighty per tab and see it as a gesture from me.
-Joseph Kazarian says: Uhhh.
-Joseph Kazarian says: People that like to hallucinate.
-Joseph Kazarian says: This is some trippy shit, dog.
-Joseph Kazarian says: You will see some weird shit if you pop one, that's for sure.
-Joseph Kazarian says: Why don't you try?
-Lior Amsalem says: So that's great. Just what I'm looking for. 
-* Joseph Kazarian smirks at Lior.
-Lior Amsalem says: I'm not using, brother. 
-Joseph Kazarian says: I have no clue what they're worth on the streets but I'm positive it's way over one eighty.
-Lior Amsalem says: Let me send my man here. 
-Joseph Kazarian says: So should be easy to get some profit.
-Joseph Kazarian says: Alright, sure.
-</ScreenshotText>
-    <Text>
-      <Width>1088</Width>
-      <FontFamily>Arial Black</FontFamily>
-      <FontSize>20</FontSize>
-      <FontWeight>700</FontWeight>
-      <StrokeThickness>75</StrokeThickness>
-      <ShadowOpacity>50</ShadowOpacity>
-      <CanvasScale>53</CanvasScale>
-      <ParseLines>100</ParseLines>
-    </Text>
-    <Resolution>
-      <AllowEdit>false</AllowEdit>
-      <Name>1080p</Name>
-      <Width>1920</Width>
-      <Height>1080</Height>
-    </Resolution>
-  </CacheScreenshot>
-  <CacheScreenshot>
-    <Guid>f02b0d45-7190-443d-8c02-9f72048034f9-e2112e24-7b2d-419a-8ede-859c58da4d4a</Guid>
-    <ScreenshotDate>2021-09-24T23:11:51.1580295+03:00</ScreenshotDate>
-    <ImageFilePath>cached_screens\screenshot_20210924_111151.jpg</ImageFilePath>
-    <ScreenshotText>Ryan Amsalem says: Ok, so, I discussed this with Leo.
-Ryan Amsalem says: We currently have a small but steady stream of guns flowing.
-* Ryan Amsalem eyes Mikhail as if to grab his full attention.
-* Mikhail Argov looks at Ryan as he's speaking.
-Ryan Amsalem says: So, we will meet your guy, Eran, we will take these guns to them, and sel them for a cheap price.
-Ryan Amsalem says [low]: We make a small profit, maybe none.
-Ryan Amsalem says: But, they will provide us backup and men for whatever job we need done.
-Ryan Amsalem says: THey refuse to do it, we cut their supply.
-Eran Shirazi says: Clear.
-Ryan Amsalem says: Basically we are swapping our stream of guns for their labour.
-Ryan Amsalem says: We all know that they don't have guns rolling in Davis.
-Ryan Amsalem says: We can sort it for a good price. In exchange we need backup we call them, they don't show? - We cut their supply and sell it to someone else.
-</ScreenshotText>
-    <Text>
-      <Width>1000</Width>
-      <FontFamily>Arial Black</FontFamily>
-      <FontSize>20</FontSize>
-      <FontWeight>700</FontWeight>
-      <StrokeThickness>75</StrokeThickness>
-      <ShadowOpacity>50</ShadowOpacity>
-      <CanvasScale>100</CanvasScale>
-      <ParseLines>100</ParseLines>
-    </Text>
-    <Resolution>
-      <AllowEdit>false</AllowEdit>
-      <Name>720p</Name>
-      <Width>1280</Width>
-      <Height>720</Height>
-    </Resolution>
-  </CacheScreenshot>
-  <CacheScreenshot>
-    <Guid>67983de8-1412-4885-9d0d-1a9b0a8f2c3a-f87a410a-145d-4575-a2f9-e06eeb1cb831</Guid>
-    <ScreenshotDate>2021-09-24T01:28:42.620977+03:00</ScreenshotDate>
-    <ImageFilePath>cached_screens\screenshot_20210924_012842.jpg</ImageFilePath>
-    <ScreenshotText>Ryan Amsalem whispers: So, we got approached yesterday.
-&gt; Mikhail Argov nods as he listens to Ryan.
-Ryan Amsalem whispers: No idea how they know us to be honest. They need the green vests gone.
-Mikhail Argov whispers: The sharmutot who caused a racket last time here?
-Ryan Amsalem whispers: Yea, apparently they are not using vests at the moment, I went to the office before opening and downloaded the CCTV into a USB Flashdrive.
-&gt; Mikhail Argov nods.
-Mikhail Argov whispers: So, I take it someone wants to pay us to get rid of them, wonder why they asking us and hope they pay well, since that's wet-work.
-Ryan Amsalem whispers: Well, there's money involved. But apparently whos asking will be a good future business partner if they live to this.
-Ryan Amsalem whispers: I'm guessing they're a plug.
-Mikhail Argov whispers: Probably, now, two things, they have to pay half at the least, otherwise, it's riskier for us.
-Ryan Amsalem whispers: We will keep this on the low.
-Ryan Amsalem whispers: I don't want to get alot of people involved, greens find out and we're dead
-Mikhail Argov whispers: Need to Know basis is best right now.
-Ryan Amsalem whispers: We make them search but don't tell them why and for what reason.
-Ryan Amsalem whispers: I'm asking for names atleast.
-Ryan Amsalem whispers: With them I can ask our Jew Judge to run their on the database for an address.
+    <Guid>2caf5870-71a9-4eda-9136-d85896216b20-1cd267a1-36c6-48b3-908e-e43bf7f5b79c</Guid>
+    <ScreenshotDate>2021-09-27T00:09:58.6694486+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210927_120958.jpg</ImageFilePath>
+    <ScreenshotText>* Shay Ezra nods.
+Lior Amsalem says: Amir, bo. 
+Shay Ezra says: Yalla, (Hebrew) We got a job to do, call to Gorge.
+* Itzik Spensiv stands up.
+* Amir Elmakayes follows Lior.
+* Lior Amsalem pushes himself up.
+Shahar Bublil says: Let's get to work fellas.
+* Shay Ezra pats Yossi's shoulder.
+* Moshe Maduel pushes himself up.
+David Lugassy says: Text your name to 94852727— So I have numbers.
+* Yossi Abargile loudly exhales as he pushes himself from the sofa.
+Shay Ezra says: Yalla, peace yall.
+Eran Shirazi says: I'll text later, buying a phone now.
 </ScreenshotText>
     <Text>
       <Width>1632</Width>
@@ -228,6 +27,357 @@ Ryan Amsalem whispers: With them I can ask our Jew Judge to run their on the dat
       <ShadowOpacity>50</ShadowOpacity>
       <CanvasScale>100</CanvasScale>
       <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>0d3ea872-94a9-4c66-957c-1554ba0b32a5-6cae304f-cd74-4bb4-b4c2-a64dbfa2cfa6</Guid>
+    <ScreenshotDate>2021-09-27T00:07:27.549469+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210927_120727.jpg</ImageFilePath>
+    <ScreenshotText>Mikhail Argov says: (Hebrew) Lior, one thing, if ANYONE acts alone instead of calling for back up, I personally will not help them. Why? Cause they are stupid.
+Lior Amsalem says: (Hebrew) They can't know that you're the ones behind it. 
+Shay Ezra says: (Hebrew) Hit list is a war.
+* Ryan Amsalem ups his chin to the group.
+Itzik Spensiv says: (Hebrew) Yeah, sounds like it, Still a war.
+Lior Amsalem says: (Hebrew) No. War is when they know you're against them. 
+Eran Shirazi says: (Hebrew) This is more of an assassination.
+Lior Amsalem says: (Hebrew) They don't know us, they don't know we're coming. 
+* Itzik Spensiv facepalms./
+Yossi Abargile says: (Hebrew) Eventually they will though.
+Lior Amsalem says: (Hebrew) If you act smart? They won't. 
+David Lugassy says: (Hebrew) You can call it a war when both sides are fighting each other— We try to avoid that, you tap them and move to the next one.
+Itzik Spensiv says: (Hebrew) Sometimes you dont even know whos the enemy kapara.
+Ryan Amsalem says (cellphone): Alo?
+Lior Amsalem says: (Hebrew) Listen what you gonna do. 
+* Mikhail Argov rubs his temples for a moment, eyes Lior.
+Lior Amsalem says: (Hebrew) You buy a bandana to hide your face, simple. 
+Itzik Spensiv says: (Hebrew) Dont they have a fucking MC house ?
+Ryan Amsalem says: Alright.
+* Amir Elmakayes joins the convo.
+Ryan Amsalem says: (Hebrew) My turn.
+Lior Amsalem says: (Hebrew) Make it tied up to your neck, when you wanna act? You just hide your face with it. 
+Itzik Spensiv says: Well someone came from factory 64.
+* Itzik Spensiv chuckles.
+* Yossi Abargile giggles.
+Moshe Maduel says: (Hebrew) Where do they usually hang out?
+Eran Shirazi says: (Hebrew) Vinewood.
+Eran Shirazi says: (Hebrew) But they also got a strip club.
+* Moshe Maduel nods his head, tapping his fingers slowly on his thigh.
+Eran Shirazi says: (Hebrew) Down at Strawberry, I think.
+Moshe Maduel says: Sababa.
+Ryan Amsalem says: (Hebrew) /Alright/. - They're currenty not using [REDACTED] nor patches. I have a video from Phoenix CCTV of them beating a guy so we have faces for that. I also have a car and I'm waiting on an address but until thats sorted you will have to go with 
+Ryan Amsalem says: (Hebrew) I'll forward it to everyone later.
+Elad Gamliel says [low]: (Hebrew) Lior, if we're not suppose to talk business on the phone, how are we going to get these pictures?
+Eran Shirazi says [low]: (Hebrew) Printers.
+Elad Gamliel says [low]: (Hebrew) You serious? Fax?
+Moshe Maduel says: Ya'ani fax?
+Eran Shirazi says [low]: (Hebrew) No, printers.
+David Lugassy says: (Hebrew) We make you draw each face if you keep throwing stupid questions.
+Yossi Abargile says [low]: (Hebrew) Go to the local library and print it over there.
+* Yossi Abargile chuckles.
+Eran Shirazi says [low]: (Hebrew) We have fucking printers...
+Elad Gamliel says [low]: (Hebrew) Legitimate question, bro.
+Mikhail Argov says: (Hebrew) Draw it with a fucking pencil.
+Shay Ezra says: (Hebrew) Yo, try to focus now, kiddos.
+Shay Ezra says [low]: Anyway.
+Itzik Spensiv says: (Hebrew) We done here ?
+Shay Ezra says [low]: (Hebrew) I was about to ask that.
+Ryan Amsalem says: (Hebrew) Yea, I'll send someone with the pictures.
+Shahar Bublil says: Yalla'.
+</ScreenshotText>
+    <Text>
+      <Width>1600</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>54</CanvasScale>
+      <ParseLines>500</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>4d8bb0e6-fe21-48ff-a9eb-d67cb04b8b68-afe66c1b-1fb3-482d-b9b8-a134b397e1e3</Guid>
+    <ScreenshotDate>2021-09-27T00:07:04.8124526+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210927_120704.jpg</ImageFilePath>
+    <ScreenshotText>Shay Ezra says [low]: (Hebrew) Man, you should prepare operations, don't send them like wolfs.
+* Mikhail Argov pushes himself up.
+* Mikhail Argov keeps one arm on his back before opening for David.
+* Mikhail Argov locks teh door afte rDavid's in.
+* David Lugassy nodded to Mikhail.
+* Moshe Maduel quietly memorizes the letters, 'Black and Green' to himself.
+David Lugassy says: Alo.
+* Shay Ezra sniffs.
+* Moshe Maduel up-nods David, sending a friendly wave.
+* David Lugassy fished a phone from his pocket as he keeps the power button pushed in for a moment, turning it off.
+* David Lugassy slips it back into his pocket.
+Lior Amsalem says: (Hebrew) Plan is pretty simple. 
+Lior Amsalem says: (Hebrew) For most of you. 
+Lior Amsalem says: (Hebrew) You see a vest of [REDACTED]? You got people to call. You call either Ryan, Mike, David or Shay. 
+Lior Amsalem says: Understood? 
+Eran Shirazi says: Ken.
+Itzik Spensiv says: What vest, Are they bikers ?
+Lior Amsalem says: (Hebrew) You never act alone. And you act with something that covers your face. 
+Eran Shirazi says: They are.
+* Yossi Abargile stares at Lior and nods.
+Shay Ezra says: Ken.
+* Shahar Bublil nods once Lior finishes he's speaking.
+Lior Amsalem says: (Hebrew) You never say shit on the phone. You wanna say you found [REDACTED]? You say, Poker is on. And send location. 
+Lior Amsalem says: Everyone understand what I'm saying? Or I'm talking to walls? 
+Eran Shirazi says: Understood.
+Mikhail Argov says: Crystal Clear.
+Moshe Maduel says: (Hebrew) Understood.
+Yossi Abargile says: Everything is understood.
+Elad Gamliel says: All dvash, ahi.
+Lior Amsalem says: (Hebrew) Whoever gets to kill one of those fucking rats? Gets 10 large. 
+Elad Gamliel says: (Hebrew) Whay, whay. Whay whay!
+* Moshe Maduel gets excited by the number, leaning forward to listen closely.
+Eran Shirazi says: (Hebrew) Oh shit.
+Elad Gamliel says: (Hebrew) Why didn't you start with that?
+* Eran Shirazi grins, eyeing Lior.
+Itzik Spensiv says: (Hebrew) Pffff, Puff daddy.
+Eran Shirazi says: (Hebrew) This is gonna be fun.
+Moshe Maduel says: (Hebrew) Hunting season, ah?
+Mikhail Argov says: (Hebrew) Calm down boys. Don't get exicted too soon.
+Lior Amsalem says: (Hebrew) I know that everyone in this room hates them like I do. 
+Shahar Bublil says: (Hebrew) Hell Yea.
+Shay Ezra says [low]: (Hebrew) You guys can still die there, so make sure you acting smart, and not brave.
+Lior Amsalem says: (Hebrew) They roll with their [REDACTED], thinking they untouchable. 
+* Itzik Spensiv smells the word money and opens his eyes wide open, would be excited just like a jew that sees money.
+Lior Amsalem says: (Hebrew) You heard what Shay said? That's why no one acts alone. 
+* Eran Shirazi spots Cuttler, upnodding him.
+Itzik Spensiv says: (Hebrew) You sure you wanna start this war ?
+* Moshe Maduel nods his head, listening closely.
+* Eran Shirazi spots Ryan, upnodding him.
+Lior Amsalem says: (Hebrew) You heard me talking about war? 
+* Shahar Bublil trying to memorize the sentence " Poker is on".
+</ScreenshotText>
+    <Text>
+      <Width>1632</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>49</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>d5163267-bdae-41c2-b1cb-2b7687b61bfa-7468c471-3d47-43ba-80dc-608bf6179db0</Guid>
+    <ScreenshotDate>2021-09-27T00:06:32.7664476+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210927_120632.jpg</ImageFilePath>
+    <ScreenshotText>* Itzik Spensiv reaches for his pocket and withdraws his Nokia, turns it off and pockets it.
+Lior Amsalem says: So. 
+Shay Ezra says: (Hebrew) What's the talking?
+* Moshe Maduel eyes Lior, listening to his speech.
+Shahar Bublil says: Are we good?
+Elad Gamliel says [low]: (Hebrew) Free some space for Mike, bro.
+* Elad Gamliel nudges Moshe.
+Moshe Maduel says [low]: (Hebrew) My bad.
+Lior Amsalem says: (Hebrew) All of you who don't know. Business, we're talking behind these walls, or face to face. 
+* Moshe Maduel moves a bit to his left, giving more space to Argov.
+Shahar Bublil says: Is it yours apartment?
+* Shahar Bublil eyes on Lior.
+Lior Amsalem says: Lo. 
+Lior Amsalem says: OK. 
+Lior Amsalem says: (Hebrew) Everyone here has a kind of interaction with the [REDACTED]? 
+* Shahar Bublil nods towards Shay.
+Eran Shirazi says: (Hebrew) Yes...
+Lior Amsalem says: (Hebrew) Everyone here has kind of interaction with the [REDACTED]? 
+* Moshe Maduel shakes his head.
+* Shay Ezra peers at Eran.
+Eran Shirazi says: (Hebrew) Fucking hate those pricks.
+Shay Ezra says: (Hebrew) The fuck even happened yesterday?
+Mikhail Argov says: (Hebrew) Last time I had an interaction they swung at me.
+Lior Amsalem says: (Hebrew) Except hating them. Someone has anything with them? 
+Eran Shirazi says: (Hebrew) Those were just some skinheads, they spit at me.
+Lior Amsalem says: (Hebrew) Friendships, anything. 
+Eran Shirazi says: (Hebrew) No.
+Eran Shirazi says: (Hebrew) Not me.
+Mikhail Argov says: (Hebrew) I don't know any of them, don't want to after they swung at me.
+Itzik Spensiv says: (Hebrew) Was those two guys [REDACTED] yasterday ?
+Eran Shirazi says: (Hebrew) Nah, they were just skinheads.
+Lior Amsalem says: Good. 
+Eran Shirazi says: (Hebrew) [REDACTED] have black and green [REDACTED].
+Lior Amsalem says: (Hebrew) Now. Nowdays you won't find [REDACTED] in [REDACTED] from the simple reason, they probably have a beef with someone. 
+Lior Amsalem says: (Hebrew) Now everyone listen carefully, I won't repeat it twice. 
+* Moshe Maduel nods his head at Elad.
+* Eran Shirazi eyes Lior, paying close attention.
+* Moshe Maduel refocuses on Lior, listening closely.
+* Mikhail Argov turns his gaze over to Lior.
+Lior Amsalem says: (Hebrew) There's a contract on all of the [REDACTED]. 
+Lior Amsalem says: (Hebrew) You don't ask who, you don't ask how, you don't ask when. All you do, is hunt those mother fuckers. 
+* Elad Gamliel locks his attention on Lior once he mentions the word 'contract'.
+Eran Shirazi says: (Hebrew) Sounds fun.
+Lior Amsalem says: (Hebrew) You don't tell anyone outside this room. 
+Itzik Spensiv says: (Hebrew) We got permission you say.
+* Shay Ezra perks a brow.
+* Moshe Maduel rubs his neck, turning his gaze into a serious one.
+Lior Amsalem says: (Hebrew) You got greenlight, to fucking kill those mother fuckers on sight. 
+Mikhail Argov says: (Hebrew) How about you leave questions till the end.
+Shay Ezra says [low]: (Hebrew) Man, you should prepare operations, don't send them like wolfs.
+</ScreenshotText>
+    <Text>
+      <Width>1632</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>52</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>8caf986f-1439-4e3c-a4b4-71d7dd4ca6c0-1b3e8333-f9a5-44f1-88fb-1541880e2943</Guid>
+    <ScreenshotDate>2021-09-27T00:05:35.8210677+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210927_120535.jpg</ImageFilePath>
+    <ScreenshotText>* Mikhail Argov locks the door behind himself.
+Moshe Maduel says: (Hebrew) The blacks don't snitch, it's in their blood.
+* Shahar Bublil takes a seat on the sofa.
+* Shay Ezra finds his seat next to Lior.
+Shay Ezra says [low]: Ah motek.
+Elad Gamliel says: (Hebrew) If someone does, I'll cut his guts out.
+Elad Gamliel says: (Hebrew) Make sure they're clear on that.
+* Lior Amsalem borrows Shay's ear.
+* Yossi Abargile slowly takes a sit on the solo sofa.
+Moshe Maduel says: (Hebrew) You can't be like that with them.
+Moshe Maduel says: (Hebrew) They aren't suckers, they know what they're doing.
+Moshe Maduel says: (Hebrew) But we know better, which why we have the upper hand.
+Elad Gamliel says: (Hebrew) Don't give me that 'trust' shit. They operate on fear and money.
+Elad Gamliel says: (Hebrew) That's it, no bullshitting.
+* Lior Amsalem nods.
+Moshe Maduel says: (Hebrew) I said that 'trust' is bullshit.
+Shay Ezra says: Ah, Mosh.
+Moshe Maduel says: (Hebrew) They only care about money, I agree on that.
+* Moshe Maduel up-nods Shay.
+Shay Ezra says: Ma kore, neshama.
+* Moshe Maduel smiles at Shay.
+* Shay Ezra returns the chin.
+Moshe Maduel says: Ma kore, ahi.
+Elad Gamliel says: (Hebrew) If they get a cut outta every sale, we should be good.
+Shay Ezra says: Walla, (Hebrew) Life is strawberries.
+* Elad Gamliel ups a nod at the new-comers.
+Moshe Maduel says: (Hebrew) We don't need to give them any cut, just tell them to sell.
+Lior Amsalem says: (Hebrew) Yallah, everyone phones off. 
+Moshe Maduel says: (Hebrew) I agree, life is honey.
+Elad Gamliel says: Kas emek, daka.
+* Moshe Maduel checks that his phone is off.
+* Shay Ezra slides out his cellphone before he kills it.
+* Eran Shirazi pushes himself up and takes both his phones out. He turns them off whilst walking over to the kitchen counter. He'd place them both onto there.
+* Elad Gamliel digs out his phone, turning it off.
+* Lior Amsalem takes a look at Itzik, Shahar and Yossi.
+Moshe Maduel says: (Hebrew) Are we waiting for Ryan, Lior?
+* Yossi Abargile flicks his chin towards Lior as he speaks.
+Yossi Abargile says: (Hebrew) Ah Lior, How are you doing neshama'?
+Lior Amsalem says: (Hebrew) No. We're waiting for Amir because I'm not repeating this shit. 
+* Lior Amsalem downs a nod to Yossi.
+* Moshe Maduel nods his head.
+Lior Amsalem says: How you doing, kapara? 
+* Shahar Bublil pulls out his phone and kills it by clicking the screen button twice, then pockets it in his "Adidas" Tranings.
+Lior Amsalem says: (Hebrew) Turn off your phones. Yallah. 
+Yossi Abargile says: Fine, trip to Florida did me good.
+Lior Amsalem says: Lama lo, lama lo. 
+Mikhail Argov says: (Hebrew) Mine's off before I even entered.
+Elad Gamliel says: Ma nishma, ahi?
+* Lior Amsalem nods to Argov, before focusing on Itzik.
+Lior Amsalem says: (Hebrew) Your phone is off, brother? 
+* Itzik Spensiv reaches for his pocket and withdraws his Nokia, turns it off and pockets it.
+Lior Amsalem says: So. 
+Shay Ezra says: (Hebrew) What's the talking?
+* Moshe Maduel eyes Lior, listening to his speech.
+Shahar Bublil says: Are we good?
+Elad Gamliel says [low]: (Hebrew) Free some space for Mike, bro.
+* Elad Gamliel nudges Moshe.
+Moshe Maduel says [low]: (Hebrew) My bad.
+Lior Amsalem says: (Hebrew) All of you who don't know. Business, we're talking behind these walls, or face to face. 
+* Moshe Maduel moves a bit to his left, giving more space to Argov.
+</ScreenshotText>
+    <Text>
+      <Width>1000</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>52</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>ea126448-d4b2-4798-8333-c895eddcf749-683be4e3-ea79-4a23-b536-538bb5601a42</Guid>
+    <ScreenshotDate>2021-09-26T22:49:44.5023537+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20210926_104944.jpg</ImageFilePath>
+    <ScreenshotText>Eran Shirazi says: (Hebrew) No idea.
+Ryan Amsalem says: (Hebrew) Do you know where he is?
+Moshe Maduel says: (Hebrew) Didn't hear from him today.
+Ryan Amsalem says: (Hebrew) We will speak with him later then.
+Mikhail Argov says: (Hebrew) Have not seen him today either.
+* Ryan Amsalem refocuses the group.
+Moshe Maduel says: (Hebrew) I saw him leaving the rave and eh— He's probably out of town or something.
+Eran Shirazi says: (Hebrew) Or just tired.
+Eran Shirazi says: (Hebrew) Doesn't matter.
+Moshe Maduel says: (Hebrew) That's possible too.
+Ryan Amsalem says [low]: (Hebrew) Like I said, no more talking over the phone, nothing major. We do it in person, and we stop naming locations aswell. No more 'Tinsel' no more 'Weazel' no more 'Shen'. - We meet here /The Safe House/.
+Ryan Amsalem says [low]: (Hebrew) Or anything thats not related with us, public places.
+Ryan Amsalem says [low]: (Hebrew) But preferably, business is spoken inside these walls.
+* Moshe Maduel nods his head.
+Ryan Amsalem says [low]: (Hebrew) Hope it was clear. I was stopped by the cops yesterday and it was a very strange approach.
+Ryan Amsalem says [low]: (Hebrew) So we will also stop dealing with randoms from the street.
+Shlomi Dahan says [low]: There was a police car just waiting outside the garage too the other day.
+* Ryan Amsalem eyes Eran.
+Shlomi Dahan says [low]: Unmarked.
+Ryan Amsalem says [low]: (Hebrew) Tell us about the dude.
+Ryan Amsalem says [low]: (Hebrew) What just happened.
+Eran Shirazi says [low]: (Hebrew) So, listen.
+Ryan Amsalem says [low]: (Hebrew) I want Mike, David and Shay's opinion on it.
+* Shay Ezra nods along.
+* Mikhail Argov looks over at Eran, listening.
+Eran Shirazi says [low]: (Hebrew) I went to buy an apartment yesterday, not far from here. The dude selling it was a gang member, he's with [REDACTED].
+Eran Shirazi says [low]: (Hebrew) He instantly, and I mean /insantly/ starting asking about my business and shit.
+* Shay Ezra listens to Eran, meanwhile he'd takes out his cellphone, messes a bit with the screen.
+Mikhail Argov says [low]: (Hebrew) What business?
+* David Lugassy quirks a brow, he looks over to Shay.
+</ScreenshotText>
+    <Text>
+      <Width>1632</Width>
+      <FontFamily>Arial Black</FontFamily>
+      <FontSize>20</FontSize>
+      <FontWeight>700</FontWeight>
+      <StrokeThickness>75</StrokeThickness>
+      <ShadowOpacity>50</ShadowOpacity>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>1000</ParseLines>
     </Text>
     <Resolution>
       <AllowEdit>false</AllowEdit>

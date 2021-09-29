@@ -55,7 +55,6 @@
               "version": "[4.4.0, )"
             },
             "Costura.Fody": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.6.0, )"
@@ -345,18 +344,6 @@
             "System.Xml.XDocument": {
               "target": "Package",
               "version": "[4.3.0, )"
-            },
-            "Uno.Core": {
-              "target": "Package",
-              "version": "[3.0.0, )"
-            },
-            "Uno.Diagnostics.Eventing": {
-              "target": "Package",
-              "version": "[1.0.4, )"
-            },
-            "Uno.SourceGenerationTasks": {
-              "target": "Package",
-              "version": "[3.2.0, )"
             }
           },
           "imports": [

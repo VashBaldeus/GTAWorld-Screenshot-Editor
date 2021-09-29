@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using ExtensionMethods;
 
 namespace GTAWorld_Screenshot_Editor
 {
@@ -91,10 +92,10 @@ namespace GTAWorld_Screenshot_Editor
         /// exist or if it has an incorrect format
         /// </summary>
         /// <param name="directoryPath"></param>
-        /// <param name="removeTimestamps"></param>
+        /// <param name="linesToParse"></param>
         /// <param name="showError"></param>
         /// <returns></returns>
-        public static string ParseChatLog(string directoryPath, bool removeTimestamps, int linesToParse = 100, bool showError = false)
+        public static string ParseChatLog(string directoryPath, int linesToParse = 100, bool showError = false)
         {
             try
             {
@@ -119,28 +120,21 @@ namespace GTAWorld_Screenshot_Editor
                 log = log.TrimEnd('\r', '\n');                  // Remove the `new line` characters from the end
 
                 PreviousLog = log;
-                if (removeTimestamps)
-                    log = Regex.Replace(log, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
+                
+                //remove timestamps from log
+                log = Regex.Replace(log, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
 
                 //remvoe paid date if you were paid
                 log = Regex.Replace(log,
                     @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
 
-                //remove amount on payments you did
-                log = Regex.Replace(log, @"(You paid)\s(?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)", "You paid $xxxx");
-
-                //remove amount on payments you received
-                log = Regex.Replace(log, @"(paid you)\s(?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)", "paid you $xxxx");
-
-                //remove amount of given item
-                log = Regex.Replace(log, @"\((?<AMOUNT>[\d.,]+)\)\s(to)", "(x) to");
-
-                //remove amount of received item
-                log = Regex.Replace(log, @"(received).\s*(?<AMOUNT>[\d.,]+)", "received (x) of");
+                //remove '[!] ' highlight on chat lines if any.
+                log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList()
+                    .Where(w => w.Contains("[!] ")).ForEach(fe => fe = fe.Replace("[!] ", ""));
 
                 var lines = log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
-                //pull only n > 100  or n < 500 of last lines
+                //pull only n > 100  or n < 1000 of last lines
                 if (lines.Count > 100)
                 {
                     //get last n amount of lines
@@ -175,7 +169,7 @@ namespace GTAWorld_Screenshot_Editor
                 var isCriterionEnabled = false;
                 var matchedRegularCriterion = false;
 
-                Console.WriteLine(line);
+                //Console.WriteLine(line);
 
                 foreach (var criteria in
                     args.Where(keyValuePair => !string.IsNullOrEmpty(keyValuePair.Name) &&
@@ -187,6 +181,12 @@ namespace GTAWorld_Screenshot_Editor
                     matchedRegularCriterion = Regex.IsMatch(
                         Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty), $@"{criteria.Filter}",
                         RegexOptions.IgnoreCase);
+
+                    if (Regex.IsMatch(line,
+                        @"^(\> .*)((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)"))
+                    {
+                        //line = line.Replace(">", "*");
+                    }
 
                     if (criteria.Selected != true) continue;
 
