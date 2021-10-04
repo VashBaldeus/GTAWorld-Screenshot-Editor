@@ -29,4 +29,4 @@ This program was created with the intention to simplify as much as possible the 
 - [MapleToo](https://github.com/MapleToo/GTAW-Log-Parser) - for his chat-parsing class.
 
 ## Additional Information
-Distributed under the GPLv3 license. See [LICENSE.md](LICENSE) for more information.
+Distributed under the GPLv3 license. See [LICENSE](LICENSE) for more information.
