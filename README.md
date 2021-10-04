@@ -1,4 +1,4 @@
-![alt_image_text](https://raw.githubusercontent.com/VashBaldeus/GTAWorld-Screenshot-Editor/main/Screenshot_Editor/GTAWorld%20Screenshot%20Editor/Resources/Logo.png)
+![https://forum.gta.world](https://raw.githubusercontent.com/VashBaldeus/GTAWorld-Screenshot-Editor/main/Screenshot_Editor/GTAWorld%20Screenshot%20Editor/Resources/Logo.png)
 # GTA World Screenshot Editor
 This program was created with the intention to simplify as much as possible the creation of faction screenshots for the members of the community.
 
