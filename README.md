@@ -2,7 +2,7 @@
 # GTA World Screenshot Editor
 This program was created with the intention to simplify as much as possible the creation of faction screenshots for the members of the community.
 
-### ![Screenshot Editor Forum Thread](https://forum.gta.world/en/topic/60317-guide-screenshot-editor-for-gtaworld/)
+### [Screenshot Editor Forum Thread](https://forum.gta.world/en/topic/60317-guide-screenshot-editor-for-gtaworld/)
 
 ## List of features:
 - Drag & Drop of the image you want to use.
@@ -16,7 +16,7 @@ This program was created with the intention to simplify as much as possible the 
 - Zoom in/out on screenshot canvas without affecting selected resolution or saved screenshot.
 - Save screenshot locally or copy screenshot to clipboard so you can post it on discord or other medias.
 - "Copy Color" button copies select color from Color Picker in the format (`#00000000`) & copies it into clipboard, allowing you to insert it on start of any line you want to affect it with custom color.
-- Custom Image cropping (![Video Guide](https://www.youtube.com/watch?v=LQ2UEOCfnnA)).
+- Custom Image cropping ([Video Guide](https://www.youtube.com/watch?v=LQ2UEOCfnnA)).
 
 ## Screenshots
 ![screenshot1](https://i.gyazo.com/75c7e8b48e1820f67d811422a25112a8.png)
@@ -24,3 +24,6 @@ This program was created with the intention to simplify as much as possible the 
 ![screenshot3](https://i.gyazo.com/8c3143f8b85af756aeb3ffc7efaa8594.png)
 ![screenshot4](https://i.gyazo.com/85126dd5e4e2429d32def8a6ab064594.png)
 ![screenshot5](https://i.imgur.com/LiC04AG.jpg)
+
+## Credits
+- [MapleToo](https://github.com/MapleToo/GTAW-Log-Parser)
