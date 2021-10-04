@@ -26,4 +26,4 @@ This program was created with the intention to simplify as much as possible the 
 ![screenshot5](https://i.imgur.com/LiC04AG.jpg)
 
 ## Credits
-- [MapleToo](https://github.com/MapleToo/GTAW-Log-Parser)
+- [MapleToo](https://github.com/MapleToo/GTAW-Log-Parser) - for his chat-parsing class.
