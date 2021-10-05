@@ -19,7 +19,6 @@ C:\Users\xcast\Documents\GitHub\Screenshot_Editor\Screenshot_Editor\GTAWorld Scr
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\GTAWorld Screenshot Editor.exe.config
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\GTAWorld Screenshot Editor.exe
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\bin\Release\GTAWorld Screenshot Editor.pdb
-C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.AssemblyReference.cache
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\Views\MainWindow.g.cs
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\App.g.cs
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GeneratedInternalTypeHelper.g.cs

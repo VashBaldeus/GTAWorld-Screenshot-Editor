@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
@@ -6,6 +7,49 @@ using ExtensionMethods;
 
 namespace GTAWorld_Screenshot_Editor.Models
 {
+    public class TextBlockModel : OnPropertyChange
+    {
+        private double _top;
+
+        public double Top
+        {
+            get => _top;
+            set { _top = value; OnPropertyChanged(); }
+        }
+
+        private double _left;
+
+        public double Left
+        {
+            get => _left;
+            set { _left = value; OnPropertyChanged(); }
+        }
+
+        private string _blockName = string.Empty;
+
+        public string BlockName
+        {
+            get => _blockName;
+            set { _blockName = value; OnPropertyChanged(); }
+        }
+
+        private string _parsedChat = string.Empty;
+
+        public string ParsedChat
+        {
+            get => _parsedChat;
+            set { _parsedChat = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<ImageText> _texts = new ObservableCollection<ImageText>();
+
+        public ObservableCollection<ImageText> Texts
+        {
+            get => _texts;
+            set { _texts = value; OnPropertyChanged(); }
+        }
+    }
+
     public class ImageText : OnPropertyChange
     {
         private string _text = string.Empty;

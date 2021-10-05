@@ -726,7 +726,7 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Selected = true,
                     Name = "Items",
-                    Filter = @"^You (gave|received) [\p{L}]+ \((\d{1,2})\) (to|from) [\p{L}]+ [\p{L}]+.$"
+                    Filter = @"^You (gave|received) ([\p{L}]+)(?<AMOUNT>[\d.,]+){0,1}(\s){0,1}([\p{L}]+){0,1}(\s){0,1}(?<AMOUNT>[\d.,]+){0,1}\((\d{1,2})\) (to|from) ([\p{L}]+ [\p{L}]+).$"
                 },
 
                 new Criteria
@@ -900,7 +900,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 //replace given/received item amount with '(x)'
                 if (Regex.IsMatch(str,
-                    @"^You (gave|received) [\p{L}]+ \((\d{1,2})\) (to|from) [\p{L}]+ [\p{L}]+.$"))
+                    @"^You (gave|received) ([\p{L}]+)(?<AMOUNT>[\d.,]+){0,1}(\s){0,1}([\p{L}]+){0,1}(\s){0,1}(?<AMOUNT>[\d.,]+){0,1}\((\d{1,2})\) (to|from) ([\p{L}]+ [\p{L}]+).$"))
                 {
                     str = Regex.Replace(str, @"\((?<AMOUNT>[\d.]+)\)", "(x)");
                 }
@@ -974,7 +974,7 @@ namespace GTAWorld_Screenshot_Editor
             
             //money & item transfers
             if (Regex.IsMatch(line, @"^[\p{L}]+ [\p{L}]+ paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)\.$|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1} [\p{L}]+ {0,1})\.$")
-                || Regex.IsMatch(line, @"^You (gave|received) [\p{L}]+ \((\d{1,2})\) (to|from) [\p{L}]+ [\p{L}]+.$"))
+                || Regex.IsMatch(line, @"^You (gave|received) ([\p{L}]+)(?<AMOUNT>[\d.,]+){0,1}(\s){0,1}([\p{L}]+){0,1}(\s){0,1}(?<AMOUNT>[\d.,]+){0,1}\((\d{1,2})\) (to|from) ([\p{L}]+ [\p{L}]+).$"))
             {
                 return "#29943e";//green
             }
