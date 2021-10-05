@@ -1,4 +1,4 @@
-![https://forum.gta.world](https://raw.githubusercontent.com/VashBaldeus/GTAWorld-Screenshot-Editor/main/Screenshot_Editor/GTAWorld%20Screenshot%20Editor/Resources/Logo.png)
+![https://forum.gta.world](https://raw.githubusercontent.com/VashBaldeus/GTAWorld-Screenshot-Editor/main/GTAWorld%20Screenshot%20Editor/Resources/Logo.png)
 # GTA World Screenshot Editor
 This program was created with the intention to simplify as much as possible the creation of faction screenshots for the members of the community.
 
@@ -29,4 +29,4 @@ This program was created with the intention to simplify as much as possible the 
 - [MapleToo](https://github.com/MapleToo/GTAW-Log-Parser) - for his chat-parsing class.
 
 ## Additional Information
-Distributed under the GPLv3 license. See [LICENSE.md](LICENSE) for more information.
+Distributed under the GPLv3 license. See [LICENSE](LICENSE) for more information.
