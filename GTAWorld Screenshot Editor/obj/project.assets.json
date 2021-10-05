@@ -9499,11 +9499,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
+      "projectUniqueName": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
       "projectName": "GTAWorld Screenshot Editor",
-      "projectPath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
+      "projectPath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
       "packagesPath": "C:\\Users\\xcast\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\Screenshot_Editor\\GTAWorld Screenshot Editor\\obj\\",
+      "outputPath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\GTAWorld Screenshot Editor\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [

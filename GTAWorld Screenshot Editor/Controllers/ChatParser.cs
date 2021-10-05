@@ -124,29 +124,25 @@ namespace GTAWorld_Screenshot_Editor
                 //remove timestamps from log
                 log = Regex.Replace(log, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
 
+                //split log into lines
+                var lines = log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+
                 //remvoe paid date if you were paid
-                log = Regex.Replace(log,
-                    @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
+                lines.ForEach(fe =>
+                    Regex.Replace(fe, @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty));
 
                 //remove '[!] ' highlight on chat lines if any.
-                log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList()
-                    .Where(w => w.Contains("[!] ")).ForEach(fe => fe = fe.Replace("[!] ", ""));
-
-                var lines = log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
+                lines.ForEach(fe => fe = fe.Replace("[!] ", ""));
 
                 //pull only n > 100  or n < 1000 of last lines
                 if (lines.Count > 100)
                 {
                     //get last n amount of lines
-                    log = lines.Skip(Math.Max(0, lines.Count - linesToParse)).ToList()
+                    return lines.Skip(Math.Max(0, lines.Count - linesToParse)).ToList()
                         .Aggregate(string.Empty, (cur, i) => cur += $"{i}\n");
                 }
-
-                //return parse with distinct lines, no duplicates
-                return log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
-                    .ToList()
-                    .Distinct()
-                    .Aggregate(string.Empty, (cur, i) => cur += $"{i}\n");
+                
+                return lines.Aggregate(string.Empty, (cur, i) => cur += $"{i}\n");
             }
             catch
             {
@@ -160,33 +156,34 @@ namespace GTAWorld_Screenshot_Editor
         public static string TryToFilter(string ChatLog, List<Criteria> args, bool includeOther)
         {
             var lines =
-                ChatLog.Split('\n').Where(w => !string.IsNullOrEmpty(w));
+                ChatLog.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries)
+                    .Where(w => !string.IsNullOrEmpty(w)).ToList();
 
             var filteredResult = string.Empty;
 
             foreach (var line in lines)
             {
+                var str = line;
+
+                //remove datetime from payment if random strangler passes chat-parse
+                if (Regex.IsMatch(line, @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))"))
+                {
+                    str = Regex.Replace(line, @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
+                }
+
                 var isCriterionEnabled = false;
                 var matchedRegularCriterion = false;
-
-                //Console.WriteLine(line);
 
                 foreach (var criteria in
                     args.Where(keyValuePair => !string.IsNullOrEmpty(keyValuePair.Name) &&
                                                !string.IsNullOrWhiteSpace(keyValuePair.Filter))
                         .Where(keyValuePair =>
-                            Regex.IsMatch(Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty),
+                            Regex.IsMatch(Regex.Replace(str, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty),
                                 keyValuePair.Filter, RegexOptions.IgnoreCase)))
                 {
                     matchedRegularCriterion = Regex.IsMatch(
-                        Regex.Replace(line, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty), $@"{criteria.Filter}",
+                        Regex.Replace(str, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty), $@"{criteria.Filter}",
                         RegexOptions.IgnoreCase);
-
-                    if (Regex.IsMatch(line,
-                        @"^(\> .*)((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)"))
-                    {
-                        //line = line.Replace(">", "*");
-                    }
 
                     if (criteria.Selected != true) continue;
 
@@ -195,7 +192,7 @@ namespace GTAWorld_Screenshot_Editor
                 }
 
                 if (isCriterionEnabled || !matchedRegularCriterion && includeOther)
-                    filteredResult += $"{line}\n";
+                    filteredResult += $"{str}\n";
             }
 
             return filteredResult;

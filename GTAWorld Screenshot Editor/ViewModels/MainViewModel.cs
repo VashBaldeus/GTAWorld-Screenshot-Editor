@@ -869,15 +869,18 @@ namespace GTAWorld_Screenshot_Editor
             {
                 var str = line.TrimEnd(' ');
 
-                //if string missing '.' at end, add it.
-                if (line.EndsWith("$xxxx") || (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!")))
-                    str = $"{line.TrimEnd(' ')}.";
-
                 //if string ends with '\' replace with '.'
                 if (line.EndsWith(@"\"))
                 {
                     str = $"{line.TrimEnd('\\')}.";
                 }
+
+                str = Regex.Replace(str,
+                    @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
+
+                //if string missing '.' at end, add it.
+                if (line.EndsWith("$xxxx") || (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!")))
+                    str = $"{line.TrimEnd(' ')}.";
 
                 //new line marker, last line does not receive new line command
                 var newLine = lineCount + 1 == lines.Count ? "" : "\n";

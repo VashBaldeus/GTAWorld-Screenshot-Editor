@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "b+VaoTxa4UzC10ISBVIpCN7gx/KHCPEtO0N247tfrfkaobKhjsk22W2PHnmn/x4R5wqqn0AQNfpMtnIE2ZrGdA==",
+  "dgSpecHash": "eaTgHJ2C1EXlLRCk9WFM5rzmAIaApSWLNxFjFld4KT5RIMIwrDES6V8HqAcdIdj7UyP5/NvR7xj2LAhHQKyS/Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
+  "projectFilePath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\xcast\\.nuget\\packages\\autoupdater.net.official\\1.7.0\\autoupdater.net.official.1.7.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\blend.interctivity.wpf.v4.0\\1.0.3\\blend.interctivity.wpf.v4.0.1.0.3.nupkg.sha512",
