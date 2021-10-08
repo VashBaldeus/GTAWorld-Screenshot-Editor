@@ -59,6 +59,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
@@ -267,13 +268,13 @@
                                             IsEnabled="{qc:Binding '$P != 0', P={Binding RageFolder.Length}}"/>
 
                                     <Button Command="{Binding CopyChatToClipboardCommand}" Content="Copy Chat to Clipboard"
-                                            IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
+                                            IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedBlock.ParsedChat.Length}}"/>
 
                                     <Button Content="Add Parsed Chat to Image" Command="{Binding AddTextToImageCommand}"
-                                            IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
+                                            IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedBlock.ParsedChat.Length}}"/>
 
                                     <Button Content="Add Typed Text /w Filteration to Image" Command="{Binding AddManuallyTypedToImageCommand}"
-                                            IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
+                                            IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedBlock.ParsedChat.Length}}"/>
 
                                     <Button Content="Clear Image Text" Command="{Binding ClearImageTextCommand}"/>
                                 </StackPanel>
@@ -297,9 +298,28 @@
                                     </Button>
                                 </Grid>
 
-                                <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10"
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox Grid.Column="0" ItemsSource="{Binding TextBlocks}" DisplayMemberPath="BlockName" FontSize="15"
+                                              SelectedItem="{Binding SelectedBlock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                              BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1"/>
+
+                                    <Button Grid.Column="1" Content="{iconpacks:BoxIcons Kind=RegularAddToQueue}"
+                                            Command="{Binding BlockCommand}" CommandParameter="add" 
+                                            ToolTip="Add Text Block"/>
+                                    <Button Grid.Column="2" Content="{iconpacks:FeatherIcons Kind=Delete}"
+                                            Command="{Binding BlockCommand}" CommandParameter="remove"
+                                            ToolTip="Remove Selected Text Block"/>
+                                </Grid>
+
+                                <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11"
                                                       FontSize="15"
-                                                      Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      Text="{Binding SelectedBlock.ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                                       ScrollViewer.VerticalScrollBarVisibility="Visible"
                                                       Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
@@ -358,7 +378,7 @@
                                                 <Setter Property="IsEnabled" Value="False"/>
                                             </DataTrigger>
 
-                                            <DataTrigger Binding="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}" Value="True">
+                                            <DataTrigger Binding="{qc:Binding '$P > 0', P={Binding TextBlocks.Count}}" Value="True">
                                                 <Setter Property="IsEnabled" Value="False"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -376,10 +396,12 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" x:Name="SaveLocally" Content="Save Locally" Click="SaveLocally_OnClick" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding TextBlocks.Count}}"
+                                    Command="{Binding SaveCacheCommand}"/>
 
                             <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy to Clipboard" Click="SaveLocally_OnClick" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding ScreenshotText.Count}}"/>
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding TextBlocks.Count}}"
+                                    Command="{Binding SaveCacheCommand}"/>
 
                             <Button Grid.Column="2" Content="READ IMAGE OCR" Command="{Binding ReadOcrCommand}" FontSize="20"
                                     IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}"/>
@@ -397,30 +419,48 @@
                                    Height="{Binding SelectedResolution.Height}"
                                    Width="{Binding SelectedResolution.Width}"/>
 
-                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding ScreenshotText}"
-                                          MaxWidth="{Binding TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                            <ItemsControl x:Name="ScreenshotTextControl" ItemsSource="{Binding TextBlocks}"
+                                          Height="{Binding SelectedResolution.Height}"
+                                          Width="{Binding SelectedResolution.Width}">
                                 <ItemsControl.ItemsPanel>
                                     <ItemsPanelTemplate>
-                                        <StackPanel IsItemsHost="True"/>
+                                        <Canvas IsItemsHost="True"
+                                                Height="{Binding SelectedResolution.Height}"
+                                                Width="{Binding SelectedResolution.Width}"/>
                                     </ItemsPanelTemplate>
                                 </ItemsControl.ItemsPanel>
 
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <local:OutlinedTextBlock Text="{Binding String}"
-                                                                 FontSize="{Binding FontSize}"
-                                                                 FontFamily="{Binding FontFamily}"
-                                                                 FontWeight="{Binding FontWeight}"
-                                                                 TextWrapping="{Binding TextWrapping}"
-                                                                 Fill="{Binding Foreground}"
-                                                                 Effect="{Binding Effect}"
-                                                                 StrokeThickness="{Binding StrokeThickness}"
-                                                                 Stroke="{Binding Stroke}" />
+                                        <ItemsControl ItemsSource="{Binding Texts}"
+                                                      Margin="{Binding Margin}"
+                                                      Width="{Binding DataContext.TextSettings.Width, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+                                                      Height="{Binding DataContext.SelectedResolution.Height, Mode=OneWay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel IsItemsHost="True"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
 
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <local:OutlinedTextBlock Text="{Binding String}"
+                                                                             FontSize="{Binding FontSize}"
+                                                                             FontFamily="{Binding FontFamily}"
+                                                                             FontWeight="{Binding FontWeight}"
+                                                                             TextWrapping="{Binding TextWrapping}"
+                                                                             Fill="{Binding Foreground}"
+                                                                             Effect="{Binding Effect}"
+                                                                             StrokeThickness="{Binding StrokeThickness}"
+                                                                             Stroke="{Binding Stroke}" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
+                            <!--<Button x:Name="TestButton" Content="Test Button"/>--> 
                         </Canvas>
                     </Grid>
 
@@ -435,98 +475,121 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <xctk:ColorPicker x:Name="HexColor2" Grid.Column="0"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
-                                          DropDownBackground="#252525" ShowStandardColors="False" ShowTabHeaders="False" ButtonStyle="{StaticResource ColorPickerButton}"
-                                          SelectedColor="White" Margin="0 0 5 0" UsingAlphaChannel="False"/>
-
-                        <Button Grid.Column="1" Height="Auto" Command="{Binding CopyColorCodeCommand}" CommandParameter="{Binding ElementName=HexColor2, Path=SelectedColor}">
-                            <Button.Content>
-                                <DockPanel>
-                                    <iconpacks:PackIconBoxIcons Kind="SolidColorFill" VerticalAlignment="Center" DockPanel.Dock="Left"/>
-                                    <Label Content="Copy Color" DockPanel.Dock="Right"/>
-                                </DockPanel>
-                            </Button.Content>
-                        </Button>
-
-                        <xctk:DropDownButton Content="CHAT FILTERS" Grid.Column="2"
-                                                         MaxDropDownHeight="384">
-                            <xctk:DropDownButton.DropDownContent>
-                                <Grid Margin="2.5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-
-                                    <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
-
-                                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
-                                                          HorizontalScrollBarVisibility="Disabled">
-                                        <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                              MaxWidth="512">
-
-                                            <ItemsControl.Resources>
-                                                <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                    <Setter Property="FontFamily" Value="Arial" />
-                                                    <Setter Property="FontSize" Value="15" />
-                                                    <Setter Property="VerticalContentAlignment" Value="Center" />
-                                                    <Setter Property="Foreground"
-                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                </Style>
-                                            </ItemsControl.Resources>
-
-                                            <ItemsControl.ItemsPanel>
-                                                <ItemsPanelTemplate>
-                                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                                                </ItemsPanelTemplate>
-                                            </ItemsControl.ItemsPanel>
-
-                                            <ItemsControl.ItemTemplate>
-                                                <DataTemplate>
-                                                    <mah:ToggleSwitch Content="{Binding Name}"
-                                                                          IsOn="{Binding Selected}"
-                                                                          Margin="10 0 0 0">
-                                                    </mah:ToggleSwitch>
-                                                </DataTemplate>
-                                            </ItemsControl.ItemTemplate>
-                                        </ItemsControl>
-                                    </ScrollViewer>
-                                </Grid>
-                            </xctk:DropDownButton.DropDownContent>
-                        </xctk:DropDownButton>
-
-                        <Button Content="Parse Chat" Grid.Column="3" Command="{Binding ParseChatCommand}"/>
-
-                        <Label Content="Lines to Parse" Grid.Column="4"/>
-
-                        <Grid Grid.Column="5" Margin="10" Width="384">
+                    <ScrollViewer HorizontalScrollBarVisibility="Auto" Grid.Row="0">
+                        <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Slider Minimum="100" Maximum="1000" Interval="100"
+                            <Grid Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <ComboBox Grid.Column="0" ItemsSource="{Binding TextBlocks}" DisplayMemberPath="BlockName" FontSize="15"
+                                      SelectedItem="{Binding SelectedBlock, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      BorderBrush="{DynamicResource MahApps.Brushes.Accent}" BorderThickness="1"/>
+
+                                <Button Grid.Column="1" Content="{iconpacks:BoxIcons Kind=RegularAddToQueue}"
+                                    Command="{Binding BlockCommand}" CommandParameter="add" 
+                                    ToolTip="Add Text Block"/>
+                                <Button Grid.Column="2" Content="{iconpacks:FeatherIcons Kind=Delete}"
+                                    Command="{Binding BlockCommand}" CommandParameter="remove"
+                                    ToolTip="Remove Selected Text Block"/>
+                            </Grid>
+
+                            <xctk:ColorPicker x:Name="HexColor2" Grid.Column="1"  ColorMode="ColorCanvas" Foreground="{DynamicResource MahApps.Brushes.Accent}" Background="#252525"
+                                          DropDownBackground="#252525" ShowStandardColors="False" ShowTabHeaders="False" ButtonStyle="{StaticResource ColorPickerButton}"
+                                          SelectedColor="White" Margin="0 0 5 0" UsingAlphaChannel="False"/>
+
+                            <Button Grid.Column="2" Height="Auto" Command="{Binding CopyColorCodeCommand}" CommandParameter="{Binding ElementName=HexColor2, Path=SelectedColor}">
+                                <Button.Content>
+                                    <DockPanel>
+                                        <iconpacks:PackIconBoxIcons Kind="SolidColorFill" VerticalAlignment="Center" DockPanel.Dock="Left"/>
+                                        <Label Content="Copy Color" DockPanel.Dock="Right"/>
+                                    </DockPanel>
+                                </Button.Content>
+                            </Button>
+
+                            <xctk:DropDownButton Content="CHAT FILTERS" Grid.Column="3"
+                                                         MaxDropDownHeight="384">
+                                <xctk:DropDownButton.DropDownContent>
+                                    <Grid Margin="2.5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
+
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
+                                                          HorizontalScrollBarVisibility="Disabled">
+                                            <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              MaxWidth="512">
+
+                                                <ItemsControl.Resources>
+                                                    <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                        <Setter Property="FontFamily" Value="Arial" />
+                                                        <Setter Property="FontSize" Value="15" />
+                                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                        <Setter Property="Foreground"
+                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                                    </Style>
+                                                </ItemsControl.Resources>
+
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <mah:ToggleSwitch Content="{Binding Name}"
+                                                                          IsOn="{Binding Selected}"
+                                                                          Margin="10 0 0 0">
+                                                        </mah:ToggleSwitch>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </Grid>
+                                </xctk:DropDownButton.DropDownContent>
+                            </xctk:DropDownButton>
+
+                            <Button Content="Parse Chat" Grid.Column="4" Command="{Binding ParseChatCommand}"/>
+
+                            <Label Content="Lines to Parse" Grid.Column="5"/>
+
+                            <Grid Grid.Column="6" Margin="10" Width="384">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Slider Minimum="100" Maximum="1000" Interval="100"
                                     Value="{Binding TextSettings.ParseLines, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                            <Label Grid.Column="1" Content="{Binding TextSettings.ParseLines, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </Grid>
+                                <Label Grid.Column="1" Content="{Binding TextSettings.ParseLines, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
 
-                        <Button Grid.Column="6" Command="{Binding CopyChatToClipboardCommand}" Content="Copy Chat to Clipboard"
-                                IsEnabled="{qc:Binding '$P > 0', P={Binding ParsedChat.Length}}"/>
-                    </Grid>
+                            <Button Grid.Column="7" Command="{Binding CopyChatToClipboardCommand}" Content="Copy Chat to Clipboard"
+                                IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedBlock.ParsedChat.Length}}"/>
+                        </Grid>
+                    </ScrollViewer>
 
                     <xctk:RichTextBox  Grid.Row="1" x:Name="ParsedChatBig" FontSize="15"
-                                       Text="{Binding ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                       Text="{Binding SelectedBlock.ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                        Foreground="{DynamicResource MahApps.Brushes.Accent}"
                                        ScrollViewer.VerticalScrollBarVisibility="Visible"
                                        Block.LineHeight="{Binding LineHeight, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
@@ -568,7 +631,7 @@
 
                                     <Label Content="{Binding ScreenshotDate}" Grid.Column="1" Foreground="White" FontSize="20"/>
 
-                                    <Image Source="{Binding Bitmap}" Grid.Column="2" MaxHeight="128"/>
+                                    <Image Source="{Binding Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" MaxHeight="128"/>
 
                                     <Button Content="Delete" Command="{Binding Command}" CommandParameter="{Binding}"
                                             Grid.Column="3"/>

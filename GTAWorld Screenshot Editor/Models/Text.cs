@@ -3,26 +3,27 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Xml.Serialization;
 using ExtensionMethods;
 
 namespace GTAWorld_Screenshot_Editor.Models
 {
     public class TextBlockModel : OnPropertyChange
     {
-        private double _top;
+        private bool _selected;
 
-        public double Top
+        public bool Selected
         {
-            get => _top;
-            set { _top = value; OnPropertyChanged(); }
+            get => _selected;
+            set { _selected = value; OnPropertyChanged(); }
         }
 
-        private double _left;
+        private Thickness _margin = new Thickness(0, 0, 0, 0);
 
-        public double Left
+        public Thickness Margin
         {
-            get => _left;
-            set { _left = value; OnPropertyChanged(); }
+            get => _margin;
+            set { _margin = value; OnPropertyChanged(); }
         }
 
         private string _blockName = string.Empty;
@@ -34,7 +35,7 @@ namespace GTAWorld_Screenshot_Editor.Models
         }
 
         private string _parsedChat = string.Empty;
-
+        
         public string ParsedChat
         {
             get => _parsedChat;
@@ -42,7 +43,8 @@ namespace GTAWorld_Screenshot_Editor.Models
         }
 
         private ObservableCollection<ImageText> _texts = new ObservableCollection<ImageText>();
-
+        
+        [XmlIgnore]
         public ObservableCollection<ImageText> Texts
         {
             get => _texts;
@@ -62,6 +64,7 @@ namespace GTAWorld_Screenshot_Editor.Models
 
         private SolidColorBrush _foreground = (SolidColorBrush)new BrushConverter().ConvertFrom("#FFF");
 
+        [XmlIgnore]
         public SolidColorBrush Foreground
         {
             get => _foreground;
@@ -78,6 +81,7 @@ namespace GTAWorld_Screenshot_Editor.Models
 
         private FontFamily _fontFamily = new FontFamily("Arial, Helvetica, sans-serif;");
 
+        [XmlIgnore]
         public FontFamily FontFamily
         {
             get => _fontFamily;
@@ -102,6 +106,7 @@ namespace GTAWorld_Screenshot_Editor.Models
 
         private SolidColorBrush _stroke = (SolidColorBrush)new BrushConverter().ConvertFrom("#000");
 
+        [XmlIgnore]
         public SolidColorBrush Stroke
         {
             get => _stroke;
@@ -126,6 +131,7 @@ namespace GTAWorld_Screenshot_Editor.Models
             },
         };
 
+        [XmlIgnore]
         public DropShadowEffect Effect
         {
             get => _effect;

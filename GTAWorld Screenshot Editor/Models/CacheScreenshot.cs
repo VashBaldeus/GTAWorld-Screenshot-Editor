@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Windows.Input;
@@ -34,14 +35,15 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _imageFile = value; OnPropertyChanged(); }
         }
 
-        private string _screenshotText = string.Empty;
+        private ObservableCollection<TextBlockModel> _textBlocks = new ObservableCollection<TextBlockModel>();
 
-        public string ScreenshotText
+        public ObservableCollection<TextBlockModel> TextBlocks
         {
-            get => _screenshotText;
-            set { _screenshotText = value; OnPropertyChanged(); }
+            get => _textBlocks;
+            set { _textBlocks = value; OnPropertyChanged(); }
         }
 
+        [XmlIgnore]
         public string ImageFullPath =>
             $@"{Path.GetDirectoryName(Process.GetCurrentProcess().MainModule?.FileName)}\{ImageFilePath}";
 

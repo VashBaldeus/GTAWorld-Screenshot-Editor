@@ -73,6 +73,13 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
             </Style>
 
+            <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource MahApps.Styles.RadioButton}">
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+            </Style>
+
             <Style TargetType="{x:Type ToggleButton}" x:Key="ColorPickerButton">
                 <Setter Property="Template">
                     <Setter.Value>

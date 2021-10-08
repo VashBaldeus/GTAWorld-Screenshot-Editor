@@ -81,6 +81,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\SelectedItemBehavior.cs" />
     <Compile Include="Components\StrokeTextBlock.cs" />
     <Compile Include="Controllers\ChatParser.cs" />
     <Compile Include="Controllers\Interfaces\IDialogService.cs" />
@@ -130,7 +131,6 @@
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
     <Folder Include="Converters\" />
   </ItemGroup>
   <ItemGroup>

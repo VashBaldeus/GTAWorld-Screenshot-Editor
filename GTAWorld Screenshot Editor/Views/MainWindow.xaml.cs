@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -128,8 +129,14 @@ namespace GTAWorld_Screenshot_Editor
             {
                 var point = Mouse.GetPosition(ScreenshotCanvas);
 
-                ScreenshotTextControl.SetValue(Canvas.LeftProperty, point.X);
-                ScreenshotTextControl.SetValue(Canvas.TopProperty, point.Y);
+                if (dc.SelectedResolution.Width < point.X || dc.SelectedResolution.Height < point.Y)
+                    return;
+
+                dc.SelectedBlock.Margin = new Thickness(point.X, point.Y, 0, 0);
+
+                //ScreenshotTextControl.SetValue(Canvas.LeftProperty, point.X);
+                //ScreenshotTextControl.SetValue(Canvas.TopProperty, point.Y);
+                //TestButton.Margin = new Thickness(point.X, point.Y, 0, 0);
             }
         }
 
