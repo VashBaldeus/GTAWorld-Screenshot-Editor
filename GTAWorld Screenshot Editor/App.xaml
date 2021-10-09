@@ -31,6 +31,15 @@
                 <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
             </Style>
 
+            <Style TargetType="{x:Type xctk:AutoSelectTextBox}" BasedOn="{StaticResource MahApps.Styles.TextBox}">
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+            </Style>
+
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource MahApps.Styles.Button}">
                 <Setter Property="MinHeight" Value="32"/>
                 <Setter Property="FontFamily" Value="Arial"/>
@@ -116,6 +125,13 @@
                         </ControlTemplate>
                     </Setter.Value>
                 </Setter>
+            </Style>
+
+            <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource MahApps.Styles.ListView}">
+                <Setter Property="FontFamily" Value="Arial"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Accent}"/>
+                <Setter Property="BorderThickness" Value="1"/>
             </Style>
 
             <Style TargetType="{x:Type xctk:DropDownButton}">

@@ -115,6 +115,8 @@ namespace GTAWorld_Screenshot_Editor
             dc.Canvas = ScreenshotCanvas;
 
             dc.OnLoadCommand.Execute(null);
+
+            dc.NamesList = NamesToRemoveList;
         }
 
         private void ScreenshotCanvas_OnMouseMove(object sender, MouseEventArgs e)
@@ -267,6 +269,11 @@ namespace GTAWorld_Screenshot_Editor
             //delete temp file folder
             var dir = new DirectoryInfo(dirPath);
             dir.Delete(true);
+        }
+
+        private void AddNameToRemove_OnClick(object sender, RoutedEventArgs e)
+        {
+            NamesToRemoveList.SelectedIndex = -1;
         }
     }
 }

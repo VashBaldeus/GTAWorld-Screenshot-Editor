@@ -70,6 +70,8 @@ namespace GTAWorld_Screenshot_Editor
             BlockCommand = new RelayCommand(BlockExecute);
 
             SaveCacheCommand = new RelayCommand(SaveCacheExecute);
+
+            ReplaceNameCommand = new RelayCommand(ReplaceNameExecute);
         }
 
         #endregion
@@ -593,6 +595,37 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
+        public ICommand ReplaceNameCommand { get; set; }
+
+        public void ReplaceNameExecute(object obj)
+        {
+            try
+            {
+                switch (obj.ToString())
+                {
+                    case "add":
+                        NamesToReplace.Add(NameToReplace);
+
+                        NamesList.SelectedIndex = -1;
+
+                        NameToReplace = new NamesToReplace();
+                        break;
+
+                    case "remove":
+                        NamesToReplace.Remove(NameToReplace);
+
+                        NamesList.SelectedIndex = -1;
+
+                        NameToReplace = new NamesToReplace();
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                Message.Log(ex);
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -636,17 +669,6 @@ namespace GTAWorld_Screenshot_Editor
             get => _lineHeight;
             set { _lineHeight = value; OnPropertyChanged(); }
         }
-
-        //private ObservableCollection<ImageText> _screenshotTextCollection = new ObservableCollection<ImageText>();
-
-        ///// <summary>
-        ///// Text that shows on top of canvas for screenshot
-        ///// </summary>
-        //public ObservableCollection<ImageText> ScreenshotText
-        //{
-        //    get => _screenshotTextCollection;
-        //    set { _screenshotTextCollection = value; OnPropertyChanged(); }
-        //}
 
         private ObservableCollection<TextBlockModel> _textBlocks = new ObservableCollection<TextBlockModel>();
 
@@ -763,6 +785,30 @@ namespace GTAWorld_Screenshot_Editor
         {
             get => _canvas;
             set { _canvas = value; OnPropertyChanged(); }
+        }
+
+        private ObservableCollection<NamesToReplace> _namesToReplace = new ObservableCollection<NamesToReplace>();
+
+        public ObservableCollection<NamesToReplace> NamesToReplace
+        {
+            get => _namesToReplace;
+            set { _namesToReplace = value; OnPropertyChanged(); }
+        }
+
+        private NamesToReplace _nameToReplace = new NamesToReplace();
+
+        public NamesToReplace NameToReplace
+        {
+            get => _nameToReplace;
+            set { _nameToReplace = value; OnPropertyChanged(); }
+        }
+
+        private System.Windows.Controls.ListView _namesList;
+
+        public System.Windows.Controls.ListView NamesList
+        {
+            get => _namesList;
+            set { _namesList = value; OnPropertyChanged(); }
         }
 
         #endregion
@@ -1060,6 +1106,14 @@ namespace GTAWorld_Screenshot_Editor
                 if (Regex.IsMatch(str, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter))
                 {
                     str = Regex.Replace(str, @"\((?<AMOUNT>[\d.]+)\)", "(x)");
+                }
+
+                //check if line contains a player name that was chosen to remove
+                foreach (var name in NamesToReplace.Where(w => str.Contains(w.Name) || str.Contains(w.FirstName) || str.Contains(w.LastName)))
+                {
+                    str = str.Replace(name.Name, name.Mask);
+                    str = str.Replace(name.FirstName, name.Mask);
+                    str = str.Replace(name.LastName, name.Mask);
                 }
 
                 var txt = new ImageText();

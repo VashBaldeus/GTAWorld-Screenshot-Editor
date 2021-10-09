@@ -60,6 +60,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
@@ -317,7 +318,42 @@
                                             ToolTip="Remove Selected Text Block"/>
                                 </Grid>
 
-                                <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11"
+                                <xctk:DropDownButton Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11"
+                                                     Content="NAMES TO HIDE">
+                                    <xctk:DropDownButton.DropDownContent>
+                                        <Grid Width="512" Height="768" Margin="10">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"/>
+                                                <RowDefinition Height="700"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Grid Grid.Row="0" Margin="0 0 0 10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBox Grid.Column="0" VerticalContentAlignment="Center"
+                                                         Text="{Binding NameToReplace.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                                <Button x:Name="AddNameToRemove" Grid.Column="1" Content="{iconpacks:BoxIcons Kind=RegularAddToQueue}"
+                                                        Command="{Binding ReplaceNameCommand}" CommandParameter="add" 
+                                                        ToolTip="Add Name"/>
+
+                                                <Button Grid.Column="2" Content="{iconpacks:FeatherIcons Kind=Delete}"
+                                                        Command="{Binding ReplaceNameCommand}" CommandParameter="remove"
+                                                        ToolTip="Remove Name"/>
+                                            </Grid>
+
+                                            <ListView x:Name="NamesToRemoveList" Grid.Row="1" ItemsSource="{Binding NamesToReplace}"
+                                                      SelectedItem="{Binding NameToReplace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                      DisplayMemberPath="Name"/>
+                                        </Grid>
+                                    </xctk:DropDownButton.DropDownContent>
+                                </xctk:DropDownButton>
+
+                                <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12"
                                                       FontSize="15"
                                                       Text="{Binding SelectedBlock.ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"
