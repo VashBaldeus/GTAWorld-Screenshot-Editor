@@ -84,6 +84,8 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                DebugInit();
+
                 LookForMainDirectory();
 
                 InitFilters();
@@ -180,7 +182,16 @@ namespace GTAWorld_Screenshot_Editor
                 if (SelectedBlock == null || string.IsNullOrEmpty(SelectedBlock.ParsedChat))
                     return;
 
-                AddTextToImageCommand.Execute(null);
+                if (TextBlocks.Count > 1)
+                {
+                    foreach (var text in TextBlocks)
+                    {
+                        SelectedBlock = text;
+
+                        AddTextToImageCommand.Execute(null);
+                    }
+                }
+                else AddTextToImageCommand.Execute(null);
             }
             catch (Exception ex)
             {
@@ -270,16 +281,25 @@ namespace GTAWorld_Screenshot_Editor
             {
                 TextSettings = new TextModel();
 
-                //ParsedChat = string.Empty;
-                SelectedBlock = new TextBlockModel();
+                if (TextBlocks.Count(w => !string.IsNullOrEmpty(w.ParsedChat)) > 0)
+                {
+                    TextBlocks.Clear();
 
-                TextBlocks.Clear();
+                    SelectedBlock = new TextBlockModel
+                    {
+                        Selected = true,
+                        BlockName = "Text Block #1",
+                        Texts = new ObservableCollection<ImageText>()
+                    };
+
+                    TextBlocks.Add(SelectedBlock);
+                }
 
                 SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
 
                 SelectedImage = new ImageModel();
 
-                //ScreenshotText.Clear();
+                NamesToReplace.Clear();
             }
             catch (Exception ex)
             {
@@ -297,6 +317,11 @@ namespace GTAWorld_Screenshot_Editor
                     return;
 
                 var cache = (CacheScreenshot)obj;
+
+                cache = ScreenCache.FirstOrDefault(fod => fod.Guid == cache.Guid);
+
+                if(cache == null)
+                    return;
 
                 TextBlocks = cache.TextBlocks;
 
@@ -648,17 +673,6 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
-        //private string _parsedChat = string.Empty;
-
-        ///// <summary>
-        ///// Chat that was pulled or written manually
-        ///// </summary>
-        //public string ParsedChat
-        //{
-        //    get => _parsedChat;
-        //    set { _parsedChat = value; OnPropertyChanged(); }
-        //}
-
         private int _lineHeight = 1;
 
         /// <summary>
@@ -672,6 +686,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private ObservableCollection<TextBlockModel> _textBlocks = new ObservableCollection<TextBlockModel>();
 
+        /// <summary>
+        /// Blocks of Text that contain the parsed chat and colros
+        /// </summary>
         public ObservableCollection<TextBlockModel> TextBlocks
         {
             get => _textBlocks;
@@ -680,6 +697,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private TextBlockModel _selectedBlock = new TextBlockModel();
 
+        /// <summary>
+        /// Currently selected Text Block
+        /// </summary>
         public TextBlockModel SelectedBlock
         {
             get => _selectedBlock;
@@ -789,6 +809,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private ObservableCollection<NamesToReplace> _namesToReplace = new ObservableCollection<NamesToReplace>();
 
+        /// <summary>
+        /// List of names to remove from the parsed chat in selected text block
+        /// </summary>
         public ObservableCollection<NamesToReplace> NamesToReplace
         {
             get => _namesToReplace;
@@ -797,6 +820,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private NamesToReplace _nameToReplace = new NamesToReplace();
 
+        /// <summary>
+        /// Selected Name
+        /// </summary>
         public NamesToReplace NameToReplace
         {
             get => _nameToReplace;
@@ -805,6 +831,9 @@ namespace GTAWorld_Screenshot_Editor
 
         private System.Windows.Controls.ListView _namesList;
 
+        /// <summary>
+        /// List of names
+        /// </summary>
         public System.Windows.Controls.ListView NamesList
         {
             get => _namesList;
@@ -837,6 +866,13 @@ namespace GTAWorld_Screenshot_Editor
 
         #region Private Methods
 
+        private void DebugInit()
+        {
+#if DEBUG
+            File.Delete("./parser.cfg");
+#endif
+        }
+
         /// <summary>
         /// Initialize Filters, load saved filter file if exits, otherwise create new file
         /// </summary>
@@ -856,15 +892,23 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Name = "Emote",
                     Filter =
-                        @"^(\*|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
+                        @"^(\*|\* .* \(\() ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)|^\* ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))'s .*$",
+                    Selected = true
+                },
+
+                new Criteria
+                {
+                    Name = "Action",
+                    Filter = @"^\* .* \(\([\p{L}]+ {0,1}([\p{L}]+){0,1}\)\)\*$",
                     Selected = true
                 },
 
                 new Criteria
                 {
                     Name = "Above Emote",
-                    Filter = @"^(\> .*)((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1}))( .*$|\)\)\*$)",
-                    Selected = true
+                    Filter =
+                        @"^> ((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})).*$",
+                    Selected = false
                 },
 
                 new Criteria
@@ -1081,8 +1125,13 @@ namespace GTAWorld_Screenshot_Editor
                 str = Regex.Replace(str,
                     @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
 
+                if (str.StartsWith("[!]"))
+                    str = str.Replace("[!] ", string.Empty);
+
                 //if string missing '.' at end, add it.
-                if (line.EndsWith("$xxxx") || (!line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") && !line.EndsWith("?!")))
+                if (line.EndsWith("$xxxx")
+                    || !line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") &&
+                    !line.EndsWith("?!") && !Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter))
                     str = $"{line.TrimEnd(' ')}.";
 
                 //new line marker, last line does not receive new line command
@@ -1143,7 +1192,6 @@ namespace GTAWorld_Screenshot_Editor
                 txt.Effect.ShadowDepth = SelectedResolution.Height * (0.18 / 100);
 
                 //add line to collection to dispaly on image
-                //ScreenshotText.Add(txt);
                 SelectedBlock.Texts.Add(txt);
 
                 //count line
@@ -1176,11 +1224,15 @@ namespace GTAWorld_Screenshot_Editor
                         .Replace(")", string.Empty);
             }
 
-            //emote
+            //emote / action
             // ReSharper disable once PossibleNullReferenceException
-            if (Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Emote")).Filter))
+            if (Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter) ||
+                // ReSharper disable once PossibleNullReferenceException
+                Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Emote")).Filter) ||
+                // ReSharper disable once PossibleNullReferenceException
+                Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Above Emote")).Filter))
             {
-                return "#bea3d6";//purple
+                return "#bea3d6"; //purple
             }
 
             //low speech
@@ -1259,8 +1311,6 @@ namespace GTAWorld_Screenshot_Editor
                 Command = DeleteCachedImageCommand
             };
 
-            ScreenCache.Add(cached);
-
             var cacheDir = @"cached_screens";
 
             if (!Directory.Exists(cacheDir))
@@ -1279,6 +1329,10 @@ namespace GTAWorld_Screenshot_Editor
             cached.Text = TextSettings;
 
             cached.Resolution = SelectedResolution;
+
+            cached.TextBlocks = TextBlocks;
+
+            ScreenCache.Add(cached);
 
             ScreenCache =
                 new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));

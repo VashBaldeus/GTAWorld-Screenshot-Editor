@@ -321,10 +321,10 @@
                                 <xctk:DropDownButton Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="11"
                                                      Content="NAMES TO HIDE">
                                     <xctk:DropDownButton.DropDownContent>
-                                        <Grid Width="512" Height="768" Margin="10">
+                                        <Grid Width="512" Margin="10">
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="Auto"/>
-                                                <RowDefinition Height="700"/>
+                                                <RowDefinition Height="600"/>
                                             </Grid.RowDefinitions>
 
                                             <Grid Grid.Row="0" Margin="0 0 0 10">
