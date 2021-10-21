@@ -4,20 +4,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Management;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Serialization;
@@ -231,6 +227,11 @@ namespace ExtensionMethods
             return !spaces ? $"{start}{txt}{end}" : $"{start} {txt} {end}";
         }
 
+        /// <summary>
+        /// Get day suffix (i.e. 31st, 2nd, 3rd, 4th)
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
         public static string GetDaySuffix(this DateTime date)
         {
             switch (date.Day)
@@ -450,7 +451,6 @@ namespace ExtensionMethods
             }
         }
     }
-
 
     #region XML
 
@@ -798,29 +798,33 @@ namespace ExtensionMethods
 
     #region Check Another Instance
 
-    public static class DuplicateProcess
+    public static class DuplicateProgramInstance
     {
-        public static bool Check()
+        /// <summary>
+        /// Checks for open duplicate instances of program,
+        /// notifies user if so.
+        /// </summary>
+        public static void Check(string applicationName = "")
         {
+#if !DEBUG
             var currentProcess = Process.GetCurrentProcess();
 
-            var runningProcess = (from process in Process.GetProcesses()
+            var runningProcess =
+            (
+                from process in Process.GetProcesses()
+                where process.Id != currentProcess.Id &&
+                      process.ProcessName.Equals(currentProcess.ProcessName, StringComparison.Ordinal)
+                select process
+            ).FirstOrDefault();
 
-                where
-                    process.Id != currentProcess.Id &&
-                    process.ProcessName.Equals(
-                        currentProcess.ProcessName,
-                        StringComparison.Ordinal)
-                select process).FirstOrDefault();
-
-            if (runningProcess == null) return false;
+            if (runningProcess == null) return;
 
             MessageBox.Show(
-                "Another instance of the application is already running, please close it before opening another.",
-                "Another instance found", MessageBoxButton.OK, MessageBoxImage.Information);
+                $"Another instance of {(string.IsNullOrEmpty(applicationName) ? "the application" : $"'{applicationName}'")} is already running, please close it before opening another.",
+                "Duplicate instance found...", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            return true;
-
+            Environment.Exit(0);
+#endif
         }
     }
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,11 +13,13 @@ using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using FileMode = System.IO.FileMode;
 
-namespace GTAWorld_Screenshot_Editor
+namespace GTAWorld_Screenshot_Editor.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    // ReSharper disable once UnusedMember.Global
+    // ReSharper disable once RedundantExtendsListEntry
     public partial class MainWindow : MetroWindow
     {
         private string _version;
@@ -26,6 +27,8 @@ namespace GTAWorld_Screenshot_Editor
         public MainWindow()
         {
             InitializeComponent();
+
+            DuplicateProgramInstance.Check(this.Title);
 
             CheckForUpdate();
         }
@@ -38,7 +41,7 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                AutoUpdater.AppTitle = "GTAWorld Screenshot Editor";
+                AutoUpdater.AppTitle = this.Title;
 
                 AutoUpdater.Synchronous = true;
 
@@ -71,9 +74,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 AutoUpdater.CheckForUpdateEvent += delegate (UpdateInfoEventArgs args)
                 {
-                    if (args == null) return;
-
-                    if (!args.IsUpdateAvailable) return;
+                    if (!(args is { IsUpdateAvailable: true })) return;
 
                     try
                     {
@@ -135,10 +136,6 @@ namespace GTAWorld_Screenshot_Editor
                     return;
 
                 dc.SelectedBlock.Margin = new Thickness(point.X, point.Y, 0, 0);
-
-                //ScreenshotTextControl.SetValue(Canvas.LeftProperty, point.X);
-                //ScreenshotTextControl.SetValue(Canvas.TopProperty, point.Y);
-                //TestButton.Margin = new Thickness(point.X, point.Y, 0, 0);
             }
         }
 
@@ -149,18 +146,20 @@ namespace GTAWorld_Screenshot_Editor
             if (dc == null)
                 return;
 
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-                // Note that you can have more than one file.
-                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            if (!e.Data.GetDataPresent(DataFormats.FileDrop)) return;
 
-                if (files.Length > 1)
-                    return;
+            // Note that you can have more than one file.
+            var files = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-                // Assuming you have one file that you care about, pass it off to whatever
-                // handling code you have defined.
-                dc.DragDropCommand.Execute(files[0]);
-            }
+            if (files == null)
+                return;
+
+            if (files.Length > 1)
+                return;
+
+            // Assuming you have one file that you care about, pass it off to whatever
+            // handling code you have defined.
+            dc.DragDropCommand.Execute(files[0]);
         }
 
         private void ChatFilterExpander_OnExpanded(object sender, RoutedEventArgs e)
@@ -172,17 +171,17 @@ namespace GTAWorld_Screenshot_Editor
             try
             {
                 //get source button name
-                var control = (e.Source as Button).Name;
+                var control = (e.Source as Button)?.Name;
 
                 //picture canvas
                 var source = ScreenshotCanvas;
             
                 //variables for saving size
-                double Height, renderHeight, Width, renderWidth;
+                double renderHeight, renderWidth;
 
                 //assign sizes
-                Height = renderHeight = source.RenderSize.Height;
-                Width = renderWidth = source.RenderSize.Width;
+                var height = renderHeight = source.RenderSize.Height;
+                var width = renderWidth = source.RenderSize.Width;
 
                 //Specification for target bitmap like width/height pixel etc.
                 var renderTarget = new RenderTargetBitmap((int)renderWidth, (int)renderHeight, 96, 96, PixelFormats.Pbgra32);
@@ -195,7 +194,7 @@ namespace GTAWorld_Screenshot_Editor
                 using (var drawingContext = drawingVisual.RenderOpen())
                 {
                     //draws image of element
-                    drawingContext.DrawRectangle(visualBrush, null, new Rect(new Point(0, 0), new Point(Width, Height)));
+                    drawingContext.DrawRectangle(visualBrush, null, new Rect(new Point(0, 0), new Point(width, height)));
                 }
 
                 //renders image
@@ -228,10 +227,9 @@ namespace GTAWorld_Screenshot_Editor
                         return;
 
                     //save file locally
-                    using (var stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write))
-                    {
-                        encoder.Save(stream);
-                    }
+                    using var stream = new FileStream(saveDialog.FileName, FileMode.Create, FileAccess.Write);
+
+                    encoder.Save(stream);
                 }
             }
             catch (Exception ex)
@@ -269,11 +267,6 @@ namespace GTAWorld_Screenshot_Editor
             //delete temp file folder
             var dir = new DirectoryInfo(dirPath);
             dir.Delete(true);
-        }
-
-        private void AddNameToRemove_OnClick(object sender, RoutedEventArgs e)
-        {
-            NamesToRemoveList.SelectedIndex = -1;
         }
     }
 }

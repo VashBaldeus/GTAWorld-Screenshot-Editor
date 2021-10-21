@@ -866,6 +866,9 @@ namespace GTAWorld_Screenshot_Editor
 
         #region Private Methods
 
+        /// <summary>
+        /// Debugging method for testing and custom actions.
+        /// </summary>
         private void DebugInit()
         {
 #if DEBUG
@@ -936,7 +939,7 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Selected = true,
                     Name = "Items",
-                    Filter = @"^You (gave|received) ([\p{L}]+)(?<AMOUNT>[\d.,]+){0,1}(\s){0,1}([\p{L}]+){0,1}(\s){0,1}(?<AMOUNT>[\d.,]+){0,1}\((?<AMOUNT>[\d.,]+)\) (to|from) ([\p{L}]+ [\p{L}]+).$"
+                    Filter = @"^You (gave|received) (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (to|from) ([\p{L}]+ [\p{L}]+).$"
                 },
 
                 new Criteria
@@ -1131,6 +1134,7 @@ namespace GTAWorld_Screenshot_Editor
                 //if string missing '.' at end, add it.
                 if (line.EndsWith("$xxxx")
                     || !line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") &&
+                    // ReSharper disable once PossibleNullReferenceException
                     !line.EndsWith("?!") && !Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter))
                     str = $"{line.TrimEnd(' ')}.";
 
@@ -1147,14 +1151,14 @@ namespace GTAWorld_Screenshot_Editor
                 // ReSharper disable once PossibleNullReferenceException
                 if (Regex.IsMatch(str, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Payments")).Filter))
                 {
-                    str = Regex.Replace(str, @"(?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+)", "$xxxx");
+                    str = Regex.Replace(str, @"(?<SYMBOL>[$]){1}(?<AMOUNT>[\d,]+)", "$xxxx");
                 }
 
                 //replace given/received item amount with '(x)'
                 // ReSharper disable once PossibleNullReferenceException
                 if (Regex.IsMatch(str, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter))
                 {
-                    str = Regex.Replace(str, @"\((?<AMOUNT>[\d.]+)\)", "(x)");
+                    str = Regex.Replace(str, @"(\((?<AMOUNT>[\d]+)\)|(?<AMOUNT>[\d]+))", "(x)");
                 }
 
                 //check if line contains a player name that was chosen to remove
