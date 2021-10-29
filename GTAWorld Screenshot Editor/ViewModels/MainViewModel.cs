@@ -12,6 +12,7 @@ using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
 using Clipboard = System.Windows.Clipboard;
 using Message = ExtensionMethods.Message;
@@ -95,8 +96,6 @@ namespace GTAWorld_Screenshot_Editor
                 InitCachedScreenshots();
 
                 ResetCommand.Execute(null);
-
-                DebugExecute();
 
                 SelectedBlock = new TextBlockModel
                 {
@@ -226,7 +225,7 @@ namespace GTAWorld_Screenshot_Editor
             try
             {
                 //save parser filter changes
-                Xml.Serialize<ObservableCollection<Criteria>>(@"./parser.cfg", ParserSettings);
+                Xml.Serialize<ParserSettingsModel>(@"./parser.cfg", ParserSettings);
 
                 ChatParser.InitializeServerIp();
 
@@ -247,8 +246,8 @@ namespace GTAWorld_Screenshot_Editor
 
                 //filter chatlog based on selections
                 SelectedBlock.ParsedChat =
-                    ChatParser.TryToFilter(SelectedBlock.ParsedChat, ParserSettings.ToList(),
-                        ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)")?.Selected ?? false);
+                    ChatParser.TryToFilter(SelectedBlock.ParsedChat, ParserSettings.Filters.ToList(),
+                        ParserSettings.Filters.FirstOrDefault(fod => fod.Name == "Other (non listed)")?.Selected ?? false);
                 
                 //reset rtf textbox line height
                 LineHeight = 1;
@@ -265,6 +264,9 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                //save parser filter changes
+                Xml.Serialize<ParserSettingsModel>(@"./parser.cfg", ParserSettings);
+
                 GenerateText();
             }
             catch (Exception ex)
@@ -313,10 +315,14 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                ResetCommand.Execute(null);
+
                 if (obj == null)
                     return;
 
                 var cache = (CacheScreenshot)obj;
+
+                InitCachedScreenshots();
 
                 cache = ScreenCache.FirstOrDefault(fod => fod.Guid == cache.Guid);
 
@@ -334,6 +340,8 @@ namespace GTAWorld_Screenshot_Editor
                 SelectedImage.ResizeImage(SelectedResolution.Width, SelectedResolution.Height);
 
                 TextSettings = cache.Text;
+
+                NamesToReplace = cache.NamesToCensor;
 
                 foreach (var txt in TextBlocks)
                 {
@@ -514,10 +522,13 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                //save parser filter changes
+                Xml.Serialize<ParserSettingsModel>(@"./parser.cfg", ParserSettings);
+
                 //filter chatlog based on selections
                 SelectedBlock.ParsedChat =
-                    ChatParser.TryToFilter(SelectedBlock.ParsedChat, ParserSettings.ToList(),
-                        ParserSettings.FirstOrDefault(fod => fod.Name == "Other (non listed)")?.Selected ?? false);
+                    ChatParser.TryToFilter(SelectedBlock.ParsedChat, ParserSettings.Filters.ToList(),
+                        ParserSettings.Filters.FirstOrDefault(fod => fod.Name == "Other (non listed)")?.Selected ?? false);
 
                 //reset rtf textbox line height
                 LineHeight = 1;
@@ -717,12 +728,12 @@ namespace GTAWorld_Screenshot_Editor
             }
         }
 
-        private ObservableCollection<Criteria> _parserSettings;
+        private ParserSettingsModel _parserSettings = new ParserSettingsModel();
 
         /// <summary>
         /// Parser filter settings and patterns
         /// </summary>
-        public ObservableCollection<Criteria> ParserSettings
+        public ParserSettingsModel ParserSettings
         {
             get => _parserSettings;
             set { _parserSettings = value; OnPropertyChanged(); }
@@ -881,7 +892,7 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private void InitFilters()
         {
-            ParserSettings = new ObservableCollection<Criteria>
+            ParserSettings.Filters = new ObservableCollection<Criteria>
             {
                 new Criteria
                 {
@@ -1000,9 +1011,9 @@ namespace GTAWorld_Screenshot_Editor
             //load parser settings else create new file
             if (File.Exists(@"./parser.cfg"))
             {
-                ParserSettings = Xml.Deserialize<ObservableCollection<Criteria>>(@"./parser.cfg");
+                ParserSettings = Xml.Deserialize<ParserSettingsModel>(@"./parser.cfg");
             }
-            else Xml.Serialize<ObservableCollection<Criteria>>(@"./parser.cfg", ParserSettings);
+            else Xml.Serialize<ParserSettingsModel>(@"./parser.cfg", ParserSettings);
         }
 
         /// <summary>
@@ -1089,17 +1100,6 @@ namespace GTAWorld_Screenshot_Editor
         }
 
         /// <summary>
-        /// Used for debugging during development
-        /// </summary>
-        private void DebugExecute()
-        {
-#if DEBUG
-            if(File.Exists(@"parser.cfg"))
-                File.Delete(@"parser.cfg");
-#endif
-        }
-
-        /// <summary>
         /// Generates text on image
         /// </summary>
         private void GenerateText()
@@ -1125,9 +1125,11 @@ namespace GTAWorld_Screenshot_Editor
                     str = $"{line.TrimEnd('\\')}.";
                 }
 
+                //remove datetime from line end
                 str = Regex.Replace(str,
                     @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
 
+                //remove highlight from line
                 if (str.StartsWith("[!]"))
                     str = str.Replace("[!] ", string.Empty);
 
@@ -1135,7 +1137,7 @@ namespace GTAWorld_Screenshot_Editor
                 if (line.EndsWith("$xxxx")
                     || !line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") &&
                     // ReSharper disable once PossibleNullReferenceException
-                    !line.EndsWith("?!") && !Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter))
+                    !line.EndsWith("?!") && !Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter))
                     str = $"{line.TrimEnd(' ')}.";
 
                 //new line marker, last line does not receive new line command
@@ -1147,16 +1149,18 @@ namespace GTAWorld_Screenshot_Editor
                 //if manually color exists, remove it
                 str = $"{str.Replace($"({color})", string.Empty).TrimEnd(' ')}{newLine}";
 
-                //replace payment amount with '$xxxx' ()
+                //replace given/received payment amount with '$xxxx'
                 // ReSharper disable once PossibleNullReferenceException
-                if (Regex.IsMatch(str, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Payments")).Filter))
+                if (Regex.IsMatch(str, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Payments")).Filter)
+                    && ParserSettings.DoNotCensor.Money)
                 {
                     str = Regex.Replace(str, @"(?<SYMBOL>[$]){1}(?<AMOUNT>[\d,]+)", "$xxxx");
                 }
 
                 //replace given/received item amount with '(x)'
                 // ReSharper disable once PossibleNullReferenceException
-                if (Regex.IsMatch(str, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter))
+                if (Regex.IsMatch(str, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter)
+                    && ParserSettings.DoNotCensor.Items)
                 {
                     str = Regex.Replace(str, @"(\((?<AMOUNT>[\d]+)\)|(?<AMOUNT>[\d]+))", "(x)");
                 }
@@ -1169,34 +1173,29 @@ namespace GTAWorld_Screenshot_Editor
                     str = str.Replace(name.LastName, name.Mask);
                 }
 
-                var txt = new ImageText();
-
-                //set line text
-                txt.String = str;
-
-                //set foreground of line
-                txt.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(color);
-
-                // select font size based on selected resolution
-                // if resolution smaller than 960, will use 960 for font base
-                txt.FontSize = SelectedResolution.Height < 960
-                    ? 960 * (1.6 / 100)
-                    : SelectedResolution.Height * (1.6 / 100);
-
-                //line shadow opacity
-                txt.Effect.Opacity = SelectedResolution.Height * (0.18 / 100);
-
-                //line shadow blur radius
-                txt.Effect.BlurRadius = SelectedResolution.Height * (0.18 / 100);
-
-                //line shadow direction
-                txt.Effect.Direction = SelectedResolution.Height * (0.18 / 100);
-
-                //line shadow depth
-                txt.Effect.ShadowDepth = SelectedResolution.Height * (0.18 / 100);
+                var effectValue = SelectedResolution.Height * (0.18 / 100);
 
                 //add line to collection to dispaly on image
-                SelectedBlock.Texts.Add(txt);
+                SelectedBlock.Texts.Add(
+                    new ImageText
+                    {
+                        String = str,
+
+                        Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(color),
+
+                        FontSize = SelectedResolution.Height < 960
+                            ? 960 * (1.6 / 100)
+                            : SelectedResolution.Height * (1.6 / 100),
+
+                        Effect = new DropShadowEffect
+                        {
+                            Opacity = effectValue,
+                            BlurRadius = effectValue,
+                            Direction = effectValue,
+                            ShadowDepth = effectValue,
+                        }
+                    }
+                );
 
                 //count line
                 lineCount++;
@@ -1212,29 +1211,21 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private string GetColor(string line)
         {
-            // Detect if line starts with hex color code
-            // If found, pull it out and remove from line,
-            // return hex-color code to paint this line.
-            var eightHex = Regex.IsMatch(line, @"^\(#(?:[0-9a-fA-F]{4}){1,2}\)", RegexOptions.IgnoreCase);
-
-            if (eightHex || Regex.IsMatch(line, @"^\(#(?:[0-9a-fA-F]{3}){1,2}\)", RegexOptions.IgnoreCase))
+            //custom color code per line, example: (#178ccc)John Smith says: test.
+            if (Regex.IsMatch(line, @"^(\(#(?:[0-9a-fA-F]{4}){1,2}\)|\(#(?:[0-9a-fA-F]{3}){1,2}\))", RegexOptions.IgnoreCase))
             {
-                return eightHex
-                    ? Regex.Matches(line, @"^\(#(?:[0-9a-fA-F]{4}){1,2}\)")[0].Value
-                        .Replace("(", string.Empty)
-                        .Replace(")", string.Empty)
-                    : Regex.Matches(line, @"^\(#(?:[0-9a-fA-F]{3}){1,2}\)")[0].Value
+                return Regex.Matches(line, @"^(\(#(?:[0-9a-fA-F]{4}){1,2}\)|\(#(?:[0-9a-fA-F]{3}){1,2}\))")[0].Value
                     .Replace("(", string.Empty)
-                        .Replace(")", string.Empty);
+                    .Replace(")", string.Empty);
             }
 
-            //emote / action
+            //emote / action / above emote
             // ReSharper disable once PossibleNullReferenceException
-            if (Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter) ||
+            if (Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Action")).Filter) ||
                 // ReSharper disable once PossibleNullReferenceException
-                Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Emote")).Filter) ||
+                Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Emote")).Filter) ||
                 // ReSharper disable once PossibleNullReferenceException
-                Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Above Emote")).Filter))
+                Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Above Emote")).Filter))
             {
                 return "#bea3d6"; //purple
             }
@@ -1247,9 +1238,9 @@ namespace GTAWorld_Screenshot_Editor
 
             //money & item transfers
             // ReSharper disable once PossibleNullReferenceException
-            if (Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Payments")).Filter)
+            if (Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Payments")).Filter)
                 // ReSharper disable once PossibleNullReferenceException
-                || Regex.IsMatch(line, ParserSettings.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter))
+                || Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter))
             {
                 return "#29943e";//green
             }
@@ -1305,8 +1296,7 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private void CacheCurrentImageAndText()
         {
-            if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0 || string.IsNullOrEmpty(SelectedImage.Path))
-                return;
+            var cacheDir = @"cached_screens";
 
             var cached = new CacheScreenshot
             {
@@ -1315,20 +1305,28 @@ namespace GTAWorld_Screenshot_Editor
                 Command = DeleteCachedImageCommand
             };
 
-            var cacheDir = @"cached_screens";
-
             if (!Directory.Exists(cacheDir))
                 Directory.CreateDirectory(cacheDir);
 
-            var suffix = SelectedImage.Path.Split('.').OrderByDescending(obd => obd).ToList();
+            if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0 || string.IsNullOrEmpty(SelectedImage.Path))
+            {
+                cached = ScreenCache.FirstOrDefault(fod => fod.Guid == SelectedImage.Guid);
+            }
+            else
+            {
+                var suffix = SelectedImage.Path.Split('.').OrderByDescending(obd => obd).ToList();
 
-            var fileName = $@"{cacheDir}\screenshot_{cached.ScreenshotDate:yyyyMMdd_hhmmss}.{suffix[0]}";
+                var fileName = $@"{cacheDir}\screenshot_{cached.ScreenshotDate:yyyyMMdd_hhmmss}.{suffix[0]}";
 
-            File.Copy(SelectedImage.Path, fileName);
+                File.Copy(SelectedImage.Path, fileName);
 
-            cached.ImageFilePath = fileName;
+                cached.ImageFilePath = fileName;
 
-            cached.InitImage();
+                cached.InitImage();
+            }
+
+            if (cached == null)
+                return;
 
             cached.Text = TextSettings;
 
@@ -1336,7 +1334,11 @@ namespace GTAWorld_Screenshot_Editor
 
             cached.TextBlocks = TextBlocks;
 
-            ScreenCache.Add(cached);
+            cached.NamesToCensor = NamesToReplace;
+
+            if (!(ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0 ||
+                  string.IsNullOrEmpty(SelectedImage.Path)))
+                ScreenCache.Add(cached);
 
             ScreenCache =
                 new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));

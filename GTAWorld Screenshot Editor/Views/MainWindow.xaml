@@ -226,25 +226,25 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="Auto"/>
                                                     <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="Auto"/>
                                                 </Grid.RowDefinitions>
+
+                                                <Grid.Resources>
+                                                    <Style TargetType="{x:Type mah:ToggleSwitch}">
+                                                        <Setter Property="FontFamily" Value="Arial" />
+                                                        <Setter Property="FontSize" Value="15" />
+                                                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                                                        <Setter Property="Foreground"
+                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
+                                                    </Style>
+                                                </Grid.Resources>
 
                                                 <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
 
                                                 <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
                                                           HorizontalScrollBarVisibility="Disabled">
-                                                    <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                    <ItemsControl ItemsSource="{Binding ParserSettings.Filters, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                                                               MaxWidth="512">
-
-                                                        <ItemsControl.Resources>
-                                                            <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                                <Setter Property="FontFamily" Value="Arial" />
-                                                                <Setter Property="FontSize" Value="15" />
-                                                                <Setter Property="VerticalContentAlignment" Value="Center" />
-                                                                <Setter Property="Foreground"
-                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                            </Style>
-                                                        </ItemsControl.Resources>
-
                                                         <ItemsControl.ItemsPanel>
                                                             <ItemsPanelTemplate>
                                                                 <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
@@ -261,6 +261,21 @@
                                                         </ItemsControl.ItemTemplate>
                                                     </ItemsControl>
                                                 </ScrollViewer>
+
+                                                <Grid Grid.Row="2">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <mah:ToggleSwitch Grid.Column="0" Content="Censor Money"
+                                                                      HorizontalAlignment="Center"
+                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Money}"/>
+
+                                                    <mah:ToggleSwitch Grid.Column="1" Content="Censor Items"
+                                                                      HorizontalAlignment="Center"
+                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Items}"/>
+                                                </Grid>
                                             </Grid>
                                         </xctk:DropDownButton.DropDownContent>
                                     </xctk:DropDownButton>

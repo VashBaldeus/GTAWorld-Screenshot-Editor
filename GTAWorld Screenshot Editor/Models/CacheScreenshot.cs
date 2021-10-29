@@ -67,6 +67,14 @@ namespace GTAWorld_Screenshot_Editor.Models
             get => _res;
             set { _res = value; OnPropertyChanged(); }
         }
+
+        private ObservableCollection<NamesToReplace> _namesToCensor = new ObservableCollection<NamesToReplace>();
+
+        public ObservableCollection<NamesToReplace> NamesToCensor
+        {
+            get => _namesToCensor;
+            set { _namesToCensor = value; OnPropertyChanged(); }
+        }
         
         [XmlIgnore]
         public ICommand Command { get; set; }

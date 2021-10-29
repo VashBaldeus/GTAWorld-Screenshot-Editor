@@ -89,6 +89,7 @@
     <Compile Include="Controllers\OcrService.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Models\CacheScreenshot.cs" />
+    <Compile Include="Models\DoNotCensorModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\NamesToReplace.cs" />
     <Compile Include="Models\ParserSettings.cs" />
