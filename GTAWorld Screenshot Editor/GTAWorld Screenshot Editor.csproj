@@ -87,6 +87,7 @@
     <Compile Include="Controllers\Interfaces\IDialogService.cs" />
     <Compile Include="Controllers\Interfaces\IOcrService.cs" />
     <Compile Include="Controllers\OcrService.cs" />
+    <Compile Include="Converters\BooleanToSolidColorBrush.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Models\CacheScreenshot.cs" />
     <Compile Include="Models\DoNotCensorModel.cs" />
@@ -132,9 +133,7 @@
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\AppIcon.ico" />
     <Resource Include="Resources\Logo.png" />

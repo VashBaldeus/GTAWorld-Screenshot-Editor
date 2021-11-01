@@ -42,6 +42,21 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _parsedChat = value; OnPropertyChanged(); }
         }
 
+        private bool _backgroundOpacity;
+
+        public bool BlackBackgroundOpacity
+        {
+            get => _backgroundOpacity;
+            set
+            {
+                _backgroundOpacity = value;
+                OnPropertyChanged();
+
+                if(Texts.Count > 0)
+                    Texts.ForEach(fe => fe.BlackBackgroundOpacity = value);
+            }
+        }
+
         private ObservableCollection<ImageText> _texts = new ObservableCollection<ImageText>();
         
         [XmlIgnore]
@@ -136,6 +151,14 @@ namespace GTAWorld_Screenshot_Editor.Models
         {
             get => _effect;
             set { _effect = value; OnPropertyChanged(); }
+        }
+
+        private bool _backgroundOpacity;
+
+        public bool BlackBackgroundOpacity
+        {
+            get => _backgroundOpacity;
+            set { _backgroundOpacity = value; OnPropertyChanged(); }
         }
     }
 }

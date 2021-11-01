@@ -73,6 +73,8 @@ namespace GTAWorld_Screenshot_Editor
             SaveCacheCommand = new RelayCommand(SaveCacheExecute);
 
             ReplaceNameCommand = new RelayCommand(ReplaceNameExecute);
+
+            RefreshCachedCommand = new RelayCommand(InitCachedScreenshots);
         }
 
         #endregion
@@ -93,7 +95,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 InitResolutions();
 
-                InitCachedScreenshots();
+                InitCachedScreenshots(null);
 
                 ResetCommand.Execute(null);
 
@@ -322,7 +324,7 @@ namespace GTAWorld_Screenshot_Editor
 
                 var cache = (CacheScreenshot)obj;
 
-                InitCachedScreenshots();
+                InitCachedScreenshots(null);
 
                 cache = ScreenCache.FirstOrDefault(fod => fod.Guid == cache.Guid);
 
@@ -661,6 +663,8 @@ namespace GTAWorld_Screenshot_Editor
                 Message.Log(ex);
             }
         }
+
+        public ICommand RefreshCachedCommand { get; set; }
 
         #endregion
 
@@ -1066,7 +1070,7 @@ namespace GTAWorld_Screenshot_Editor
         /// <summary>
         /// Initialize Cached Screenshots collection
         /// </summary>
-        private void InitCachedScreenshots()
+        private void InitCachedScreenshots(object obj)
         {
             try
             {
@@ -1193,7 +1197,9 @@ namespace GTAWorld_Screenshot_Editor
                             BlurRadius = effectValue,
                             Direction = effectValue,
                             ShadowDepth = effectValue,
-                        }
+                        },
+
+                        BlackBackgroundOpacity = SelectedBlock.BlackBackgroundOpacity
                     }
                 );
 
@@ -1296,8 +1302,6 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private void CacheCurrentImageAndText()
         {
-            var cacheDir = @"cached_screens";
-
             var cached = new CacheScreenshot
             {
                 Guid = SelectedImage.Guid,
@@ -1305,18 +1309,23 @@ namespace GTAWorld_Screenshot_Editor
                 Command = DeleteCachedImageCommand
             };
 
-            if (!Directory.Exists(cacheDir))
-                Directory.CreateDirectory(cacheDir);
+            //create cache folder if missing
+            if (!Directory.Exists(CacheScreens))
+                Directory.CreateDirectory(CacheScreens);
 
             if (ScreenCache.Any(a => a.Guid == SelectedImage.Guid) && ScreenCache.Count > 0 || string.IsNullOrEmpty(SelectedImage.Path))
             {
+                //load current image if exists in cache
                 cached = ScreenCache.FirstOrDefault(fod => fod.Guid == SelectedImage.Guid);
+
+                cached?.InitImage();
             }
             else
             {
+                //copy image if new cache image
                 var suffix = SelectedImage.Path.Split('.').OrderByDescending(obd => obd).ToList();
 
-                var fileName = $@"{cacheDir}\screenshot_{cached.ScreenshotDate:yyyyMMdd_hhmmss}.{suffix[0]}";
+                var fileName = $@"{CacheScreens}\screenshot_{cached.ScreenshotDate:yyyyMMdd_hhmmss}.{suffix[0]}";
 
                 File.Copy(SelectedImage.Path, fileName);
 
@@ -1343,7 +1352,7 @@ namespace GTAWorld_Screenshot_Editor
             ScreenCache =
                 new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));
 
-            Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{cacheDir}\screenshots.cache", ScreenCache);
+            Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{CacheScreens}\screenshots.cache", ScreenCache);
         }
 
         /// <summary>

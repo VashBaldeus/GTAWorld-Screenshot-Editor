@@ -93,14 +93,15 @@ namespace GTAWorld_Screenshot_Editor.Models
         {
             if (string.IsNullOrEmpty(ImageFilePath))
                 return;
+            
+            var fs = File.Open(ImageFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
 
-            using (var fs = new FileStream(ImageFullPath, FileMode.Open))
-            {
-                Bitmap.BeginInit();
-                Bitmap.StreamSource = fs;
-                Bitmap.CacheOption = BitmapCacheOption.OnLoad;
-                Bitmap.EndInit();
-            }
+            Bitmap.BeginInit();
+            Bitmap.StreamSource = fs;
+            Bitmap.CacheOption = BitmapCacheOption.OnLoad;
+            Bitmap.EndInit();
+
+            fs.Close();
         }
     }
 }
