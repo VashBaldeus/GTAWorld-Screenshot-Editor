@@ -96,6 +96,8 @@ namespace GTAWorld_Screenshot_Editor.Models
             
             var fs = File.Open(ImageFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
 
+            Bitmap = new BitmapImage();
+
             Bitmap.BeginInit();
             Bitmap.StreamSource = fs;
             Bitmap.CacheOption = BitmapCacheOption.OnLoad;
