@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCacheScreenshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CacheScreenshot>
+    <Guid>9cf0e9ec-c179-4c57-ad67-bbc819df136c-84024c17-03cd-4aae-9ca5-e2cc343130d6</Guid>
+    <ScreenshotDate>2021-11-27T23:29:09.7721771+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211127_112909.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>21</Left>
+          <Top>18.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Shay Ezra says [low]: You Mike.
+Mikhail Argov says [low]: (Hebrew) Had a marathon to run following anti theft tracker. Someone tried ot jack my car.
+Shay Ezra says [low]: (Hebrew) Why you sweating like that, ahi?
+* Ryan Amsalem eyes Mikhail, perking a brow.
+Mikhail Argov says [low]: (Hebrew) No idea who it was, I maanged to shut the engine and track it.
+Mikhail Argov says [low]: (Hebrew) Yes, Ryan some cunt stole it outfront your crib.
+Shay Ezra says [low]: (Hebrew) Beni zonot, annoying kids...
+Ryan Amsalem says [low]: (Hebrew) There are cameras. We will try to get the footage later.
+Shay Ezra says [low]: (Hebrew) At least you caught his face or something?
+Mikhail Argov says [low]: (Hebrew) No, found the car empty.
+Mikhail Argov says [low]: (Hebrew) If I would've found the cunt I'd be probably covered in blood.
+Shay Ezra says: l Baduk.
+Ryan Amsalem says [low]: Ruthless.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>d3d3e65a-8108-435e-81ce-20449847232c-b19d6974-d70a-4a44-9047-a1c33f91ec0f</Guid>
+    <ScreenshotDate>2021-11-06T15:12:40.2381406+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211106_031240.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>348</Left>
+          <Top>605.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov: toast.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>3264</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>4k</Name>
+      <Width>3840</Width>
+      <Height>2160</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>c8a069b2-c2bd-4c64-a768-7a9d9a77b3ff-924b02df-d029-45ac-8944-8c9b099546c5</Guid>
+    <ScreenshotDate>2021-11-06T15:11:05.8465749+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211106_031105.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>336</Left>
+          <Top>607.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov: toast.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>3264</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>4k</Name>
+      <Width>3840</Width>
+      <Height>2160</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+</ArrayOfCacheScreenshot>

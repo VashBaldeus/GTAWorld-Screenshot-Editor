@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -120,19 +121,18 @@ namespace GTAWorld_Screenshot_Editor
                 log = log.TrimEnd('\r', '\n');                  // Remove the `new line` characters from the end
 
                 PreviousLog = log;
-                
+
                 //remove timestamps from log
                 log = Regex.Replace(log, @"\[\d{1,2}:\d{1,2}:\d{1,2}\] ", string.Empty);
+
+                //remove '[!] ' highlight on chat lines if any.
+                log = Regex.Replace(log, @"\[!\] ", string.Empty);
 
                 //split log into lines
                 var lines = log.Split(new[] { "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries).ToList();
 
                 //remvoe paid date if you were paid
-                lines.ForEach(fe =>
-                    Regex.Replace(fe, @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty));
-
-                //remove '[!] ' highlight on chat lines if any.
-                lines.ForEach(fe => fe = fe.Replace("[!] ", ""));
+                lines.ForEach(fe => fe = Regex.Replace(fe, @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty));
 
                 //pull only n > 100  or n < 1000 of last lines
                 if (lines.Count > 100)

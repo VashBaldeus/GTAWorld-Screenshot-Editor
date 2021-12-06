@@ -1134,8 +1134,8 @@ namespace GTAWorld_Screenshot_Editor
                     @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
 
                 //remove highlight from line
-                if (str.StartsWith("[!]"))
-                    str = str.Replace("[!] ", string.Empty);
+                //if (str.StartsWith("[!]"))
+                //    str = str.Replace("[!] ", string.Empty);
 
                 //if string missing '.' at end, add it.
                 if (line.EndsWith("$xxxx")
