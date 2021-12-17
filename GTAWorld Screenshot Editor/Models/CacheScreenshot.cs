@@ -89,10 +89,23 @@ namespace GTAWorld_Screenshot_Editor.Models
             set { _bitmap = value; OnPropertyChanged(); }
         }
 
+        [XmlIgnore]
+        private bool _missingImageFile;
+
+        [XmlIgnore]
+        public bool MissingImageFile
+        {
+            get => _missingImageFile;
+            set { _missingImageFile = value; OnPropertyChanged(); }
+        }
+
         public void InitImage()
         {
-            if (string.IsNullOrEmpty(ImageFilePath))
+            if (string.IsNullOrEmpty(ImageFilePath) || !File.Exists(ImageFullPath))
+            {
+                MissingImageFile = true;
                 return;
+            }
             
             var fs = File.Open(ImageFilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
 

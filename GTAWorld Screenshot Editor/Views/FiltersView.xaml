@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="GTAWorld_Screenshot_Editor.Views.FiltersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GTAWorld_Screenshot_Editor.Views"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Margin="2.5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="{x:Type mah:ToggleSwitch}">
+                <Setter Property="FontFamily" Value="Arial" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Accent}" />
+            </Style>
+        </Grid.Resources>
+
+        <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
+                                                          HorizontalScrollBarVisibility="Disabled">
+            <ItemsControl ItemsSource="{Binding ParserSettings.Filters, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+                                                              MaxWidth="512">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <mah:ToggleSwitch Content="{Binding Name}"
+                                                                          IsOn="{Binding Selected}"
+                                                                          Margin="10 0 0 0">
+                        </mah:ToggleSwitch>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <mah:ToggleSwitch Grid.Column="0" Content="Censor Money"
+                                                                      HorizontalAlignment="Center"
+                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Money}"/>
+
+            <mah:ToggleSwitch Grid.Column="1" Content="Censor Items"
+                                                                      HorizontalAlignment="Center"
+                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Items}"/>
+        </Grid>
+    </Grid>
+</UserControl>

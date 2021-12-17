@@ -283,7 +283,12 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                TextSettings = new TextModel();
+                var canvasScale = TextSettings.CanvasScale;
+
+                TextSettings = new TextModel
+                {
+                    CanvasScale = canvasScale
+                };
 
                 if (TextBlocks.Count(w => !string.IsNullOrEmpty(w.ParsedChat)) > 0)
                 {
@@ -298,8 +303,6 @@ namespace GTAWorld_Screenshot_Editor
 
                     TextBlocks.Add(SelectedBlock);
                 }
-
-                SelectedResolution = Resolutions.FirstOrDefault(fod => fod.Name == "720p");
 
                 SelectedImage = new ImageModel();
 
@@ -323,6 +326,9 @@ namespace GTAWorld_Screenshot_Editor
                     return;
 
                 var cache = (CacheScreenshot)obj;
+
+                if (cache.MissingImageFile)
+                    return;
 
                 InitCachedScreenshots(null);
 
@@ -888,7 +894,13 @@ namespace GTAWorld_Screenshot_Editor
         {
 #if DEBUG
             File.Delete("./parser.cfg");
+
+            //var str = "You placed Pistol Ammo (49) into the property.";
+
+            //Console.WriteLine(
+            //    $"{Regex.IsMatch(str, @"^You placed (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (into the property|in the vehicle).$")}");
 #endif
+
         }
 
         /// <summary>
@@ -954,7 +966,14 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Selected = true,
                     Name = "Items",
-                    Filter = @"^You (gave|received) (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (to|from) ([\p{L}]+ [\p{L}]+).$"
+                    Filter = new[]
+                    {
+                        //given received item regex
+                        @"^You (gave|received) (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (to|from) ([\p{L}]+ [\p{L}]+).$",
+                        //placed item inside vehicle/property
+                        @"|^You placed (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (into the property|in the vehicle).$"
+                        // ReSharper disable once RedundantAssignment
+                    }.Aggregate(string.Empty, (cur, i) => cur += $"{i}")
                 },
 
                 new Criteria
@@ -1095,6 +1114,7 @@ namespace GTAWorld_Screenshot_Editor
                         //images will be kept.
                         throw new Exception($"Your screenshot cache file is corrupted, it has been deleted.\nAny existing images, are within:\n'{StartupDirectory}{CacheScreens}'");
                     }
+                    else Message.Log(e);
                 }
                 catch (Exception exception)
                 {
@@ -1133,10 +1153,6 @@ namespace GTAWorld_Screenshot_Editor
                 str = Regex.Replace(str,
                     @"( \(\d{2}/[A-z]{3}/\d{4} - \d{2}:\d{2}:\d{2}\))", string.Empty);
 
-                //remove highlight from line
-                //if (str.StartsWith("[!]"))
-                //    str = str.Replace("[!] ", string.Empty);
-
                 //if string missing '.' at end, add it.
                 if (line.EndsWith("$xxxx")
                     || !line.EndsWith(".") && !line.EndsWith("?") && !line.EndsWith("!") && !line.EndsWith("!?") &&
@@ -1161,7 +1177,7 @@ namespace GTAWorld_Screenshot_Editor
                     str = Regex.Replace(str, @"(?<SYMBOL>[$]){1}(?<AMOUNT>[\d,]+)", "$xxxx");
                 }
 
-                //replace given/received item amount with '(x)'
+                //replace given/received/stashed item amount with '(x)'
                 // ReSharper disable once PossibleNullReferenceException
                 if (Regex.IsMatch(str, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Items")).Filter)
                     && ParserSettings.DoNotCensor.Items)
@@ -1169,7 +1185,7 @@ namespace GTAWorld_Screenshot_Editor
                     str = Regex.Replace(str, @"(\((?<AMOUNT>[\d]+)\)|(?<AMOUNT>[\d]+))", "(x)");
                 }
 
-                //check if line contains a player name that was chosen to remove
+                //check if line contains a player name that was chosen to hide
                 foreach (var name in NamesToReplace.Where(w => str.Contains(w.Name) || str.Contains(w.FirstName) || str.Contains(w.LastName)))
                 {
                     str = str.Replace(name.Name, name.Mask);

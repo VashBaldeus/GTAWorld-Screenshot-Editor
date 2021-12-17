@@ -73,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\FiltersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -88,6 +92,7 @@
     <Compile Include="Controllers\Interfaces\IOcrService.cs" />
     <Compile Include="Controllers\OcrService.cs" />
     <Compile Include="Converters\BooleanToSolidColorBrush.cs" />
+    <Compile Include="Converters\CountTextBlocksWithText.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Models\CacheScreenshot.cs" />
     <Compile Include="Models\DoNotCensorModel.cs" />
@@ -98,6 +103,9 @@
     <Compile Include="Models\Text.cs" />
     <Compile Include="Models\TextModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="Views\FiltersView.xaml.cs">
+      <DependentUpon>FiltersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

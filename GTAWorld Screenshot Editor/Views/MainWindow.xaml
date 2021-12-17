@@ -11,8 +11,10 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:themes="clr-namespace:Xceed.Wpf.Toolkit.Themes;assembly=Xceed.Wpf.Toolkit"
         xmlns:converters="clr-namespace:GTAWorld_Screenshot_Editor.Converters"
+        xmlns:views="clr-namespace:GTAWorld_Screenshot_Editor.Views"
         mc:Ignorable="d" Loaded="MainWindow_OnLoaded"
-        Title="GTAWorld Screenshot Editor" Height="720" Width="1280"
+        Title="GTAWorld Screenshot Editor"
+        d:DesignHeight="1080" d:DesignWidth="1920"
         Icon="../Resources/screenshot.ico"
         Drop="MainWindow_OnDrop" AllowDrop="True"
         Closed="MainWindow_OnClosed">
@@ -22,6 +24,9 @@
 
     <mah:MetroWindow.Resources>
         <converters:BooleanToSolidColorBrush x:Key="BooleanToSolidColorBrush"/>
+        <converters:CountTextBlocksWithText x:Key="CountTextBlocksWithText"/>
+
+        <views:FiltersView x:Key="FiltersView"/>
     </mah:MetroWindow.Resources>
 
     <Grid>
@@ -228,61 +233,7 @@
                                         <xctk:DropDownButton Content="CHAT FILTERS"
                                                          MaxDropDownHeight="384">
                                             <xctk:DropDownButton.DropDownContent>
-                                                <Grid Margin="2.5">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="Auto"/>
-                                                        <RowDefinition Height="*"/>
-                                                        <RowDefinition Height="Auto"/>
-                                                    </Grid.RowDefinitions>
-
-                                                    <Grid.Resources>
-                                                        <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                            <Setter Property="FontFamily" Value="Arial" />
-                                                            <Setter Property="FontSize" Value="15" />
-                                                            <Setter Property="VerticalContentAlignment" Value="Center" />
-                                                            <Setter Property="Foreground"
-                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                        </Style>
-                                                    </Grid.Resources>
-
-                                                    <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
-
-                                                    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
-                                                          HorizontalScrollBarVisibility="Disabled">
-                                                        <ItemsControl ItemsSource="{Binding ParserSettings.Filters, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                              MaxWidth="512">
-                                                            <ItemsControl.ItemsPanel>
-                                                                <ItemsPanelTemplate>
-                                                                    <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                                                                </ItemsPanelTemplate>
-                                                            </ItemsControl.ItemsPanel>
-
-                                                            <ItemsControl.ItemTemplate>
-                                                                <DataTemplate>
-                                                                    <mah:ToggleSwitch Content="{Binding Name}"
-                                                                          IsOn="{Binding Selected}"
-                                                                          Margin="10 0 0 0">
-                                                                    </mah:ToggleSwitch>
-                                                                </DataTemplate>
-                                                            </ItemsControl.ItemTemplate>
-                                                        </ItemsControl>
-                                                    </ScrollViewer>
-
-                                                    <Grid Grid.Row="2">
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="*"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions>
-
-                                                        <mah:ToggleSwitch Grid.Column="0" Content="Censor Money"
-                                                                      HorizontalAlignment="Center"
-                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Money}"/>
-
-                                                        <mah:ToggleSwitch Grid.Column="1" Content="Censor Items"
-                                                                      HorizontalAlignment="Center"
-                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Items}"/>
-                                                    </Grid>
-                                                </Grid>
+                                                <ContentControl Content="{StaticResource FiltersView}"/>
                                             </xctk:DropDownButton.DropDownContent>
                                         </xctk:DropDownButton>
 
@@ -466,7 +417,7 @@
                                                 <Setter Property="IsEnabled" Value="False"/>
                                             </DataTrigger>
 
-                                            <DataTrigger Binding="{qc:Binding '$P > 0', P={Binding TextBlocks.Count}}" Value="True">
+                                            <DataTrigger Binding="{Binding TextBlocks, Converter={StaticResource CountTextBlocksWithText}}" Value="True">
                                                 <Setter Property="IsEnabled" Value="False"/>
                                             </DataTrigger>
                                         </Style.Triggers>
@@ -484,11 +435,11 @@
                             </Grid.ColumnDefinitions>
 
                             <Button Grid.Column="0" x:Name="SaveLocally" Content="Save Locally" Click="SaveLocally_OnClick" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding TextBlocks.Count}}"
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}"
                                     Command="{Binding SaveCacheCommand}"/>
 
                             <Button x:Name="CopyClipboard" Grid.Column="1" Content="Copy to Clipboard" Click="SaveLocally_OnClick" FontSize="20"
-                                    IsEnabled="{qc:Binding '$P > 0', P={Binding TextBlocks.Count}}"
+                                    IsEnabled="{qc:Binding '$P > 0', P={Binding SelectedImage.Path.Length}}"
                                     Command="{Binding SaveCacheCommand}"/>
 
                             <Button Grid.Column="2" Content="READ IMAGE OCR" Command="{Binding ReadOcrCommand}" FontSize="20"
@@ -613,46 +564,7 @@
                             <xctk:DropDownButton Content="CHAT FILTERS" Grid.Column="3"
                                                          MaxDropDownHeight="384">
                                 <xctk:DropDownButton.DropDownContent>
-                                    <Grid Margin="2.5">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-
-                                        <TextBlock Grid.Row="0" TextAlignment="Center" Text="WHAT YOU SELECT, WILL NOT BE REMOVED!" Margin="0 10 0 10"/>
-
-                                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1"
-                                                          HorizontalScrollBarVisibility="Disabled">
-                                            <ItemsControl ItemsSource="{Binding ParserSettings, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                                                              MaxWidth="512">
-
-                                                <ItemsControl.Resources>
-                                                    <Style TargetType="{x:Type mah:ToggleSwitch}">
-                                                        <Setter Property="FontFamily" Value="Arial" />
-                                                        <Setter Property="FontSize" Value="15" />
-                                                        <Setter Property="VerticalContentAlignment" Value="Center" />
-                                                        <Setter Property="Foreground"
-                                                                Value="{DynamicResource MahApps.Brushes.Accent}" />
-                                                    </Style>
-                                                </ItemsControl.Resources>
-
-                                                <ItemsControl.ItemsPanel>
-                                                    <ItemsPanelTemplate>
-                                                        <WrapPanel IsItemsHost="True" Orientation="Horizontal" />
-                                                    </ItemsPanelTemplate>
-                                                </ItemsControl.ItemsPanel>
-
-                                                <ItemsControl.ItemTemplate>
-                                                    <DataTemplate>
-                                                        <mah:ToggleSwitch Content="{Binding Name}"
-                                                                          IsOn="{Binding Selected}"
-                                                                          Margin="10 0 0 0">
-                                                        </mah:ToggleSwitch>
-                                                    </DataTemplate>
-                                                </ItemsControl.ItemTemplate>
-                                            </ItemsControl>
-                                        </ScrollViewer>
-                                    </Grid>
+                                    <ContentControl Content="{StaticResource FiltersView}"/>
                                 </xctk:DropDownButton.DropDownContent>
                             </xctk:DropDownButton>
 
@@ -730,7 +642,11 @@
 
                                     <Label Content="{Binding ScreenshotDate}" Grid.Column="1" Foreground="White" FontSize="20"/>
 
-                                    <Image Source="{Binding Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" MaxHeight="128"/>
+                                    <Image Source="{Binding Bitmap, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Grid.Column="2" MaxHeight="128"
+                                           Visibility="{qc:Binding '$P ? Visibility.Collapsed : Visibility.Visible', P={Binding MissingImageFile}}"/>
+
+                                    <Label Content="Image File Missing" Grid.Column="2" Foreground="White" FontSize="20"
+                                           Visibility="{qc:Binding '!$P ? Visibility.Collapsed : Visibility.Visible', P={Binding MissingImageFile}}"/>
 
                                     <Button Content="Delete" Command="{Binding Command}" CommandParameter="{Binding}"
                                             Grid.Column="3"/>
