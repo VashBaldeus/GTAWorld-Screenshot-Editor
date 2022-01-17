@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eaTgHJ2C1EXlLRCk9WFM5rzmAIaApSWLNxFjFld4KT5RIMIwrDES6V8HqAcdIdj7UyP5/NvR7xj2LAhHQKyS/Q==",
+  "dgSpecHash": "VGLYLVkgDYmfzXxJi7G6kF+5P4Ezn3CQ9dBdVTjwzp6Hdz5R6NHWX58Wd8POilc8RMQk9bp5HK8f8RN3FO+mAw==",
   "success": true,
   "projectFilePath": "C:\\Users\\xcast\\Documents\\GitHub\\Screenshot_Editor\\GTAWorld Screenshot Editor\\GTAWorld Screenshot Editor.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\xcast\\.nuget\\packages\\costura.fody\\5.6.0\\costura.fody.5.6.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\extended.wpf.toolkit\\4.1.0\\extended.wpf.toolkit.4.1.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\fody\\6.5.3\\fody.6.5.3.nupkg.sha512",
+    "C:\\Users\\xcast\\.nuget\\packages\\htmltoxamlconverter\\1.0.5727.24510\\htmltoxamlconverter.1.0.5727.24510.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\mahapps.metro\\2.4.7\\mahapps.metro.2.4.7.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\mahapps.metro.iconpacks\\4.9.0\\mahapps.metro.iconpacks.4.9.0.nupkg.sha512",
     "C:\\Users\\xcast\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",

@@ -1,0 +1,1112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfCacheScreenshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <CacheScreenshot>
+    <Guid>fc99ca3d-d0bd-4933-abfd-2c2dd988db1a-0bfce24e-79b6-4f34-8363-9025ad8d4801</Guid>
+    <ScreenshotDate>2022-01-18T00:04:16.13382+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220118_120416.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>false</Selected>
+        <Margin>
+          <Left>17</Left>
+          <Top>12.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>
+* Oscar Venegas fishesh out a zip-lock full with Oxycodone pops heanding them to Frank with a smile.
+* Frank Dudas looks over at Oscar.
+Oscar Venegas says: When I said I always got ya back...I mean it mano.
+Frank Dudas says [low]: What I owe ya for these?
+Oscar Venegas says [low]: Five grand.
+Frank Dudas says [low]: I'll need to hit the atm go damn.
+Oscar Venegas says: Sure.
+* Frank Dudas sets the baggie down.
+Frank Dudas says [low]: Wait here.
+
+* Frank Dudas opens the car door before stumbling into it, extends his hand to Oscar, offering him a neatly folded pack of money.
+
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>668</Left>
+          <Top>409.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #2</BlockName>
+        <ParsedChat>You received 20 Oxycodone from Oscar Venegas
+You paid $5,000 to Oscar Venegas.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>4b354960-0380-49e0-a762-51d904fe2ad1-4cb8134b-f952-4a75-aebb-59cc564d86f7</Guid>
+    <ScreenshotDate>2022-01-17T21:42:16.6514642+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220117_094216.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>13</Left>
+          <Top>5.0066666666666606</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Jason Cress goes to work snipping each of the sutures with his shears, ever so slowly removing them so they won't tear away any healthy tissue.
+Frank Dudas says [low]: Plus my hog's messed up, will have to work on that once I get better.
+Jason Cress says [low]: Mm, yup. Time being though, rest up.
+* Jason Cress drops the sutures into a small red biohazard bag after they've been removed. He inspects his handiwork, ensuring none have been left in and the wound is fully closed.
+Frank Dudas says [low]: The stitches you're removing, got them as a result of taking my girl to a bowling alley. Hit that damn score board TV with my head, the ball I had in hand flew on a the lane next to use scoring a strike, I look up the TV's messed up and I got —
+Frank Dudas says [low]: This.
+Jason Cress says [low]: That is.. one hell of a story. I didn't know bowling was a contact sport.
+* Jason Cress chuckles.
+* Frank Dudas grunts as he chuckles along.
+Frank Dudas says [low]: Don't make me laugh.
+Jason Cress says [low]: Yeah, don't do that. I bet that hurts like a bitch.
+Frank Dudas says [low]: A dirty STD infested one.
+* Jason Cress ties off the bag and tosses it into the biohazard bin off to the side with his gloves.
+Jason Cress says: Alright, think we're all set here. Let me know when those stitches on your side are ready to come out. 
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>500</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>c25d2227-2e52-4fbe-9ead-308eef09c8cf-bbe3c923-3f00-420d-9eff-c9ca746a7bfd</Guid>
+    <ScreenshotDate>2022-01-17T21:36:47.4924988+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220117_093647.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>10</Left>
+          <Top>7.0066666666666606</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Frank's torso also scratched up on the hands and torso. ((Frank Dudas))*
+Jason Cress says: Mm, I bet. Get up there and lay on your back if you can. 
+* Frank Dudas slowly grunts as he climbers the slab, lying on his right side.
+Jason Cress says: Alright, so remind me what they told you at Pillbox. Pneumothorax and a few broken ribs?
+Frank Dudas says: Yea', the pne-what-*coughs* it is was patched, there's stitches on my left side.
+Frank Dudas says: The ribs, they said they can't patch cause they don't do casts for torso.
+Frank Dudas says: So painkillers is what they gave me.
+Jason Cress says: Eeyup. Thoracotomy's a standard procedure, and broken ribs just gotta heal on their own so.. Not a whole lot I can do for that. 
+Jason Cress says: You got stitches that need taking out in your head, right?
+* Jason Cress begins shifting his hair around, looking for the stitches.
+* Jason would find the stitches just a bit past the hair line. ((Frank Dudas))*
+* Close to the forehead. ((Frank Dudas))*
+Jason Cress says [low]: Yeah, that looks just about healed up. I can take those out for ya easy peasy. Gonna run ya four grand if you can swing that.
+Frank Dudas says [low]: I can, will need to hit the atm, but I can.
+Jason Cress says [low]: Sounds good man. I'm not too worried about it.
+* Jason Cress fishes out a small set of shears and some gauze pads, as well as a small bottle of saline. He dabs at the stitches, wetting them down so they won't pull tissue away when he removes them.
+Frank Dudas says [low]: You said you'll check for me on painkillers, cause these ribs are legit killing here.
+Jason Cress says [low]: If you start having any issues breathing, let me know. I got a few oxygen tanks I just had filled.
+Frank Dudas says [low]: I did report to the garage I ain't fit to work for a few weeks.
+Frank Dudas says [low]: Taking it easy.
+Jason Cress says [low]: Yeah, I have a friend working on sourcing pain meds for me. I got a pair of oxy I can give ya to hold you over if what they gave you at Pillbox ain't cutting it.
+Frank Dudas says [low]: Cunts only gave me paperwork no meds at all.
+Frank Dudas says [low]: I mean when they released me that is.
+Jason Cress says [low]: Definitely. Take it easy at least a week. I'd take your cage until all healed up.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>b643fe81-6341-416b-b4a4-0add02c54f08-f1193155-9194-47c6-9541-c3a395246707</Guid>
+    <ScreenshotDate>2022-01-17T21:36:05.8222401+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220117_093605.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>18</Left>
+          <Top>16.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Frank Dudas follows Jason as he carrying a busted ass helmet
+Frank Dudas says: You busting my balls to wear this, saved my head.
+* Frank Dudas shows the busted ass helmet to Jason
+Jason Cress says: Eeyup. There's a reason I prach it. 
+* Frank has several minor scratches on his face. ((Frank Dudas))*
+* Jason Cress takes the helmet and sets it on top of the fridge, pointing to the slab.
+Jason Cress says: Aight, shed 'em and let's see what we're working with. 
+* Frank Dudas reaches up, grunts as he does so removes the hat.
+* Jason Cress washes his hands thoroughly in the sink before gloving up.
+* Frank Dudas grunts as he reaches for the shirt before pulling that one up and over his head.
+* Frank's chest is mostly blue on left side below the nipple. ((Frank Dudas))*
+Frank Dudas says: Had to sleep on the side without moving, nightmare.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>b9162053-22ea-4c79-93c7-2610c956d606-18eb8c5c-aac4-415a-aefb-82e43552fc3f</Guid>
+    <ScreenshotDate>2022-01-17T21:27:08.3151128+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220117_092708.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>20</Left>
+          <Top>10.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Jason Cress says (cellphone): Yo. 
+Frank Dudas says (cellphone): Ayo Doc, when can ya meet me for the appointment?
+Jason Cress says (cellphone): Uhh, I'm free right now. 
+Frank Dudas says (cellphone): So, where's the clinic?
+Jason Cress says (cellphone): Liquor store in Sandy. 
+Frank Dudas says (cellphone): Route sixty eight? there's two.
+Jason Cress says (cellphone): Sandy, not Harmony. 
+Jason Cress says (cellphone): I'll send you a ping. 
+Frank Dudas says (cellphone): Alright.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>282</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>433c9eee-45f0-4662-a54e-fb3921b61ae6-250d2cb4-3486-4830-af3c-5ee12f802433</Guid>
+    <ScreenshotDate>2022-01-16T22:27:15.2425253+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220116_102715.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>19</Left>
+          <Top>11.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Martin Santoyo says [low]: Yo, Lazy.
+Moshe Gallegos says [low]: Sup'.
+Martin Santoyo says [low]: Juras are on some mad shit today, bro.
+Moshe Gallegos says [low]: Speak bro, what's happened?
+Martin Santoyo says [low]: After we did the race, I went to the shop to grab something to eat.
+Martin Santoyo says [low]: Two cops waiting for me outside, saying they saw me riding without a helmet. Then starting frisking all my pockets.
+Martin Santoyo says [low]: Five minutes later? They pulled Kev over.
+* Frank Dudas shakes his head as he hears what Martin's telling.
+Martin Santoyo says [low]: Speak of the devil.
+Moshe Gallegos says [low]: Same shit, it happened to me thirty minutes ago and they stopped me while I was smoking a cigarette in my car.
+Martin Santoyo says [low]: We're handsome enough to catch their attention.
+
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>750</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>191</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>bd8b6477-9f48-403f-a9b2-fee5f3dded93-13fa553d-2c94-497a-af57-77f73859b634</Guid>
+    <ScreenshotDate>2022-01-12T23:22:26.1359589+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220112_112226.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>9</Left>
+          <Top>10.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Frank Dudas pops the trunk.
+* Frank Dudas assists Jason as he pulled the stiff out of the trunk.
+* Jason Cress chucks the dead motherfucker into the sea.
+Frank Dudas says [low]: Big ass trunk, came in handly
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>e52a89fc-6aee-48d1-97c3-0a014e0e7574-75d21836-fee5-4c90-95a1-2010131d6bc0</Guid>
+    <ScreenshotDate>2022-01-12T23:21:42.5254942+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220112_112142.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>9</Left>
+          <Top>10.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Jason Cress says [low]: My girl rents this motel room. She found this prick dead in here.
+* Frank Dudas eyes the stiff laying in the bathroom.
+Frank Dudas says [low]: Clean up on aisle five.
+Jason Cress says [low]: Her fingerprints are all over this place. Hate for this to fall on her.
+* Frank Dudas reaches into his side pocket pulling a pair of netrile gloves, pulling them on.
+Frank Dudas says [low]: Got these by the truck load.
+Jason Cress says [low]: You and me both. What do ya think? Alamo Sea?
+Frank Dudas says [low]: Where you think is quieter to dump a guy at?
+Jason Cress says [low]: Know a decent spot between Sandy and Slab. Should be decent. Lets get to work hey?
+* Frank Dudas approaches the body before reaching out wrapping his arms around the arms-pits, pulling out towards the door as the feet are dragged.
+* Jason Cress assists with the legs, going out first.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>720</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>fa5964c3-2429-40a3-aafd-d5771135b949-8822d888-7d3d-4395-82b8-5e7892eea062</Guid>
+    <ScreenshotDate>2022-01-12T20:33:25.7193385+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220112_083325.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>18</Left>
+          <Top>19.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Frank Dudas says (cellphone): Doc how are you?
+Jason Cress says (cellphone): This is Doc. What can I do ya for?
+Frank Dudas says (cellphone): Wanted to ask if you know who I speak to regarding merch.
+Frank Dudas says (cellphone): To support the nation, you know.
+Jason Cress says (cellphone): Ahh, I'll get some ready for ya at some point. I'll call around and see what I can find out. 
+Frank Dudas says (cellphone): Sure, appreciate it, stay safe Doc.
+Jason Cress says (cellphone): You too, man. 
+
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>0e2e9ef7-0b50-45e9-a53a-b0b021e54495-d48830bd-0777-4184-84b6-2520f4896182</Guid>
+    <ScreenshotDate>2022-01-12T20:14:17.8437076+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220112_081417.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>15</Left>
+          <Top>12.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Frank Dudas says (cellphone): Doc how are you?
+(#FFFFFF00)Jason Cress says (cellphone): This is Doc. What can I do ya for?
+Frank Dudas says (cellphone): Wanted to ask if you know who I speak to regarding merch.
+Frank Dudas says (cellphone): To support the nation, you know.
+(#FFFFFF00)Jason Cress says (cellphone): Ahh, I'll get some ready for ya at some point. I'll call around and see what I can find out. 
+Frank Dudas says (cellphone): Sure, appreciate it, stay safe Doc.
+(#FFFFFF00)Jason Cress says (cellphone): You too, man. 
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>8f8567b4-679d-4b2a-a565-c58eb5a998e9-2205e956-732d-4d35-94f4-f84fa08b36a8</Guid>
+    <ScreenshotDate>2022-01-01T19:14:42.0970613+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220101_071442.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>14</Left>
+          <Top>8.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Octavion DeSmith grabs the school bag in the passanger seat.
+* Mask_77F5E_2 kicks himself off the wall, taking a step towards Octavion.
+Mask_77F5E_2 says [low]: You got the shit?
+Octavion DeSmith says [low]: I do. You got the cash?
+Mask_77F5E_2 says [low]: Pop that bag, once I see the product you'll see the dough.
+* Octavion DeSmith takes a step back he opens the bag and shows the substance and ammo.
+* Mask_77F5E_2 eyes the amounts inside the bed, unzips his own hoodie before pulling an envelope.
+* Mask_77F5E_2 with his left, reaching for the bag, with his right offering the envelope to Octavion.
+Mask_77F5E_2 says [low]: Make sure this is delivered to whoever sent ya'.
+Octavion DeSmith says [low]: The cash is in there?
+Mask_77F5E_2 says [low]: Where else it would be?
+* Mask_77F5E_2 zips the backpack up.
+* Octavion DeSmith takes the envelope he examines the weight off it.
+Octavion DeSmith says: Stay safe man.
+Mask_77F5E_2 says [low]: Likewise, you drive out first, then I'll move out.
+* Octavion DeSmith hides the envelope in his jacket.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+      <TextBlockModel>
+        <Selected>false</Selected>
+        <Margin>
+          <Left>599</Left>
+          <Top>491.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #2</BlockName>
+        <ParsedChat>You paid $11,000 to Octavion DeSmith.
+You received 60 Cocaine from Octavion DeSmith
+You received 70 Long Range Ammo from Octavion DeSmith
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>a77de853-9fba-45a3-a2c3-c928555acc02-e41e44d4-f8b5-4f4f-b745-ae1e32698798</Guid>
+    <ScreenshotDate>2022-01-01T19:09:03.0239493+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220101_070903.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>14</Left>
+          <Top>8.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Octavion DeSmith grabs the school bag in the passanger seat.
+* Mask_77F5E_2 kicks himself off the wall, taking a step towards Octavion.
+Mask_77F5E_2 says [low]: You got the shit?
+Octavion DeSmith says [low]: I do. You got the cash?
+Mask_77F5E_2 says [low]: Pop that bag, once I see the product you'll see the dough.
+* Octavion DeSmith takes a step back he opens the bag and shows the substance and ammo.
+* Mask_77F5E_2 eyes the amounts inside the bed, unzips his own hoodie before pulling an envelope.
+* Mask_77F5E_2 with his left, reaching for the bag, with his right offering the envelope to Octavion.
+Mask_77F5E_2 says [low]: Make sure this is delivered to whoever sent ya'.
+Octavion DeSmith says [low]: The cash is in there?
+Mask_77F5E_2 says [low]: Where else it would be?
+* Mask_77F5E_2 zips the backpack up.
+* Octavion DeSmith takes the envelope he examines the weight off it.
+Octavion DeSmith says: Stay safe man.
+Mask_77F5E_2 says [low]: Likewise, you drive out first, then I'll move out.
+* Octavion DeSmith hides the envelope in his jacket.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+      <TextBlockModel>
+        <Selected>false</Selected>
+        <Margin>
+          <Left>599</Left>
+          <Top>491.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #2</BlockName>
+        <ParsedChat>You paid $11,000 to Octavion DeSmith.
+You received 60 Cocaine from Octavion DeSmith
+You received 70 Long Range Ammo from Octavion DeSmith
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>09c4b8e6-2dc6-4ca7-9320-60a01852ebfa-b4f7bbf8-f2f8-4195-9d07-3641fbd8e178</Guid>
+    <ScreenshotDate>2021-12-30T00:59:39.6129672+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211230_125939.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>54</Left>
+          <Top>29.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Shay Ezra says [low]: (Hebrew) I'm still looking for a club to run.
+Shay Ezra says [low]: (Hebrew) Ryan said he gonna sort me out with this one.
+Mikhail Argov says [low]: (Hebrew) Only question I have, the plug, what's the catch?
+Shay Ezra says [low]: (Hebrew) We're dealing in bulks, only big amounts.
+Mikhail Argov says [low]: (Hebrew) Alright, regarding Ryan, have not seen him since the night I went to stash something for him. You?
+* Mikhail Argov looks at Shay.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>c8d97c95-02e3-49d6-b4f2-de8e03af1693-14bc46e4-07e8-4529-b90b-c2156e89edbe</Guid>
+    <ScreenshotDate>2021-12-30T00:56:37.4588092+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211230_125637.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>54</Left>
+          <Top>29.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Shay Ezra says [low]: (Hebrew) I'm still looking for a club to run.
+Shay Ezra says [low]: (Hebrew) Ryan said he gonna sort me out with this one.
+Mikhail Argov says [low]: (Hebrew) Only question I have, the plug, what's the catch?
+Shay Ezra says [low]: (Hebrew) We're dealing in bulks, only big amounts.
+Mikhail Argov says [low]: (Hebrew) Alright, regarding Ryan, have not seen him since the night I went to stash something for him. You?
+* Mikhail Argov looks at Shay.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>cd174081-e199-4cfd-957a-42d8707abe37-1566f3f5-1825-487d-9064-b66b4be8103a</Guid>
+    <ScreenshotDate>2021-12-17T02:34:52.1354585+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211217_023452.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>31</Left>
+          <Top>25.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov says: Well, here goes.
+* Mikhail Argov grips the painting, taking it off the wall, before placing it down on the floor.
+* Mikhail Argov straights up, before swinging his fist and ramming it against the dry-wall making a sizable hole.
+* Mikhail Argov pulls the glock out, stuffing it into the hole he just made with a few magazines, picking the painting and hanging it back up.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>000a713b-0923-4de6-9116-8ae9306f9504-9de99b29-f763-42e2-81a4-b87d22fed238</Guid>
+    <ScreenshotDate>2021-12-17T02:32:30.0988769+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211217_023230.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>31</Left>
+          <Top>25.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov says: Well, here goes.
+* Mikhail Argov grips the painting, taking it off the wall, before placing it down on the floor.
+* Mikhail Argov straights up, before swinging his fist and ramming it against the dry-wall making a sizable hole.
+* Mikhail Argov pulls the glock out, stuffing it into the hole he just made with a few magazines, picking the painting and hanging it back up.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1300</Width>
+      <CanvasScale>73</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>7c052977-260f-4644-9808-378c44fe3257-15b649ff-3b25-4e49-9d01-fa9805734249</Guid>
+    <ScreenshotDate>2021-12-17T00:52:49.2023887+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211217_125249.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>31</Left>
+          <Top>25.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov says: Well, here goes.
+* Mikhail Argov grips the painting, taking it off the wall, before placing it down on the floor.
+* Mikhail Argov straights up, before swinging his fist and ramming it against the dry-wall making a sizable hole.
+* Mikhail Argov pulls the glock out, stuffing it into the hole he just made with a few magazines, picking the painting and hanging it back up.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>70</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>aa314304-aa84-448e-91f0-a8231f677187-2dc6b59d-5f7e-408e-8b17-e60edad3c53d</Guid>
+    <ScreenshotDate>2021-12-16T23:59:49.921133+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211216_115949.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>31</Left>
+          <Top>25.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov says: Well, here goes.
+* Mikhail Argov grips the painting, taking it off the wall, before placing it down on the floor.
+* Mikhail Argov straights up, before swinging his fist and ramming it against the dry-wall making a sizable hole.
+* Mikhail Argov pulls the glock out, stuffing it into the hole he just made with a few magazines, picking the painting and hanging it back up.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>72</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>9ec1ec69-398b-4437-a6ec-d53eba49ffc0-ee8298f5-efe9-4ee3-9edd-fa56c85bc19c</Guid>
+    <ScreenshotDate>2021-12-09T00:25:28.3458946+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211209_122528.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>34</Left>
+          <Top>45.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>* Eran Shirazi plants himself down.
+* Ryan Amsalem drops himself on the couch, eyes the group.
+Shay Ezra says: (Hebrew) Ma kore, metukim?
+Shlomi Dahan says: What a beautiful place you've got, ahi.
+Shay Ezra says: Toda motek.
+Ryan Amsalem says: It's Shay's what else can we say.
+Shlomi Dahan says: (Hebrew) No problem, brother.
+Shay Ezra says: (Hebrew) A kizer, what's the talking. Y'all making money this days?
+Shlomi Dahan says: (Hebrew) Been trying to build connections these last few days.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>a03be7ce-4d61-429a-b514-af3070026008-4f529694-eb86-4464-8e60-cc003d6557c0</Guid>
+    <ScreenshotDate>2021-12-08T00:10:49.6687082+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211208_121049.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat />
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>1aad3c17-69d7-488d-aeb7-5d6807e08f52-470d897b-efb7-478e-accd-5bfacd757c01</Guid>
+    <ScreenshotDate>2021-11-27T23:31:27.0266691+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211127_113127.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>15</Left>
+          <Top>21.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov says [low]: (Hebrew) Had a marathon to run following anti theft tracker. Someone tried ot jack my car.
+Shay Ezra says [low]: (Hebrew) Why you sweating like that, ahi?
+* Ryan Amsalem eyes Mikhail, perking a brow.
+Mikhail Argov says [low]: (Hebrew) No idea who it was, I maanged to shut the engine and track it.
+Mikhail Argov says [low]: (Hebrew) Yes, Ryan some cunt stole it outfront your crib.
+Shay Ezra says [low]: (Hebrew) Beni zonot, annoying kids...
+Ryan Amsalem says [low]: (Hebrew) There are cameras. We will try to get the footage later.
+Shay Ezra says [low]: (Hebrew) At least you caught his face or something?
+Mikhail Argov says [low]: (Hebrew) No, found the car empty.
+Mikhail Argov says [low]: (Hebrew) If I would've found the cunt I'd be probably covered in blood.
+Shay Ezra says [low]: Baduk.
+Ryan Amsalem says [low]: Ruthless.
+Mikhail Argov says [low]: (Hebrew) You touch my shit, I don't care you who you are. You ain't walking straight.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1632</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>200</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1080p</Name>
+      <Width>1920</Width>
+      <Height>1080</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>a2f1111d-78f5-4a30-9fda-cc40fec5208f-e4be1382-9386-43c2-85e8-4f45c02a578e</Guid>
+    <ScreenshotDate>2021-10-30T00:10:01.9779786+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211030_121001.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>18</Left>
+          <Top>16.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Eran Shirazi says: Pass him the cash.
+* Mikhail Argov approaches Ben, extends his hand offer Ben the bag.
+* Ben Ruggieri takes the bag from Argov, he yanks on the zip to check inside.
+You paid $53,000 to Ben Ruggieri.
+Ben Ruggieri says: Pleasure doin business.
+Eran Shirazi says: Good shit, bro.
+Ben Ruggieri says: Yous reach out if you need more.
+Eran Shirazi says: We will.
+* Eran Shirazi nods.
+Eran Shirazi says: Safe.
+Ben Ruggieri says: I'm off then. Take care.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor>
+      <NamesToReplace>
+        <Name>Ben Ruggieri</Name>
+        <FirstName>Ben</FirstName>
+        <LastName>Ruggieri</LastName>
+        <Mask>Mask_KFPFY_69</Mask>
+      </NamesToReplace>
+    </NamesToCensor>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>d67e7e54-5b9c-47d7-a63d-183385303afb-e79e5c1f-1c71-4725-b232-b881e1ef157c</Guid>
+    <ScreenshotDate>2021-10-30T00:09:02.6675301+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211030_120902.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>15</Left>
+          <Top>17.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Eran Shirazi says: So, you got the shit?
+* Ben Ruggieri takes a look around the room.
+* Ben Ruggieri offers the paper bag over.
+* Eran Shirazi takes the paper bag from Ben, peering inside.
+* Nissim Ovadia sniffles twice as he looks at Ben, adjusting himself onto the armchair.
+* What'd Eran see? ((Eran Shirazi))*
+* Elad Gamliel crosses his arms, gazing at the duo.
+Ben Ruggieri says [low]: A zip lock bag filled with white powder.
+* Mikhail Argov looks at Elad for a reaction.
+* A zip lock bag filled with white powder. ((Ben Ruggieri))*
+* Eran Shirazi throws the paper bag on the glass table, then reaches inside his pockets, taking out a NarcoCheck device.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor>
+      <NamesToReplace>
+        <Name>Ben Ruggieri</Name>
+        <FirstName>Ben</FirstName>
+        <LastName>Ruggieri</LastName>
+        <Mask>Mask_NNZIK_77</Mask>
+      </NamesToReplace>
+    </NamesToCensor>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>b9a20827-3b5f-459c-a989-ec268fe96adf-a05b7710-1159-431a-bd85-06d9d46d6604</Guid>
+    <ScreenshotDate>2021-10-30T00:06:22.693814+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211030_120622.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>18</Left>
+          <Top>501.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Eran Shirazi says: So, you got the shit?
+* Ben Ruggieri takes a look around the room.
+* Ben Ruggieri offers the paper bag over.
+* Eran Shirazi takes the paper bag from Ben, peering inside.
+* Nissim Ovadia sniffles twice as he looks at Ben, adjusting himself onto the armchair.
+* What'd Eran see? ((Eran Shirazi))*
+* Elad Gamliel crosses his arms, gazing at the duo.
+Ben Ruggieri says [low]: A zip lock bag filled with white powder.
+* Mikhail Argov looks at Elad for a reaction.
+* A zip lock bag filled with white powder. ((Ben Ruggieri))*
+* Eran Shirazi throws the paper bag on the glass table, then reaches inside his pockets, taking out a NarcoCheck device.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor>
+      <NamesToReplace>
+        <Name>Ben Ruggieri</Name>
+        <FirstName>Ben</FirstName>
+        <LastName>Ruggieri</LastName>
+        <Mask>Mask_0OMOY_65</Mask>
+      </NamesToReplace>
+    </NamesToCensor>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>f2614bf6-ecb2-4bec-a4af-abfcafdb8d9e-f6b4c58c-b9e4-44d4-9d4b-c9c97ab6f740</Guid>
+    <ScreenshotDate>2021-10-30T00:04:55.2345273+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211030_120455.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>15</Left>
+          <Top>17.006666666666661</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Mikhail Argov says: (Hebrew) Any of you packing?
+* Mikhail Argov eyes all three.
+Shlomi Dahan says: (Hebrew) Same old, same old brother. Eran got the place looking nice.
+* Elad Gamliel kisses his teeth.
+* Shlomi Dahan pats his pockets down.
+Elad Gamliel says: (Hebrew) Do I have time to get it?
+Shlomi Dahan says: I got a glock on me.
+Mikhail Argov says: (Hebrew) Don't think you have, plus Eran ain't filling details on this meet.
+Mikhail Argov says: (Hebrew) Shlomi, keep that within reach, just in case. I don't want to be caught with our pants down.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>981a9f56-3343-4115-b999-c0c76322a01c-71232c6f-d9fe-4742-831c-0a013ae7d8d4</Guid>
+    <ScreenshotDate>2021-10-30T00:02:32.0646794+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20211030_120232.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>0</Left>
+          <Top>0</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat />
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>1000</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>720p</Name>
+      <Width>1280</Width>
+      <Height>720</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+</ArrayOfCacheScreenshot>

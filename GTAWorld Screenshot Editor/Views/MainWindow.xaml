@@ -72,6 +72,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
@@ -355,7 +356,11 @@
                                         </xctk:DropDownButton.DropDownContent>
                                     </xctk:DropDownButton>
 
-                                    <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="12"
+                                    <Label Grid.Column="0" Grid.Row="12">Your Character Name:</Label>
+                                    <xctk:AutoSelectTextBox Grid.Column="1" Grid.Row="12" AutoSelectBehavior="OnFocus"
+                                                            Text="{Binding YourCharacterName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                                    <xctk:RichTextBox x:Name="ParsedChatSmall" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="13"
                                                       FontSize="15"
                                                       Text="{Binding SelectedBlock.ParsedChat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                       Foreground="{DynamicResource MahApps.Brushes.Accent}"

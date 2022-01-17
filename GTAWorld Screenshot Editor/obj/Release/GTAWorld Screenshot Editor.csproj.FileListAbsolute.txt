@@ -18,3 +18,4 @@ C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.Fody.CopyLocal.cache
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.exe
 C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.pdb
+C:\Users\xcast\Documents\GitHub\Screenshot_Editor\GTAWorld Screenshot Editor\obj\Release\GTAWorld Screenshot Editor.csproj.AssemblyReference.cache

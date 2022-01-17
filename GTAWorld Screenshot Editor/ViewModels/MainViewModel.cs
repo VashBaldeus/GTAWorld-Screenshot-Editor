@@ -4,6 +4,7 @@ using GTAWorld_Screenshot_Editor.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -11,9 +12,11 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using HTMLConverter;
 using Clipboard = System.Windows.Clipboard;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
@@ -87,8 +90,6 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
-                DebugInit();
-
                 LookForMainDirectory();
 
                 InitFilters();
@@ -107,6 +108,8 @@ namespace GTAWorld_Screenshot_Editor
                 };
 
                 TextBlocks.Add(SelectedBlock);
+
+                DebugInit();
             }
             catch (Exception ex)
             {
@@ -861,6 +864,14 @@ namespace GTAWorld_Screenshot_Editor
             set { _namesList = value; OnPropertyChanged(); }
         }
 
+        private string _yourCharacterName = string.Empty;
+
+        public string YourCharacterName
+        {
+            get => _yourCharacterName;
+            set { _yourCharacterName = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region Private Properties
@@ -893,14 +904,8 @@ namespace GTAWorld_Screenshot_Editor
         private void DebugInit()
         {
 #if DEBUG
-            File.Delete("./parser.cfg");
-
-            //var str = "You placed Pistol Ammo (49) into the property.";
-
-            //Console.WriteLine(
-            //    $"{Regex.IsMatch(str, @"^You placed (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (into the property|in the vehicle).$")}");
+            //File.Delete("./parser.cfg");
 #endif
-
         }
 
         /// <summary>
@@ -908,6 +913,10 @@ namespace GTAWorld_Screenshot_Editor
         /// </summary>
         private void InitFilters()
         {
+#if DEBUG
+            File.Delete("./parser.cfg");
+#endif
+
             ParserSettings.Filters = new ObservableCollection<Criteria>
             {
                 new Criteria
@@ -945,7 +954,7 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Selected = true,
                     Name = "Cellphone",
-                    Filter = @"(\(cellphone\))"
+                    Filter = @"^((([\p{L}]+ {0,1} [\p{L}]+){0,1})|(Mask+[a-zA-Z0-9_]+ {0,1})) says (\[low\] ){0,1}\(cellphone\):.*$"
                 },
 
                 new Criteria
@@ -1212,7 +1221,7 @@ namespace GTAWorld_Screenshot_Editor
                             Opacity = effectValue,
                             BlurRadius = effectValue,
                             Direction = effectValue,
-                            ShadowDepth = effectValue,
+                            ShadowDepth = effectValue
                         },
 
                         BlackBackgroundOpacity = SelectedBlock.BlackBackgroundOpacity
@@ -1256,6 +1265,12 @@ namespace GTAWorld_Screenshot_Editor
             if (line.Contains("[low]"))
             {
                 return "#a6a4a6";//grey
+            }
+
+            // ReSharper disable once PossibleNullReferenceException
+            if (Regex.IsMatch(line, ParserSettings.Filters.FirstOrDefault(fod => fod.Name.Equals("Cellphone")).Filter) && !line.StartsWith(YourCharacterName))
+            {
+                return "#fcff16";
             }
 
             //money & item transfers
@@ -1369,6 +1384,8 @@ namespace GTAWorld_Screenshot_Editor
                 new ObservableCollection<CacheScreenshot>(ScreenCache.OrderByDescending(obd => obd.ScreenshotDate));
 
             Xml.Serialize<ObservableCollection<CacheScreenshot>>($@"{CacheScreens}\screenshots.cache", ScreenCache);
+            
+            RefreshCachedCommand.Execute(null);
         }
 
         /// <summary>

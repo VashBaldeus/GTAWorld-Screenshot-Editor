@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCacheScreenshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CacheScreenshot>
+    <Guid>3e77beb6-9b18-4c32-baad-1665cfa40026-aba8f7d2-b778-41a2-af5c-296a279a6767</Guid>
+    <ScreenshotDate>2022-01-07T20:14:06.9606327+02:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220107_081406.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>1637</Left>
+          <Top>1006.0066666666667</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>John Doe says: Fuck you.
+* John Doe flips your mom off.
+John Doe says [low]: Fuck You.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>2176</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1440p</Name>
+      <Width>2560</Width>
+      <Height>1440</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
     <Guid>9cf0e9ec-c179-4c57-ad67-bbc819df136c-84024c17-03cd-4aae-9ca5-e2cc343130d6</Guid>
     <ScreenshotDate>2021-11-27T23:29:09.7721771+02:00</ScreenshotDate>
     <ImageFilePath>cached_screens\screenshot_20211127_112909.jpg</ImageFilePath>

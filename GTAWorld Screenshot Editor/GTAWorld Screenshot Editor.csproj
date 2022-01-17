@@ -178,6 +178,9 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="HtmlToXamlConverter">
+      <Version>1.0.5727.24510</Version>
+    </PackageReference>
     <PackageReference Include="MahApps.Metro">
       <Version>2.4.7</Version>
     </PackageReference>

@@ -136,6 +136,15 @@
           "build/Fody.targets": {}
         }
       },
+      "HtmlToXamlConverter/1.0.5727.24510": {
+        "type": "package",
+        "compile": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        }
+      },
       "MahApps.Metro/2.4.7": {
         "type": "package",
         "dependencies": {
@@ -1380,6 +1389,15 @@
           "build/Fody.targets": {}
         }
       },
+      "HtmlToXamlConverter/1.0.5727.24510": {
+        "type": "package",
+        "compile": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        }
+      },
       "MahApps.Metro/2.4.7": {
         "type": "package",
         "dependencies": {
@@ -2560,6 +2578,15 @@
           "build/Fody.targets": {}
         }
       },
+      "HtmlToXamlConverter/1.0.5727.24510": {
+        "type": "package",
+        "compile": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        }
+      },
       "MahApps.Metro/2.4.7": {
         "type": "package",
         "dependencies": {
@@ -3738,6 +3765,15 @@
         "type": "package",
         "build": {
           "build/Fody.targets": {}
+        }
+      },
+      "HtmlToXamlConverter/1.0.5727.24510": {
+        "type": "package",
+        "compile": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
+        },
+        "runtime": {
+          "lib/net45/HtmlToXamlConverter.dll": {}
         }
       },
       "MahApps.Metro/2.4.7": {
@@ -4994,6 +5030,18 @@
         "netstandardtask/Mono.Cecil.Rocks.pdb",
         "netstandardtask/Mono.Cecil.dll",
         "netstandardtask/Mono.Cecil.pdb"
+      ]
+    },
+    "HtmlToXamlConverter/1.0.5727.24510": {
+      "sha512": "vtjP96QTuUV0PMZHOUXTaxTeSRBJcgWPjb+5sAOrLbFzd6v815/9BgIQcVIguhEmRpeZthtpQjOoTFdnQGblbg==",
+      "type": "package",
+      "path": "htmltoxamlconverter/1.0.5727.24510",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "htmltoxamlconverter.1.0.5727.24510.nupkg.sha512",
+        "htmltoxamlconverter.nuspec",
+        "lib/net45/HtmlToXamlConverter.dll"
       ]
     },
     "MahApps.Metro/2.4.7": {
@@ -9421,6 +9469,7 @@
       "Costura.Fody >= 5.6.0",
       "Extended.Wpf.Toolkit >= 4.1.0",
       "Fody >= 6.5.3",
+      "HtmlToXamlConverter >= 1.0.5727.24510",
       "MahApps.Metro >= 2.4.7",
       "MahApps.Metro.IconPacks >= 4.9.0",
       "Microsoft.Bcl.AsyncInterfaces >= 5.0.0",
@@ -9560,6 +9609,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.5.3, )"
+          },
+          "HtmlToXamlConverter": {
+            "target": "Package",
+            "version": "[1.0.5727.24510, )"
           },
           "MahApps.Metro": {
             "target": "Package",
