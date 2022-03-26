@@ -38,8 +38,10 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <mah:ToggleSwitch Content="{Binding Name}"
-                                                                          IsOn="{Binding Selected}"
-                                                                          Margin="10 0 0 0">
+                                          IsOn="{Binding Selected}"
+                                          Margin="10 0 0 0"
+                                          OnCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.SaveFilterChangeCommand}"
+                                          OffCommand="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=DataContext.SaveFilterChangeCommand}">
                         </mah:ToggleSwitch>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
@@ -53,12 +55,16 @@
             </Grid.ColumnDefinitions>
 
             <mah:ToggleSwitch Grid.Column="0" Content="Censor Money"
-                                                                      HorizontalAlignment="Center"
-                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Money}"/>
+                              HorizontalAlignment="Center"
+                              IsOn="{Binding ParserSettings.DoNotCensor.Money}"
+                              OnCommand="{Binding SaveFilterChangeCommand}"
+                              OffCommand="{Binding SaveFilterChangeCommand}"/>
 
             <mah:ToggleSwitch Grid.Column="1" Content="Censor Items"
-                                                                      HorizontalAlignment="Center"
-                                                                      IsOn="{Binding ParserSettings.DoNotCensor.Items}"/>
+                              HorizontalAlignment="Center"
+                              IsOn="{Binding ParserSettings.DoNotCensor.Items}"
+                              OnCommand="{Binding SaveFilterChangeCommand}"
+                              OffCommand="{Binding SaveFilterChangeCommand}"/>
         </Grid>
     </Grid>
 </UserControl>

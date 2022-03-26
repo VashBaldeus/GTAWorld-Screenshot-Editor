@@ -78,6 +78,8 @@ namespace GTAWorld_Screenshot_Editor
             ReplaceNameCommand = new RelayCommand(ReplaceNameExecute);
 
             RefreshCachedCommand = new RelayCommand(InitCachedScreenshots);
+
+            SaveFilterChangeCommand = new RelayCommand(SaveFilterChangeExecute);
         }
 
         #endregion
@@ -675,6 +677,21 @@ namespace GTAWorld_Screenshot_Editor
 
         public ICommand RefreshCachedCommand { get; set; }
 
+        public ICommand SaveFilterChangeCommand { get; set; }
+
+        public void SaveFilterChangeExecute(object obj)
+        {
+            try
+            {
+                Xml.Serialize<ParserSettingsModel>(@"./parser.cfg", ParserSettings);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
         #endregion
 
         #region Public Properties
@@ -968,7 +985,14 @@ namespace GTAWorld_Screenshot_Editor
                 {
                     Selected = true,
                     Name = "Payments",
-                    Filter = @"^[\p{L}]+ [\p{L}]+ paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+).$|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1} [\p{L}]+ {0,1}).$"
+                    Filter = new[]
+                    {
+                    //received payments regex
+                    @"^([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+) paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+).$",
+                    //payments paid regex
+                    @"|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+).$"
+                    // ReSharper disable once RedundantAssignment
+                }.Aggregate(string.Empty, (cur, i) => cur += $"{i}")
                 },
 
                 new Criteria
