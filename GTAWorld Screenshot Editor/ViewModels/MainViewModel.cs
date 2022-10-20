@@ -4,7 +4,6 @@ using GTAWorld_Screenshot_Editor.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,11 +11,9 @@ using System.Windows;
 using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
-using HTMLConverter;
 using Clipboard = System.Windows.Clipboard;
 using Message = ExtensionMethods.Message;
 using MessageBox = System.Windows.MessageBox;
@@ -905,6 +902,35 @@ namespace GTAWorld_Screenshot_Editor
 
         public const string CacheScreens = @"cached_screens";
 
+        private string _SelectedState = "San Andreas";
+
+        public string SelectedState
+        {
+            get => _SelectedState;
+            set 
+            { 
+                _SelectedState = value;
+                OnPropertyChanged();
+
+                ChatParser.GTAState = value;
+
+                Properties.Settings.Default.SelectedGTAState = value;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private ObservableCollection<string> _GTAStates = new ObservableCollection<string>()
+        {
+            "San Andreas",
+            "Liberty City"
+        };
+
+        public ObservableCollection<string> GTAStates
+        {
+            get => _GTAStates;
+            set { _GTAStates = value; OnPropertyChanged(); }
+        }
+
         #endregion
 
         #region Public Methods
@@ -988,7 +1014,7 @@ namespace GTAWorld_Screenshot_Editor
                     Filter = new[]
                     {
                     //received payments regex
-                    @"^([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+) paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+).$",
+                    @"^([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+)( \(M\)){0,1} paid you (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+).$",
                     //payments paid regex
                     @"|^You paid (?<SYMBOL>[$]){1}(?<AMOUNT>[\d.,]+) to ([\p{L}]+ {0,1}([\p{L}]+){0,1}|Mask+[a-zA-Z0-9_]+).$"
                     // ReSharper disable once RedundantAssignment
@@ -1002,7 +1028,7 @@ namespace GTAWorld_Screenshot_Editor
                     Filter = new[]
                     {
                         //given received item regex
-                        @"^You (gave|received) (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (to|from) ([\p{L}]+ [\p{L}]+).$",
+                        @"^You (gave|received) (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (to|from) ([\p{L}]+ [\p{L}]+)( \(M\)){0,1}.$",
                         //placed item inside vehicle/property
                         @"|^You placed (.* \((?<AMOUNT>[\d.,]+)\)|(?<AMOUNT>[\d.,]+) .*) (into the property|in the vehicle).$"
                         // ReSharper disable once RedundantAssignment
@@ -1330,6 +1356,8 @@ namespace GTAWorld_Screenshot_Editor
         {
             try
             {
+                SelectedState = "San Andreas";
+
                 if (!string.IsNullOrEmpty(RageFolder))
                     return;
 

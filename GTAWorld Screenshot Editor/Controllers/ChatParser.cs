@@ -14,6 +14,7 @@ namespace GTAWorld_Screenshot_Editor
     /// </summary>
     public static class ChatParser
     {
+        public static string GTAState = "San Andreas";
         public static string ResourceDirectory;
         public static string LogLocation;
 
@@ -53,7 +54,13 @@ namespace GTAWorld_Screenshot_Editor
                         log = sr.ReadToEnd();
                     }
 
-                    if (!Regex.IsMatch(log, "\\\"server_version\\\":\\\"GTA World[^\"]*\""))
+                    //San Andreas
+                    /*!Regex.IsMatch(log, "\\\"server_version\\\":\\\"GTA World[^\"]*\"")*/
+                    if (GTAState == "San Andreas" &&  !log.Contains("Welcome to GTA World."))
+                        continue;
+
+                    //Libery City
+                    if(GTAState == "Liberty City" && !log.Contains("Welcome to GTA World Liberty City."))
                         continue;
 
                     potentialLogs.Add(resourceDirectory);

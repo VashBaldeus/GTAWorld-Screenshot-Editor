@@ -154,18 +154,31 @@
                                     <Label Grid.Column="0" Grid.Row="9" Content="Pased Text:"/>
 
                                     <Grid Grid.Column="1" Grid.Row="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
 
-                                        <TextBox Grid.Column="0" Text="{Binding RageFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <TextBox Grid.Column="0" Grid.Row="0" Text="{Binding RageFolder, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                                        <Button Grid.Column="1" Margin="0" Width="32" Command="{Binding RageMPFolderCommand}">
+                                        <Button Grid.Column="1" Grid.Row="0" Margin="0" Width="32" Command="{Binding RageMPFolderCommand}">
                                             <Button.Content>
                                                 <iconpacks:PackIconBoxIcons Kind="RegularFolder" VerticalContentAlignment="Center"/>
                                             </Button.Content>
                                         </Button>
+
+                                        <ComboBox Grid.Column="0" Grid.Row="1" SelectedItem="{Binding SelectedState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                  ItemsSource="{Binding GTAStates}">
+                                            <!--<ComboBox.Items>
+                                                <ComboBoxItem>San Andreas</ComboBoxItem>
+                                                <ComboBoxItem>Liberty City</ComboBoxItem>
+                                            </ComboBox.Items>-->
+                                        </ComboBox>
                                     </Grid>
 
                                     <Grid Grid.Column="1" Grid.Row="2">

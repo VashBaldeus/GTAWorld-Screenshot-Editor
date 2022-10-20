@@ -1,6 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCacheScreenshot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <CacheScreenshot>
+    <Guid>02107ba8-03e9-4023-a2b4-c17eaf3246f4-b68eb648-ff44-4988-af4e-c602505dd81c</Guid>
+    <ScreenshotDate>2022-06-10T01:17:39.4724847+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220610_011739.jpg</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>22</Left>
+          <Top>304.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Frank Dudas says [low]: You got the shit?
+* Omar Price stays behind Parker, scanning his surroundings.
+Narquise Parker says [low]: I got it yeah, lemme see wachu got fo me.
+* Frank Dudas reaches to the side pocket, pulling a zip-loc, before showing it to Narquise.
+* Narquise Parker pulls out an envelope, passing it towards Frank.
+* Frank Dudas collects the envelope, pops it open, counting.
+* Frank Dudas nods, before offering the bag over to Narquise.
+* Narquise Parker grabs the bag and takes a short look inside, bobbing his head.
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+      <TextBlockModel>
+        <Selected>false</Selected>
+        <Margin>
+          <Left>620</Left>
+          <Top>236.00666666666666</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #2</BlockName>
+        <ParsedChat>Narquise Parker paid you $4,000.
+(#FF29943E)You gave Zipbag (1) to Narquise Parker (M)
+</ParsedChat>
+        <BlackBackgroundOpacity>true</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>870</Width>
+      <CanvasScale>100</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>true</AllowEdit>
+      <Name>Custom</Name>
+      <Width>1024</Width>
+      <Height>459</Height>
+    </Resolution>
+    <NamesToCensor>
+      <NamesToReplace>
+        <Name>Narquise Parker</Name>
+        <FirstName>Narquise</FirstName>
+        <LastName>Parker</LastName>
+        <Mask>Mask_U1ZTK_40</Mask>
+      </NamesToReplace>
+      <NamesToReplace>
+        <Name>Omar Price</Name>
+        <FirstName>Omar</FirstName>
+        <LastName>Price</LastName>
+        <Mask>Mask_K0R25_54</Mask>
+      </NamesToReplace>
+    </NamesToCensor>
+  </CacheScreenshot>
+  <CacheScreenshot>
+    <Guid>3a1a7c21-6262-4d95-a5f6-fbfe556cf3b3-d9f5ebb1-057f-4b0e-ab1c-23e1c223a168</Guid>
+    <ScreenshotDate>2022-05-07T13:46:38.0648698+03:00</ScreenshotDate>
+    <ImageFilePath>cached_screens\screenshot_20220507_014638.png</ImageFilePath>
+    <TextBlocks>
+      <TextBlockModel>
+        <Selected>true</Selected>
+        <Margin>
+          <Left>270.51282051282055</Left>
+          <Top>446.16239316239307</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #1</BlockName>
+        <ParsedChat>Ellie Reeves says: Hmm...
+
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+      <TextBlockModel>
+        <Selected>false</Selected>
+        <Margin>
+          <Left>1428.2051282051284</Left>
+          <Top>179.49572649572647</Top>
+          <Right>0</Right>
+          <Bottom>0</Bottom>
+        </Margin>
+        <BlockName>Text Block #2</BlockName>
+        <ParsedChat>Lia Volkov says: Shinobi or Reever, but we ain't got either in stock here.
+</ParsedChat>
+        <BlackBackgroundOpacity>false</BlackBackgroundOpacity>
+      </TextBlockModel>
+    </TextBlocks>
+    <Text>
+      <Width>2176</Width>
+      <CanvasScale>78</CanvasScale>
+      <ParseLines>100</ParseLines>
+    </Text>
+    <Resolution>
+      <AllowEdit>false</AllowEdit>
+      <Name>1440p</Name>
+      <Width>2560</Width>
+      <Height>1440</Height>
+    </Resolution>
+    <NamesToCensor />
+  </CacheScreenshot>
+  <CacheScreenshot>
     <Guid>b2d1a6ab-8c8d-45c8-8605-66156610e43a-7642f94b-7920-4c62-b4d4-02f7fb4f41cf</Guid>
     <ScreenshotDate>2022-02-22T00:37:22.7485665+02:00</ScreenshotDate>
     <ImageFilePath>cached_screens\screenshot_20220222_123722.jpg</ImageFilePath>

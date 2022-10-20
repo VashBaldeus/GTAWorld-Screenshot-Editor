@@ -58,5 +58,17 @@ namespace GTAWorld_Screenshot_Editor.Properties {
                 this["StrokeTextBoxOrWeb"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SelectedGTAState {
+            get {
+                return ((string)(this["SelectedGTAState"]));
+            }
+            set {
+                this["SelectedGTAState"] = value;
+            }
+        }
     }
 }

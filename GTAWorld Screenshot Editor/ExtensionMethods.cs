@@ -202,29 +202,35 @@ namespace ExtensionMethods
         }
 
         /// <summary>
-        /// Replaces text at given index, splits on desired index & glues string back with inserted text
+        /// Places text at given index, splits on desired index & glues string back with inserted text
         /// </summary>
         /// <param name="str">source string</param>
         /// <param name="index">where to replce</param>
         /// <param name="txt">text to put on said index</param>
-        /// <param name="spaces">Add spaces between streing start, inserted text & end or no. Default: False = No Spaces</param>
+        /// <param name="withSpacesBetweenSourceStringAndInputString">Add spaces between streing start, inserted text & end or no. Default: False = No Spaces</param>
         /// <returns>New string with inserted text</returns>
-        public static string ReplaceAt(this string str, int index, string txt, bool spaces = false)
+        public static string PlaceAt(this string str, int index, string txt, bool withSpacesBetweenSourceStringAndInputString = false)
         {
-            if (string.IsNullOrEmpty(str) || index < 0 && index > str.Length || string.IsNullOrEmpty(txt))
+            if (string.IsNullOrEmpty(str))
                 return string.Empty;
 
-            var start = string.Empty;
+            if (string.IsNullOrEmpty(txt))
+                return str;
 
-            var end = string.Empty;
+            if (index < 0 || index > txt.Length)
+                throw new Exception($"Index was outside the bounds of the array. ({index})");
 
-            for(var i = 0; i < index - 1; i++)
-                start += str[i];
+            var startStr = string.Empty;
 
-            for (var j = start.Length + 1; j < str.Length; j++)
-                end += str[j];
+            var endStr = string.Empty;
 
-            return !spaces ? $"{start}{txt}{end}" : $"{start} {txt} {end}";
+            for (var i = 0; i < index - 1; i++)
+                startStr += str[i];
+
+            for (var j = startStr.Length + 1; j < str.Length; j++)
+                endStr += str[j];
+
+            return !withSpacesBetweenSourceStringAndInputString ? $"{startStr}{txt}{endStr}" : $"{startStr} {txt} {endStr}";
         }
 
         /// <summary>
