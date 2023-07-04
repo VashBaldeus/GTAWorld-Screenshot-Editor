@@ -1254,29 +1254,29 @@ namespace GTAWorld_Screenshot_Editor
 
                 var effectValue = SelectedResolution.Height * (0.18 / 100);
 
-                //add line to collection to dispaly on image
-                SelectedBlock.Texts.Add(
-                    new ImageText
+                var textItem = new ImageText
+                {
+                    String = str,
+
+                    Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(color),
+
+                    FontSize = SelectedResolution.Height < 960
+                        ? 15
+                        : (1.55 * SelectedResolution.Height) / 100,
+
+                    Effect = new DropShadowEffect
                     {
-                        String = str,
+                        Opacity = effectValue,
+                        BlurRadius = effectValue,
+                        Direction = effectValue,
+                        ShadowDepth = effectValue
+                    },
 
-                        Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(color),
+                    BlackBackgroundOpacity = SelectedBlock.BlackBackgroundOpacity
+                };
 
-                        FontSize = SelectedResolution.Height < 960
-                            ? 960 * (1.6 / 100)
-                            : SelectedResolution.Height * (1.6 / 100),
-
-                        Effect = new DropShadowEffect
-                        {
-                            Opacity = effectValue,
-                            BlurRadius = effectValue,
-                            Direction = effectValue,
-                            ShadowDepth = effectValue
-                        },
-
-                        BlackBackgroundOpacity = SelectedBlock.BlackBackgroundOpacity
-                    }
-                );
+                //add line to collection to dispaly on image
+                SelectedBlock.Texts.Add(textItem);
 
                 //count line
                 lineCount++;
