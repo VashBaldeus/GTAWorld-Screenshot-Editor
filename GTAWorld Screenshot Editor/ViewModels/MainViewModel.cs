@@ -1247,9 +1247,10 @@ namespace GTAWorld_Screenshot_Editor
                 //check if line contains a player name that was chosen to hide
                 foreach (var name in NamesToReplace.Where(w => str.Contains(w.Name) || str.Contains(w.FirstName) || str.Contains(w.LastName)))
                 {
-                    str = str.Replace(name.Name, name.Mask);
-                    str = str.Replace(name.FirstName, name.Mask);
-                    str = str.Replace(name.LastName, name.Mask);
+                    var redactedStr = "[REDACTED]";
+                    str = str.Replace(name.Name, redactedStr);
+                    str = str.Replace(name.FirstName, redactedStr);
+                    str = str.Replace(name.LastName, redactedStr);
                 }
 
                 var effectValue = SelectedResolution.Height * (0.18 / 100);

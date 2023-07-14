@@ -362,3 +362,5 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+GTAWorld Screenshot Editor/bin/Release/cached_screens/screenshots.cache
+GTAWorld Screenshot Editor/bin/Release/cached_screens/screenshots.cache
